@@ -18,7 +18,7 @@
 <XPD:REF name="Namespace">EPWzTSfxdkiji551kWBT+gAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">5</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLUseCaseDiagram" guid="bNnAkL9bc02Qdu/y4n/uSQAA">
-<XPD:ATTR name="Name" type="string">Register</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Registro</XPD:ATTR>
 <XPD:REF name="DiagramOwner">ZjmAkV//gE+6bxdVA3KVRQAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLUseCaseDiagramView" guid="bN/sSGi5v0admtZUW03u/QAA">
 <XPD:REF name="Diagram">bNnAkL9bc02Qdu/y4n/uSQAA</XPD:REF>
