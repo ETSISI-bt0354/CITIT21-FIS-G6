@@ -4889,7 +4889,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="I+iLt9IggUmzEvs2RgcMqwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="UgTEtRcRvUKXeNiejgKPfAAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">(16506) Ingesta de documentación para cuidadores</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">(16506) Subir documentación de cuidadores</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="Dpqd1Yna00KzMVYpMrcLZQAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -7736,7 +7736,7 @@
 <XPD:REF name="Base">mjawAZKfQUGOJYoL6bZ43wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[87]" type="UMLUseCase" guid="Xnz2G6CjykmmPb/yXaSHBAAA">
-<XPD:ATTR name="Name" type="string">(16506) Ingesta de documentación para cuidadores</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">(16506) Subir documentación de cuidadores</XPD:ATTR>
 <XPD:REF name="Namespace">ZjmAkV//gE+6bxdVA3KVRQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">GR7CRiyqgkKwpgqZ7jKKSQAA</XPD:REF>
