@@ -8,7 +8,8 @@ public class Cuidador extends Usuario{
     private double tarifa;
     private LocalDateTime horario;
 
-    public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario) {
+    public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario, String nombre, int id, TPlataforma plataforma) {
+        super(id, plataforma, nombre);
         this.panchoPuntos = panchoPuntos;
         this.descripcion = descripcion;
         this.tarifa = tarifa;
