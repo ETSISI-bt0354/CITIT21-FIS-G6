@@ -1,4 +1,4 @@
-package Model;
+package Modelo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
