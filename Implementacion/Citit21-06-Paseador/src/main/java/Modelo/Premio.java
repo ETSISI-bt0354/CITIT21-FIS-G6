@@ -4,8 +4,6 @@ public class Premio {
     private int id;
     private double precioPanchoPuntos;
 
-    public Premio() {
-    }
     public int getId() {
         return id;
     }

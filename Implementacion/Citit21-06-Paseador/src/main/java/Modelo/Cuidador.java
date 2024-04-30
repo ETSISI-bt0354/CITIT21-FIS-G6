@@ -2,7 +2,7 @@ package Modelo;
 
 import java.time.LocalDateTime;
 
-public class Cuidador {
+public class Cuidador extends Usuario{
     private int panchoPuntos;
     private String descripcion;
     private double tarifa;

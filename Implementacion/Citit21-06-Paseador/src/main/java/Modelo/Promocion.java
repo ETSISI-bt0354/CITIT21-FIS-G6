@@ -6,7 +6,8 @@ public class Promocion extends Premio{
 
     private LocalDateTime fechalimite;
 
-    public Promocion(LocalDateTime fechalimite) {
+    public Promocion(int id, double precioPanchoPuntos, LocalDateTime fechalimite) {
+        super(id,precioPanchoPuntos);
         this.fechalimite = fechalimite;
     }
     public LocalDateTime getFechalimite() {
