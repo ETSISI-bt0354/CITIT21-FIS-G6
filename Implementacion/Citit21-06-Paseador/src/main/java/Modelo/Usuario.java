@@ -48,6 +48,10 @@ public class Usuario {
         mensajesEnviados.add(mensaje);
     }
 
+    public void removeMensajeEnviado(Mensaje mensaje){
+        mensajesEnviados.remove(mensaje);
+    }
+
     public Set<Mensaje> mensajesRecibidos;
 
     public Set<Mensaje> getMensajesRecibidos() {
@@ -59,6 +63,10 @@ public class Usuario {
 
     public void addMensajeRecibido(Mensaje mensaje){
         mensajesRecibidos.add(mensaje);
+    }
+
+    public void removeMensajeRecibido(Mensaje mensaje){
+        mensajesRecibidos.remove(mensaje);
     }
 
 }
