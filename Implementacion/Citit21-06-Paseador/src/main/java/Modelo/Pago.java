@@ -1,4 +1,4 @@
-package Model;
+package Modelo;
 
 public class Pago {
     private double cantidad;

@@ -1,12 +1,13 @@
-package Model;
+package Modelo;
 
 import java.nio.file.Path;
 
-public class Documentos {
+public class Documentacion
+{
     private int id;
     private Path documentos;
 
-    public Documentos(int id, Path documentos) {
+    public Documentacion(int id, Path documentos) {
         this.id = id;
         this.documentos = documentos;
     }
