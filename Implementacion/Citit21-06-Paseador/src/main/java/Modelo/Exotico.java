@@ -2,12 +2,13 @@ package Modelo;
 
 import java.nio.file.Path;
 
-public class Exotico {
+public class Exotico  extends Mascota{
     private Path permiso;
     private Path certificadoLegal;
     private Path certificadoSalud;
 
-    public Exotico(Path permiso, Path certificadoLegal, Path certificadoSalud) {
+    public Exotico(String nombre, int codigoPostal, String descripcion, Path permiso, Path certificadoLegal, Path certificadoSalud) {
+        super(nombre,codigoPostal,descripcion);
         this.permiso = permiso;
         this.certificadoLegal = certificadoLegal;
         this.certificadoSalud = certificadoSalud;
