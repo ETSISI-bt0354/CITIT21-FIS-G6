@@ -7,14 +7,12 @@ public class Cuidador extends Usuario{
     private String descripcion;
     private double tarifa;
     private LocalDateTime horario;
-    private int id;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario) {
         this.panchoPuntos = panchoPuntos;
         this.descripcion = descripcion;
         this.tarifa = tarifa;
         this.horario = horario;
-        this.id = 0;
     }
 
     public int getPanchoPuntos() {
@@ -47,10 +45,6 @@ public class Cuidador extends Usuario{
 
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
-    }
-
-    public int getId() {
-        return id;
     }
 
 }
