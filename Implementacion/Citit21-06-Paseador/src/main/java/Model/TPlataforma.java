@@ -1,6 +1,5 @@
 package Model;
 
 public enum TPlataforma {
-    Twitter, Facebook, Google, Microsoft;
-
+    TWITTER, FACEBOOK, GOOGLE, MICROSOFT;
 }
