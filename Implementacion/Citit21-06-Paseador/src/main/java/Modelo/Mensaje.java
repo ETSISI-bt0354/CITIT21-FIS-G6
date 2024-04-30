@@ -32,5 +32,25 @@ public class Mensaje {
     public int getId() {
         return id;
     }
+
+    public Usuario usuarioEmisor;
+
+    public Usuario getUsuarioEmisor() {
+        return usuarioEmisor;
+    }
+
+    public void setUsuarioEmisor(Usuario usuarioEmisor) {
+        this.usuarioEmisor = usuarioEmisor;
+    }
+
+    public Usuario usuarioReceptor;
+
+    public Usuario getUsuarioReceptor() {
+        return usuarioReceptor;
+    }
+    public void setUsuarioReceptor(Usuario usuarioReceptor) {
+        this.usuarioReceptor = usuarioReceptor;
+    }
+
     
 }
