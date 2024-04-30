@@ -1,4 +1,4 @@
-package Default;
+package Model;
 
 public class Mascota {
     private String nombre;

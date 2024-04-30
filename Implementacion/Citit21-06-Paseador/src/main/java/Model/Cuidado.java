@@ -1,4 +1,4 @@
-package Default;
+package Model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package Default;
+package Model;
 
 public class PremioFisico extends Premio{
     private String descripcion;

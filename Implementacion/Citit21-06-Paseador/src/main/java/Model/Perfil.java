@@ -1,4 +1,4 @@
-package Default;
+package Model;
 
 public class Perfil {
     private int codigoRiac;
