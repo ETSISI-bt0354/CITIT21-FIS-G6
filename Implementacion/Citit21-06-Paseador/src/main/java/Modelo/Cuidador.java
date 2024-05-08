@@ -11,6 +11,8 @@ public class Cuidador extends Usuario{
     private double tarifa;
     private LocalDateTime horario;
     private Set<Documentacion> documentosAportados;
+    private Set<Cuidado> cuidados;
+    private Set<Premio> premiosCanjeados;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario, String nombre, int id, TPlataforma plataforma) {
         super(id, plataforma, nombre);
@@ -66,5 +68,32 @@ public class Cuidador extends Usuario{
 
     public void removeMensajeEnviado(Documentacion documentacion){
         documentosAportados.remove(documentacion);
+    }
+    public void setCuidados(Set<Cuidado> cuidados) {
+        this.cuidados = cuidados;
+    }
+    public Set<Cuidado> getCuidados() {
+        return cuidados;
+    }
+    public void addCuidado(Cuidado cuidado){
+        cuidados.add(cuidado);
+    }
+    public void removeCuidado(Cuidado cuidado){
+        cuidados.remove(cuidado);
+    }
+    public Set<Premio> getPremiosCanjeados() {
+        return premiosCanjeados;
+    }
+
+    public void setPremiosCanjeados(Set<Premio> premiosCanjeados) {
+        this.premiosCanjeados = premiosCanjeados;
+    }
+
+    public void addPremioCanjeado(Premio premio){
+        premiosCanjeados.add(premio);
+    }
+
+    public void removePremioCanjeado(Premio premio){
+        premiosCanjeados.remove(premio);
     }
 }

@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Premio {
+public abstract class Premio {
     private int id;
     private double precioPanchoPuntos;
 
