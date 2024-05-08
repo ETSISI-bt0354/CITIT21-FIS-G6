@@ -7,6 +7,7 @@ public class Mascota {
     private int codigoPostal;
     private String descripcion;
     private List<Foto> foto;
+    private Perfil perfil;
 
     public Mascota(String nombre, int codigoPostal, String descripcion) {
         this.nombre = nombre;
@@ -44,6 +45,13 @@ public class Mascota {
     }
     public void removeFoto(Foto foto) {
         this.foto.remove(foto);
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+    public Perfil getPerfil() {
+        return perfil;
     }
 
 
