@@ -1,12 +1,13 @@
 package Modelo;
 
-import java.util.Set;
+import java.util.List;
 
 public class Usuario {
     private int id;
     private String nombre;
     private TPlataforma plataforma;
-    private Set<Mensaje> mensajesRecibidos;
+    private List<Mensaje> mensajesRecibidos;
+    private List<Mensaje> mensajesEnviados;
 
     public Usuario(int id, TPlataforma plataforma, String nombre)
     {
@@ -35,13 +36,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    private Set<Mensaje> mensajesEnviados;
-
-    public Set<Mensaje> getMensajesEnviados() {
+    public List<Mensaje> getMensajesEnviados() {
         return mensajesEnviados;
     }
 
-    public void setMensajesEnviados(Set<Mensaje> mensajesEnviados) {
+    public void setMensajesEnviados(List<Mensaje> mensajesEnviados) {
         this.mensajesEnviados = mensajesEnviados;
     }
 
@@ -53,12 +52,10 @@ public class Usuario {
         mensajesEnviados.remove(mensaje);
     }
 
-
-
-    public Set<Mensaje> getMensajesRecibidos() {
+    public List<Mensaje> getMensajesRecibidos() {
         return mensajesRecibidos;
     }
-    public void setMensajesRecibidos(Set<Mensaje> mensajesRecibidos) {
+    public void setMensajesRecibidos(List<Mensaje> mensajesRecibidos) {
         this.mensajesRecibidos = mensajesRecibidos;
     }
 
