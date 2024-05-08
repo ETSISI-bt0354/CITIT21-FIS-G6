@@ -1,7 +1,5 @@
 package Modelo;
 
-import jdk.javadoc.internal.doclets.toolkit.taglets.UserTaglet;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
