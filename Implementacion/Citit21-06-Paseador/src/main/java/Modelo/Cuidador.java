@@ -66,7 +66,7 @@ public class Cuidador extends Usuario{
         documentosAportados.add(documentacion);
     }
 
-    public void removeMensajeEnviado(Documentacion documentacion){
+    public void removeDocumentosAportados(Documentacion documentacion){
         documentosAportados.remove(documentacion);
     }
     public void setCuidados(Set<Cuidado> cuidados) {
