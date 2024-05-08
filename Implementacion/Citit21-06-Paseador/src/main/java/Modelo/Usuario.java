@@ -6,6 +6,7 @@ public class Usuario {
     private int id;
     private String nombre;
     private TPlataforma plataforma;
+    private Set<Mensaje> mensajesRecibidos;
 
     public Usuario(int id, TPlataforma plataforma, String nombre)
     {
@@ -34,7 +35,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Set<Mensaje> mensajesEnviados;
+    private Set<Mensaje> mensajesEnviados;
 
     public Set<Mensaje> getMensajesEnviados() {
         return mensajesEnviados;
@@ -52,7 +53,7 @@ public class Usuario {
         mensajesEnviados.remove(mensaje);
     }
 
-    public Set<Mensaje> mensajesRecibidos;
+
 
     public Set<Mensaje> getMensajesRecibidos() {
         return mensajesRecibidos;
