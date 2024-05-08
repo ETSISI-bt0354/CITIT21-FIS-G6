@@ -7,6 +7,7 @@ public class Cuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
     private int id;
+    private Pago pago;
 
     public Cuidado(LocalDateTime fechaCuidado, Duration duracion, int id) {
         this.fechaCuidado = fechaCuidado;
@@ -27,5 +28,11 @@ public class Cuidado {
     }
     public int getId() {
         return id;
+    }
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+    public Pago getPago() {
+        return pago;
     }
 }

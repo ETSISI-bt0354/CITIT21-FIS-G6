@@ -1,12 +1,16 @@
 package Modelo;
 
+import jdk.javadoc.internal.doclets.toolkit.taglets.UserTaglet;
+
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class Cuidador extends Usuario{
     private int panchoPuntos;
     private String descripcion;
     private double tarifa;
     private LocalDateTime horario;
+    private Set<Documentacion> documentosAportados;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario, String nombre, int id, TPlataforma plataforma) {
         super(id, plataforma, nombre);
@@ -48,4 +52,11 @@ public class Cuidador extends Usuario{
         this.horario = horario;
     }
 
+    public Set<Documentacion> getDocumentosAportados() {
+        return documentosAportados;
+    }
+
+    public void setDocumentosAportados(Set<Documentacion> documentosAportados) {
+        this.documentosAportados = documentosAportados;
+    }
 }
