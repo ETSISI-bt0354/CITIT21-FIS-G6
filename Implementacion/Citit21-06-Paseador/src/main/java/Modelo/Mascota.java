@@ -6,7 +6,7 @@ public class Mascota {
     private String nombre;
     private int codigoPostal;
     private String descripcion;
-    private List<Foto> foto;
+    private List<Foto> fotos;
     private Perfil perfil;
 
     public Mascota(String nombre, int codigoPostal, String descripcion) {
@@ -34,17 +34,17 @@ public class Mascota {
         this.descripcion = descripcion;
     }
 
-    public void setFoto(List<Foto> foto) {
-        this.foto = foto;
+    public void setFotos(List<Foto> fotos) {
+        this.fotos = fotos;
     }
-    public List<Foto> getFoto() {
-        return foto;
+    public List<Foto> getFotos() {
+        return fotos;
     }
     public void addFoto(Foto foto) {
-        this.foto.add(foto);
+        this.fotos.add(foto);
     }
     public void removeFoto(Foto foto) {
-        this.foto.remove(foto);
+        this.fotos.remove(foto);
     }
 
     public void setPerfil(Perfil perfil) {
