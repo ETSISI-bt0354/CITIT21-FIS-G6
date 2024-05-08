@@ -1,5 +1,7 @@
 package Vista;
 
-public class VistaMascota
+import Modelo.IMascota;
+
+public class VistaMascota implements IMascota
 {
 }

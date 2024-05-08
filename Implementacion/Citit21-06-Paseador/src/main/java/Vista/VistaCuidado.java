@@ -1,5 +1,8 @@
 package Vista;
 
-public class VistaCuidado
+import Modelo.ICuidado;
+
+public class VistaCuidado implements ICuidado
 {
+
 }

@@ -3,7 +3,7 @@ package Modelo;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Cuidado {
+public class Cuidado implements ICuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
     private final int id;
