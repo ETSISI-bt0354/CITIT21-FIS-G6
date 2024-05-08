@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements IUsuario{
     private final int id;
     private String nombre;
     private final TPlataforma plataforma;

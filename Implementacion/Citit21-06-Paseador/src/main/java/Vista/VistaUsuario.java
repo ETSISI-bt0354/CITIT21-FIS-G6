@@ -1,5 +1,7 @@
 package Vista;
 
-public class VistaUsuario
+import Modelo.IUsuario;
+
+public class VistaUsuario implements IUsuario
 {
 }
