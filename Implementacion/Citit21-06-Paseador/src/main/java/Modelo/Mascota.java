@@ -1,9 +1,12 @@
 package Modelo;
 
+import java.util.List;
+
 public class Mascota {
     private String nombre;
     private int codigoPostal;
     private String descripcion;
+    private List<Foto> foto;
 
     public Mascota(String nombre, int codigoPostal, String descripcion) {
         this.nombre = nombre;
@@ -28,6 +31,19 @@ public class Mascota {
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void setFoto(List<Foto> foto) {
+        this.foto = foto;
+    }
+    public List<Foto> getFoto() {
+        return foto;
+    }
+    public void addFoto(Foto foto) {
+        this.foto.add(foto);
+    }
+    public void removeFoto(Foto foto) {
+        this.foto.remove(foto);
     }
 
 
