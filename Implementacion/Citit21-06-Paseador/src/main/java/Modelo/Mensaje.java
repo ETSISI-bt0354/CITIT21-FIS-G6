@@ -6,6 +6,9 @@ public class Mensaje {
     private String contenido;
     private LocalDateTime timestamp;
     private int id;
+    private Usuario usuarioReceptor;
+    private Cuidado cuidado;
+
 
     public Mensaje(String contenido, LocalDateTime timestamp, int id) {
         this.contenido = contenido;
@@ -43,7 +46,7 @@ public class Mensaje {
         this.usuarioEmisor = usuarioEmisor;
     }
 
-    public Usuario usuarioReceptor;
+
 
     public Usuario getUsuarioReceptor() {
         return usuarioReceptor;
@@ -52,5 +55,10 @@ public class Mensaje {
         this.usuarioReceptor = usuarioReceptor;
     }
 
-    
+    public Cuidado getCuidado() {
+        return cuidado;
+    }
+    public void setCuidado(Cuidado cuidado) {
+        this.cuidado = cuidado;
+    }
 }

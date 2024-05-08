@@ -10,7 +10,7 @@ public class Cuidador extends Usuario{
     private String descripcion;
     private double tarifa;
     private LocalDateTime horario;
-    private Set<Documentacion> documentosAportados;
+    public Set<Documentacion> documentosAportados;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario, String nombre, int id, TPlataforma plataforma) {
         super(id, plataforma, nombre);
@@ -58,5 +58,13 @@ public class Cuidador extends Usuario{
 
     public void setDocumentosAportados(Set<Documentacion> documentosAportados) {
         this.documentosAportados = documentosAportados;
+    }
+
+    public void addDocumentosAportados(Documentacion documentacion){
+        documentosAportados.add(documentacion);
+    }
+
+    public void removeMensajeEnviado(Documentacion documentacion){
+        documentosAportados.remove(documentacion);
     }
 }

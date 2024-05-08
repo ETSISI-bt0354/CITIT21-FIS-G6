@@ -8,6 +8,7 @@ public class Cuidado {
     private Duration duracion;
     private int id;
     private Pago pago;
+    private Mensaje mensaje;
 
     public Cuidado(LocalDateTime fechaCuidado, Duration duracion, int id) {
         this.fechaCuidado = fechaCuidado;
@@ -34,5 +35,11 @@ public class Cuidado {
     }
     public Pago getPago() {
         return pago;
+    }
+    public void setMensaje(Mensaje mensaje) {
+        this.mensaje = mensaje;
+    }
+    public Mensaje getMensaje() {
+        return mensaje;
     }
 }
