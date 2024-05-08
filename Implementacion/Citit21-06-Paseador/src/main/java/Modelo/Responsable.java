@@ -5,7 +5,7 @@ import java.util.List;
 public class Responsable extends Usuario{
 
     private List<Mascota> mascotas;
-    private List<Cuidador> cuidadores;
+    private List<Cuidador> cuidadoresFavoritos;
 
     public Responsable(int id, TPlataforma plataforma, String nombre) {
         super(id, plataforma, nombre);
@@ -23,16 +23,16 @@ public class Responsable extends Usuario{
         mascotas.remove(mascota);
     }
 
-    public void setCuidadores(List<Cuidador> cuidadores) {
-        this.cuidadores = cuidadores;
+    public void setCuidadoresFavoritos(List<Cuidador> cuidadoresFavoritos) {
+        this.cuidadoresFavoritos = cuidadoresFavoritos;
     }
-    public List<Cuidador> getCuidadores() {
-        return cuidadores;
+    public List<Cuidador> getCuidadoresFavoritos() {
+        return cuidadoresFavoritos;
     }
     public void addCuidadores (Cuidador cuidador) {
-        cuidadores.add(cuidador);
+        cuidadoresFavoritos.add(cuidador);
     }
     public void removeCuidadores (Cuidador cuidador) {
-        cuidadores.remove(cuidador);
+        cuidadoresFavoritos.remove(cuidador);
     }
 }
