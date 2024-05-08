@@ -2,37 +2,34 @@ package Modelo;
 
 import java.util.List;
 
-public class Usuario {
-    private int id;
+public abstract class Usuario implements IUsuario {
+    private final int id;
     private String nombre;
-    private TPlataforma plataforma;
+    private final TPlataforma plataforma;
     private List<Mensaje> mensajesRecibidos;
     private List<Mensaje> mensajesEnviados;
 
-    public Usuario(int id, TPlataforma plataforma, String nombre)
-    {
+    public Usuario(int id, TPlataforma plataforma, String nombre) {
         this.id = id;
         this.plataforma = plataforma;
         this.nombre = nombre;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public String getNombre()
-    {
+    @Override
+    public String getNombre() {
         return nombre;
     }
 
-    public TPlataforma getPlataforma()
-    {
+    @Override
+    public TPlataforma getPlataforma() {
         return plataforma;
     }
 
-    public void setNombre(String nombre)
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -44,26 +41,27 @@ public class Usuario {
         this.mensajesEnviados = mensajesEnviados;
     }
 
-    public void addMensajeEnviado(Mensaje mensaje){
+    public void addMensajeEnviado(Mensaje mensaje) {
         mensajesEnviados.add(mensaje);
     }
 
-    public void removeMensajeEnviado(Mensaje mensaje){
+    public void removeMensajeEnviado(Mensaje mensaje) {
         mensajesEnviados.remove(mensaje);
     }
 
     public List<Mensaje> getMensajesRecibidos() {
         return mensajesRecibidos;
     }
+
     public void setMensajesRecibidos(List<Mensaje> mensajesRecibidos) {
         this.mensajesRecibidos = mensajesRecibidos;
     }
 
-    public void addMensajeRecibido(Mensaje mensaje){
+    public void addMensajeRecibido(Mensaje mensaje) {
         mensajesRecibidos.add(mensaje);
     }
 
-    public void removeMensajeRecibido(Mensaje mensaje){
+    public void removeMensajeRecibido(Mensaje mensaje) {
         mensajesRecibidos.remove(mensaje);
     }
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Mensaje {
     private String contenido;
     private LocalDateTime timestamp;
-    private int id;
+    private final int id;
     private Usuario usuarioReceptor;
     private Cuidado cuidado;
 

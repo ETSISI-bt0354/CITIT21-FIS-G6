@@ -2,14 +2,16 @@ package Modelo;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
-public class Cuidado {
+public class Cuidado implements ICuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
-    private int id;
+    private final int id;
     private Pago pago;
     private Mensaje mensaje;
     private Cuidador cuidador;
+    private Mascota mascota;
 
     public Cuidado(LocalDateTime fechaCuidado, Duration duracion, int id) {
         this.fechaCuidado = fechaCuidado;
@@ -49,4 +51,11 @@ public class Cuidado {
     public Cuidador getCuidador() {
         return cuidador;
     }
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+    public Mascota getMascota() {
+        return mascota;
+    }
+
 }

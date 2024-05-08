@@ -4,7 +4,7 @@ import java.nio.file.Path;
 
 public class Documentacion
 {
-    private int id;
+    private final int id;
     private Path documentos;
 
     public Documentacion(int id, Path documentos) {
