@@ -10,7 +10,7 @@ public class Cuidador extends Usuario{
     private String descripcion;
     private double tarifa;
     private LocalDateTime horario;
-    public Set<Documentacion> documentosAportados;
+    private Set<Documentacion> documentosAportados;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario, String nombre, int id, TPlataforma plataforma) {
         super(id, plataforma, nombre);
