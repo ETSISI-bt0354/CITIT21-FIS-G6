@@ -8,7 +8,6 @@ public class Mascota implements IMascota {
     private String descripcion;
     private List<Foto> fotos;
     private Perfil perfil;
-    private List<Cuidador> cuidadores;
     private List<Cuidado> cuidados;
 
     public Mascota(String nombre, int codigoPostal, String descripcion) {
@@ -62,22 +61,6 @@ public class Mascota implements IMascota {
 
     public Perfil getPerfil() {
         return perfil;
-    }
-
-    public void setCuidadores(List<Cuidador> cuidadores) {
-        this.cuidadores = cuidadores;
-    }
-
-    public List<Cuidador> getCuidadores() {
-        return cuidadores;
-    }
-
-    public void addCuidador(Cuidador cuidador) {
-        this.cuidadores.add(cuidador);
-    }
-
-    public void removeCuidador(Cuidador cuidador) {
-        this.cuidadores.remove(cuidador);
     }
 
     public void setCuidados(List<Cuidado> cuidados) {
