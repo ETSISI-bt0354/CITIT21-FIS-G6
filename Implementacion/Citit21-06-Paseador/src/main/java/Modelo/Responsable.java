@@ -16,7 +16,7 @@ public class Responsable extends Usuario{
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
-    public void addMascota (Mascota mascota) {
+    public void addMascotas (Mascota mascota) {
         mascotas.add(mascota);
     }
     public void eliminarMascota (Mascota mascota) {
@@ -29,10 +29,10 @@ public class Responsable extends Usuario{
     public List<Cuidador> getCuidadores() {
         return cuidadores;
     }
-    public void addCuidador (Cuidador cuidador) {
+    public void addCuidadores (Cuidador cuidador) {
         cuidadores.add(cuidador);
     }
-    public void removeCuidador (Cuidador cuidador) {
+    public void removeCuidadores (Cuidador cuidador) {
         cuidadores.remove(cuidador);
     }
 }

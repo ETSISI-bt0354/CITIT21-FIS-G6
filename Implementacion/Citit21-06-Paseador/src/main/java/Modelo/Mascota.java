@@ -47,11 +47,11 @@ public class Mascota implements IMascota {
         return fotos;
     }
 
-    public void addFoto(Foto foto) {
+    public void addFotos(Foto foto) {
         this.fotos.add(foto);
     }
 
-    public void removeFoto(Foto foto) {
+    public void removeFotos(Foto foto) {
         this.fotos.remove(foto);
     }
 
