@@ -3,9 +3,9 @@ package Modelo;
 import java.util.List;
 
 public class Usuario {
-    private int id;
+    private final int id;
     private String nombre;
-    private TPlataforma plataforma;
+    private final TPlataforma plataforma;
     private List<Mensaje> mensajesRecibidos;
     private List<Mensaje> mensajesEnviados;
 

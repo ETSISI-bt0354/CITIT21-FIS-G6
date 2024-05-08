@@ -1,7 +1,7 @@
 package Modelo;
 
 public abstract class Premio {
-    private int id;
+    private final int id;
     private double precioPanchoPuntos;
 
     public int getId() {

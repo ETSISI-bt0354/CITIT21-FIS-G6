@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Cuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
-    private int id;
+    private final int id;
     private Pago pago;
     private Mensaje mensaje;
     private Cuidador cuidador;
