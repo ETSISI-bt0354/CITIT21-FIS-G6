@@ -18,6 +18,7 @@ public class Mascota implements IMascota {
         this.codigoPostal = codigoPostal;
         this.descripcion = descripcion;
         this.responsable = responsable;
+        responsable.addMascotas(this);
     }
 
     public int getId()
@@ -25,6 +26,7 @@ public class Mascota implements IMascota {
         return id;
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -33,6 +35,7 @@ public class Mascota implements IMascota {
         this.nombre = nombre;
     }
 
+    @Override
     public int getCodigoPostal() {
         return codigoPostal;
     }
@@ -41,6 +44,7 @@ public class Mascota implements IMascota {
         this.codigoPostal = codigoPostal;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
