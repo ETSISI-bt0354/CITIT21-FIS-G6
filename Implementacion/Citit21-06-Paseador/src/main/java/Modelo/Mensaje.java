@@ -7,6 +7,7 @@ public class Mensaje {
     private LocalDateTime timestamp;
     private final int id;
     private Usuario usuarioReceptor;
+    private Usuario usuarioEmisor;
     private Cuidado cuidado;
 
 
@@ -36,7 +37,7 @@ public class Mensaje {
         return id;
     }
 
-    public Usuario usuarioEmisor;
+;
 
     public Usuario getUsuarioEmisor() {
         return usuarioEmisor;
