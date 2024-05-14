@@ -24,11 +24,11 @@ public class RepositorioMascota
     {
         int codigoPostal = Integer.parseInt(mascota.get("codigo-postal"));
         Responsable responsable = responsables.obtener(Integer.parseInt(mascota.get("responsable")));
-        Mascota r = new Mascota(assingId(), mascota.get("nombre"), codigoPostal, mascota.get("descripcion"), responsable);
+        Mascota m = new Mascota(assignId(), mascota.get("nombre"), codigoPostal, mascota.get("descripcion"), responsable);
 
-        repositorio.add(r);
+        repositorio.add(m);
 
-        return r;
+        return m;
     }
 
     public Mascota obtener(int id)
@@ -45,7 +45,7 @@ public class RepositorioMascota
         repositorio.remove(repositorio.stream().filter(mascota -> mascota.getId() == id).findAny().orElseThrow());
     }
 
-    private int assingId()
+    private int assignId()
     {
         return maxId++;
     }
