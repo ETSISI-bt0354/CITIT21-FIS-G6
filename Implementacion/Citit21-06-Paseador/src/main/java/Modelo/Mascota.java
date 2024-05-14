@@ -5,7 +5,7 @@ import java.util.List;
 public class Mascota implements IMascota {
     private String nombre;
     private int codigoPostal;
-    private int id;
+    private final int id;
     private String descripcion;
     private List<Foto> fotos;
     private Perfil perfil;
