@@ -5,22 +5,24 @@ import Modelo.Responsable;
 import Modelo.Usuario;
 import Repositorio.RepositorioCuidador;
 import Repositorio.RepositorioResponsable;
+import Vista.VistaUsuario;
 
 import java.util.HashMap;
 
 public class ControladorUsuario
 {
     private static Usuario loggedUser = null;
+    private VistaUsuario vistaUsuario;
     private RepositorioResponsable repositorioResponsable;
     private RepositorioCuidador repositorioCuidador;
 
-    public ControladorUsuario(RepositorioResponsable repositorioResponsable, RepositorioCuidador repositorioCuidador) {
+    public ControladorUsuario(RepositorioResponsable repositorioResponsable, RepositorioCuidador repositorioCuidador, VistaUsuario vistaUsuario) {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
+        this.vistaUsuario = vistaUsuario;
     }
 
     public void registrarCuidador(HashMap<String, String> cuidador) {
-
         repositorioCuidador.crear(cuidador);
     }
 
@@ -29,5 +31,6 @@ public class ControladorUsuario
     }
 
     public void mostrarUsuario(Usuario usuario) {
+        vistaUsuario.PrintUsuario(usuario);
     }
 }
