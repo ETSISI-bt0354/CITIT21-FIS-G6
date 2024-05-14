@@ -3,17 +3,26 @@ package Modelo;
 import java.util.List;
 
 public class Mascota implements IMascota {
+    private final int id;
     private String nombre;
     private int codigoPostal;
     private String descripcion;
     private List<Foto> fotos;
     private Perfil perfil;
     private List<Cuidado> cuidados;
+    private Responsable responsable;
 
-    public Mascota(String nombre, int codigoPostal, String descripcion) {
+    public Mascota(int id, String nombre, int codigoPostal, String descripcion, Responsable responsable) {
+        this.id = id;
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.descripcion = descripcion;
+        this.responsable = responsable;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public String getNombre() {
@@ -74,6 +83,10 @@ public class Mascota implements IMascota {
     }
     public void removeCuidado(Cuidado cuidado) {
         this.cuidados.remove(cuidado);
+    }
+
+    public Responsable getResponsable() {
+        return responsable;
     }
 
 }
