@@ -2,20 +2,23 @@ package Vista;
 
 import Modelo.IMascota;
 
-public class VistaMascota implements IMascota
+public class VistaMascota
 {
-    @Override
-    public String getNombre() {
-        return "";
+    public void registrarMascota(IMascota mascota) {
+        StringBuilder message = new StringBuilder();
+        message.append("La mascota con nombre: ");
+        message.append(mascota.getNombre());
+        message.append("código postal: ");
+        message.append(mascota.getCodigoPostal());
+        message.append("y descripción: ");
+        message.append(mascota.getDescripcion());
+        message.append(" ha sido registrada correctamente.");
+
+        System.out.println(message);
     }
 
-    @Override
-    public int getCodigoPostal() {
-        return 0;
-    }
+    public void mostrarMascota(IMascota mascota) {
+        StringBuilder message = new StringBuilder();
 
-    @Override
-    public String getDescripcion() {
-        return "";
     }
 }
