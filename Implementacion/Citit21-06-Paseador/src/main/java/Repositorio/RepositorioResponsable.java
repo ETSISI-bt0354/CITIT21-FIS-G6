@@ -28,7 +28,7 @@ public class RepositorioResponsable
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
 
-        Responsable r = new Responsable(assingId(), plataforma, cuidador.get("nombre"));
+        Responsable r = new Responsable(assignID(), plataforma, cuidador.get("nombre"));
 
         repositorio.add(r);
 
@@ -49,7 +49,7 @@ public class RepositorioResponsable
         repositorio.remove(repositorio.stream().filter(responsable -> responsable.getId() == id).findAny().orElseThrow());
     }
 
-    private int assingId()
+    private int assignID()
     {
         return maxId++;
     }
