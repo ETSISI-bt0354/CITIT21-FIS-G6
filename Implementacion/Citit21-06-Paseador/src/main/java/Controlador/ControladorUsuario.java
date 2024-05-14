@@ -16,10 +16,10 @@ public class ControladorUsuario
     private RepositorioResponsable repositorioResponsable;
     private RepositorioCuidador repositorioCuidador;
 
-    public ControladorUsuario(RepositorioResponsable repositorioResponsable, RepositorioCuidador repositorioCuidador, VistaUsuario vistaUsuario) {
+    public ControladorUsuario(RepositorioResponsable repositorioResponsable, RepositorioCuidador repositorioCuidador) {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
-        this.vistaUsuario = vistaUsuario;
+        this.vistaUsuario = new VistaUsuario();
     }
 
     public void registrarCuidador(HashMap<String, String> cuidador) {
