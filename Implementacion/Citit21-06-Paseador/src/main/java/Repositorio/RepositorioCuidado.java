@@ -1,5 +1,3 @@
 package Repositorio;
 
-public class RepositorioCuidado
-{
-}
+public class RepositorioCuidado {}

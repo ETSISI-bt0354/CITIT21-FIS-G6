@@ -1,5 +1,3 @@
 package Controlador;
 
-public class ControladorCuidado
-{
-}
+public class ControladorCuidado {}
