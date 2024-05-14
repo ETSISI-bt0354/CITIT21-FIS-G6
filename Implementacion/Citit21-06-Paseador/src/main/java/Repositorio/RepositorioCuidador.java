@@ -3,6 +3,7 @@ package Repositorio;
 import Modelo.Cuidador;
 import Modelo.TPlataforma;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,11 +29,13 @@ public class RepositorioCuidador
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
 
-        Cuidador c = new Cuidador(); //TODO
+        Cuidador cui = new Cuidador(0, cuidador.get("descripcion"),
+                Double.parseDouble(cuidador.get("tarifa")), LocalDateTime.parse(cuidador.get("horario")),
+                cuidador.get("nombre"), assignID(), plataforma);
 
-        repositorio.add(c);
+        repositorio.add(cui);
 
-        return c;
+        return cui;
     }
 
     public Cuidador obtener(int id)
