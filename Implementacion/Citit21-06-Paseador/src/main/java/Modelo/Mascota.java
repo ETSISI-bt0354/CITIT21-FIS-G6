@@ -5,15 +5,17 @@ import java.util.List;
 public class Mascota implements IMascota {
     private String nombre;
     private int codigoPostal;
+    private int id;
     private String descripcion;
     private List<Foto> fotos;
     private Perfil perfil;
     private List<Cuidado> cuidados;
 
-    public Mascota(String nombre, int codigoPostal, String descripcion) {
+    public Mascota(String nombre, int codigoPostal, String descripcion, int id) {
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.descripcion = descripcion;
+        this.id = id;
     }
 
     public String getNombre() {

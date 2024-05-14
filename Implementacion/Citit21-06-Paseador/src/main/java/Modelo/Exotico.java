@@ -7,8 +7,8 @@ public class Exotico  extends Mascota{
     private Path certificadoLegal;
     private Path certificadoSalud;
 
-    public Exotico(String nombre, int codigoPostal, String descripcion, Path permiso, Path certificadoLegal, Path certificadoSalud) {
-        super(nombre,codigoPostal,descripcion);
+    public Exotico(String nombre, int codigoPostal, String descripcion, Path permiso, Path certificadoLegal, Path certificadoSalud, int id) {
+        super(nombre,codigoPostal,descripcion,id);
         this.permiso = permiso;
         this.certificadoLegal = certificadoLegal;
         this.certificadoSalud = certificadoSalud;
