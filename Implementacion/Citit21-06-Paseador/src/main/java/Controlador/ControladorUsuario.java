@@ -23,8 +23,11 @@ public class ControladorUsuario {
     this.vistaUsuario = new VistaUsuario();
   }
 
-  public void registrarCuidador(HashMap<String, String> cuidador) {
-    repositorioCuidador.crear(cuidador);
+  public void registrarCuidador(HashMap<String, String> params) {
+    if (params.size() < MIN_REGCUIDADOR_PARAMS)
+      throw new IllegalArgumentException(
+          "Faltan parametros para registrar el cuidador."); // TODO: Should we specify which parameters are missing?
+    repositorioCuidador.crear(params);
   }
 
   public void registrarResponsable(HashMap<String, String> responsable) {
