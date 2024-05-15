@@ -9,7 +9,9 @@ import Vista.VistaUsuario;
 import java.util.HashMap;
 
 public class ControladorUsuario {
-  private static Usuario loggedUser = null;
+  private static final int MIN_REGCUIDADOR_PARAMS = 5;
+  private static final int MIN_REGRESPONSABLE_PARAMS = 2;
+  // private static Usuario loggedUser = null;
   private VistaUsuario vistaUsuario;
   private RepositorioResponsable repositorioResponsable;
   private RepositorioCuidador repositorioCuidador;
