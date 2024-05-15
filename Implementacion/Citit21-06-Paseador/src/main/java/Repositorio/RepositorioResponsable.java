@@ -2,6 +2,7 @@ package Repositorio;
 
 import Modelo.Responsable;
 import Modelo.TPlataforma;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class RepositorioResponsable {
     }
 
     public void actualizar(Responsable responsable) {
-
+        // TODO: Implementar
     }
 
     public void borrar(int id)

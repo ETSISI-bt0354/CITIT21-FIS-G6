@@ -2,6 +2,7 @@ package Repositorio;
 
 import Modelo.Cuidador;
 import Modelo.TPlataforma;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class RepositorioCuidador {
     }
 
     public void actualizar(Cuidador cuidador) {
-
+        // TODO: Implementar
     }
 
     public void borrar(int id)

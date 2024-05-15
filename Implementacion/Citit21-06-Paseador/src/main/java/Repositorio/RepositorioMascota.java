@@ -2,6 +2,7 @@ package Repositorio;
 
 import Modelo.Mascota;
 import Modelo.Responsable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,9 @@ public class RepositorioMascota {
         .orElseThrow();
   }
 
-  public void actualizar(Mascota mascota) {}
+  public void actualizar(Mascota mascota) {
+    // TODO: Implementar
+  }
 
   public void borrar(int id) {
     repositorio.remove(repositorio.stream()

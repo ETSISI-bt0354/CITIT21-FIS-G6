@@ -1,7 +1,7 @@
 package Repositorio;
 
 import Modelo.Cuidado;
-// TODO: En el diagrama para esta clase pone <Srting> en vez de <String>
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class RepositorioCuidado {
     }
 
     public void actualizar(Cuidado cuidado) {
-
+        // TODO: Implementar
     }
 
     public void borrar(int id) {

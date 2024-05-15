@@ -3,6 +3,7 @@ package Repositorio;
 import Modelo.Exotico;
 import Modelo.Mascota;
 import Modelo.Responsable;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -43,7 +44,9 @@ public class RepositorioMascotaExotica {
         .orElseThrow();
   }
 
-  public void actualizar(Exotico exotico) {}
+  public void actualizar(Exotico exotico) {
+    // TODO: Implementar
+  }
 
   public void borrar(int id) {
     repositorio.remove(repositorio.stream()

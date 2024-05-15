@@ -24,11 +24,11 @@ public class ControladorCuidado {
     }
 
     public void crearCuidadoMascota(HashMap<String, String> params) {
-
+        // TODO: Implementar
     }
 
     public void crearCuidadoCuidador(HashMap<String, String> params) {
-
+        // TODO: Implementar
     }
 
 }

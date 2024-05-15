@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Mascota;
 import Repositorio.RepositorioMascota;
 import Vista.VistaMascota;
+
 import java.util.HashMap;
 
 public class ControladorMascota {
@@ -23,9 +24,15 @@ public class ControladorMascota {
     vista.registrarMascota(repositorio.crear(params));
   }
 
-  public void registrarMascotaExotica(HashMap<String, String> params) {}
+  public void registrarMascotaExotica(HashMap<String, String> params) {
+    // TODO: Implementar
+  }
 
-  public void listarMascotas() {}
+  public void listarMascotas() {
+    // TODO: Implementar
+  }
 
-  public void mostrarMascota(Mascota mascota) {}
+  public void mostrarMascota(Mascota mascota) {
+    // TODO: Implementar
+  }
 }
