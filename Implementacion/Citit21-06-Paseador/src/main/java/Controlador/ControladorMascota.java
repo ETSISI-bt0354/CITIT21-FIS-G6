@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ControladorMascota {
   private static final int MIN_REGISTER_PARAMS = 4;
-  private RepositorioMascota repositorio;
+  private final RepositorioMascota repositorio;
   private VistaMascota vista;
 
   public ControladorMascota(RepositorioMascota repositorio) {

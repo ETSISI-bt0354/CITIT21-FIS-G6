@@ -13,8 +13,8 @@ public class ControladorUsuario {
   private static final int MIN_REGRESPONSABLE_PARAMS = 2;
   // private static Usuario loggedUser = null;
   private VistaUsuario vistaUsuario;
-  private RepositorioResponsable repositorioResponsable;
-  private RepositorioCuidador repositorioCuidador;
+  private final RepositorioResponsable repositorioResponsable;
+  private final RepositorioCuidador repositorioCuidador;
 
   public ControladorUsuario(RepositorioResponsable repositorioResponsable,
                             RepositorioCuidador repositorioCuidador) {
