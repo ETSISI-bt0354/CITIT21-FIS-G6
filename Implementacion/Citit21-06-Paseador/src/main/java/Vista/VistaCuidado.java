@@ -6,25 +6,11 @@ import Modelo.Mascota;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class VistaCuidado implements ICuidado {
+public class VistaCuidado {
+    public void CuidadoCreado(ICuidado cuidado) {
+        StringBuilder message = new StringBuilder();
+        message.append("Cuidado creado con exito\n");
 
-  @Override
-  public LocalDateTime getFechaCuidado() {
-    return null;
-  }
-
-  @Override
-  public Duration getDuracion() {
-    return null;
-  }
-
-  @Override
-  public Mascota getMascota() {
-    return null;
-  }
-
-  @Override
-  public Cuidador getCuidador() {
-    return null;
-  }
+        System.out.println(message);
+    }
 }
