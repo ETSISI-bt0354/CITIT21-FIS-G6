@@ -12,7 +12,7 @@ public class ControladorUsuario {
   private static final int MIN_REGCUIDADOR_PARAMS = 5;
   private static final int MIN_REGRESPONSABLE_PARAMS = 2;
   // private static Usuario loggedUser = null;
-  private VistaUsuario vistaUsuario;
+  private VistaUsuario vista;
   private final RepositorioResponsable repositorioResponsable;
   private final RepositorioCuidador repositorioCuidador;
 
@@ -20,7 +20,7 @@ public class ControladorUsuario {
                             RepositorioCuidador repositorioCuidador) {
     this.repositorioResponsable = repositorioResponsable;
     this.repositorioCuidador = repositorioCuidador;
-    this.vistaUsuario = new VistaUsuario();
+    this.vista = new VistaUsuario();
   }
 
   public void registrarCuidador(HashMap<String, String> params) {
@@ -38,6 +38,6 @@ public class ControladorUsuario {
   }
 
   public void mostrarUsuario(Usuario usuario) {
-    vistaUsuario.PrintUsuario(usuario);
+    vista.PrintUsuario(usuario);
   }
 }
