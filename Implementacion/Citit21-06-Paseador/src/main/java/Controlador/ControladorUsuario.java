@@ -1,7 +1,5 @@
 package Controlador;
 
-import Modelo.Cuidador;
-import Modelo.Responsable;
 import Modelo.Usuario;
 import Repositorio.RepositorioCuidador;
 import Repositorio.RepositorioResponsable;
@@ -27,14 +25,14 @@ public class ControladorUsuario {
     if (params.size() < MIN_REGCUIDADOR_PARAMS)
       throw new IllegalArgumentException(
           "Faltan parametros para registrar el cuidador."); // TODO: Should we specify which parameters are missing?
-    repositorioCuidador.crear(params);
+    vista.UsuarioCreado(repositorioCuidador.crear(params));
   }
 
   public void registrarResponsable(HashMap<String, String> params) {
     if (params.size() < MIN_REGRESPONSABLE_PARAMS)
       throw new IllegalArgumentException(
           "Faltan parametros para registrar el responsable."); // TODO: Should we specify which parameters are missing?
-    repositorioResponsable.crear(params);
+    vista.UsuarioCreado(repositorioCuidador.crear(params));
   }
 
   public void mostrarUsuario(Usuario usuario) {
