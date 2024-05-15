@@ -30,8 +30,11 @@ public class ControladorUsuario {
     repositorioCuidador.crear(params);
   }
 
-  public void registrarResponsable(HashMap<String, String> responsable) {
-    repositorioResponsable.crear(responsable);
+  public void registrarResponsable(HashMap<String, String> params) {
+    if (params.size() < MIN_REGRESPONSABLE_PARAMS)
+      throw new IllegalArgumentException(
+          "Faltan parametros para registrar el responsable."); // TODO: Should we specify which parameters are missing?
+    repositorioResponsable.crear(params);
   }
 
   public void mostrarUsuario(Usuario usuario) {
