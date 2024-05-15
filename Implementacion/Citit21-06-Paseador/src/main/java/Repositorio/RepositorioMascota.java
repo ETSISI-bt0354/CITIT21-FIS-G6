@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class RepositorioMascota {
-  private final List<Mascota>		   repositorio;
+  private final List<Mascota> repositorio;
   private final RepositorioResponsable responsables;
-  private int						   maxId;
+  private int maxId;
 
   public RepositorioMascota(RepositorioResponsable responsables) {
 	repositorio		  = new ArrayList<>();
@@ -18,10 +18,10 @@ public class RepositorioMascota {
   }
 
   public Mascota crear(HashMap<String, String> mascota) {
-	int			codigoPostal = Integer.parseInt(mascota.get("codigo-postal"));
-	Responsable responsable	 = responsables.obtener(Integer.parseInt(mascota.get("responsable")));
-	Mascota		m			 = new Mascota(assignId(), mascota.get("nombre"), codigoPostal,
-										   mascota.get("descripcion"), responsable);
+	int codigoPostal		= Integer.parseInt(mascota.get("codigo-postal"));
+	Responsable responsable = responsables.obtener(Integer.parseInt(mascota.get("responsable")));
+	Mascota m				= new Mascota(assignId(), mascota.get("nombre"), codigoPostal,
+										  mascota.get("descripcion"), responsable);
 
 	repositorio.add(m);
 

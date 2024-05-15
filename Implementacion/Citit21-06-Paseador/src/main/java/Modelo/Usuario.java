@@ -3,11 +3,11 @@ package Modelo;
 import java.util.List;
 
 public abstract class Usuario implements IUsuario {
-  private final int			id;
-  private String			nombre;
+  private final int id;
+  private String nombre;
   private final TPlataforma plataforma;
-  private List<Mensaje>		mensajesRecibidos;
-  private List<Mensaje>		mensajesEnviados;
+  private List<Mensaje> mensajesRecibidos;
+  private List<Mensaje> mensajesEnviados;
 
   public Usuario(int id, TPlataforma plataforma, String nombre) {
 	this.id			= id;

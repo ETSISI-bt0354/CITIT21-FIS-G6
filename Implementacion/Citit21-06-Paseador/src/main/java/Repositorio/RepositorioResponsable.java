@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RepositorioResponsable {
   private final List<Responsable> repositorio;
-  private int					  maxId;
+  private int maxId;
 
   public RepositorioResponsable() {
 	repositorio = new ArrayList<>();

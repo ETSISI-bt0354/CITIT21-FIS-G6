@@ -7,13 +7,13 @@ import Vista.VistaMascota;
 import java.util.HashMap;
 
 public class ControladorMascota {
-  private static final int				  MIN_REG_NO_EXOTICO_PARAMS = 4;
-  private static final int				  MIN_REG_EXOTICO_PARAMS	= 7;
-  private final RepositorioMascota		  repositorioMascota;
+  private static final int MIN_REG_NO_EXOTICO_PARAMS = 4;
+  private static final int MIN_REG_EXOTICO_PARAMS	 = 7;
+  private final RepositorioMascota repositorioMascota;
   private final RepositorioMascotaExotica repositorioMascotaExotica;
-  private final VistaMascota			  vista;
+  private final VistaMascota vista;
 
-  public ControladorMascota(RepositorioMascota		  repositorioMascota,
+  public ControladorMascota(RepositorioMascota repositorioMascota,
 							RepositorioMascotaExotica repositorioMascotaExotica) {
 	this.repositorioMascota		   = repositorioMascota;
 	this.repositorioMascotaExotica = repositorioMascotaExotica;

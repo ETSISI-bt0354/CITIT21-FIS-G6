@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RepositorioCuidador {
   private final List<Cuidador> repositorio;
-  private int				   maxId;
+  private int maxId;
 
   public RepositorioCuidador() {
 	repositorio = new ArrayList<>();

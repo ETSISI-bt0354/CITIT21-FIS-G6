@@ -5,9 +5,9 @@ import Vista.VistaCuidado;
 import java.util.HashMap;
 
 public class ControladorCuidado {
-  private static final int		   MIN_CREATE_PARAMS = 3;
+  private static final int MIN_CREATE_PARAMS = 3;
   private final RepositorioCuidado repositorio;
-  private VistaCuidado			   vista;
+  private VistaCuidado vista;
 
   public ControladorCuidado(RepositorioCuidado repositorio) {
 	this.repositorio = repositorio;

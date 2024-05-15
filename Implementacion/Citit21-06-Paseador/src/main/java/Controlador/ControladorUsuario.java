@@ -10,12 +10,12 @@ public class ControladorUsuario {
   private static final int MIN_REG_CUIDADOR_PARAMS	  = 5;
   private static final int MIN_REG_RESPONSABLE_PARAMS = 2;
   // private static Usuario loggedUser = null;
-  private final VistaUsuario		   vista;
+  private final VistaUsuario vista;
   private final RepositorioResponsable repositorioResponsable;
-  private final RepositorioCuidador	   repositorioCuidador;
+  private final RepositorioCuidador repositorioCuidador;
 
   public ControladorUsuario(RepositorioResponsable repositorioResponsable,
-							RepositorioCuidador	   repositorioCuidador) {
+							RepositorioCuidador repositorioCuidador) {
 	this.repositorioResponsable = repositorioResponsable;
 	this.repositorioCuidador	= repositorioCuidador;
 	this.vista					= new VistaUsuario();

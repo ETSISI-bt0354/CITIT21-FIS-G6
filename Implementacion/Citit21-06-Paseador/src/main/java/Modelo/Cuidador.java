@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Cuidador extends Usuario {
-  private int				  panchoPuntos;
-  private String			  descripcion;
-  private double			  tarifa;
-  private LocalDateTime		  horario;
+  private int panchoPuntos;
+  private String descripcion;
+  private double tarifa;
+  private LocalDateTime horario;
   private List<Documentacion> documentosAportados;
-  private List<Cuidado>		  cuidados;
-  private List<Premio>		  premiosCanjeados;
-  private List<Mascota>		  mascotasFavoritas;
+  private List<Cuidado> cuidados;
+  private List<Premio> premiosCanjeados;
+  private List<Mascota> mascotasFavoritas;
 
   public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario,
 				  String nombre, int id, TPlataforma plataforma) {
