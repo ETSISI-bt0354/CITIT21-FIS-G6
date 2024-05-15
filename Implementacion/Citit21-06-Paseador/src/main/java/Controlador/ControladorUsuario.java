@@ -32,7 +32,7 @@ public class ControladorUsuario {
     if (params.size() < MIN_REGRESPONSABLE_PARAMS)
       throw new IllegalArgumentException(
           "Faltan parametros para registrar el responsable."); // TODO: Should we specify which parameters are missing?
-    vista.UsuarioCreado(repositorioCuidador.crear(params));
+    vista.UsuarioCreado(repositorioResponsable.crear(params));
   }
 
   public void mostrarUsuario(Usuario usuario) {
