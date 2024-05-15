@@ -2,6 +2,6 @@ package Modelo;
 
 public interface IMascota {
   String getNombre();
-  int getCodigoPostal();
+  int	 getCodigoPostal();
   String getDescripcion();
 }

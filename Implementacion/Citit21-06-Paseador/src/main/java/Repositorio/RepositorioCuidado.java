@@ -13,25 +13,25 @@ public class RepositorioCuidado {
   public RepositorioCuidado() { repositorio = new ArrayList<>(); }
 
   public Cuidado crear(HashMap<String, String> cuidado) {
-	Cuidado c =
-		new Cuidado(LocalDateTime.parse(cuidado.get("fechaCuidado")),
-					Duration.parse(cuidado.get("duracion")), Integer.parseInt(cuidado.get("id")));
+    Cuidado c =
+	new Cuidado(LocalDateTime.parse(cuidado.get("fechaCuidado")),
+		    Duration.parse(cuidado.get("duracion")), Integer.parseInt(cuidado.get("id")));
 
-	repositorio.add(c);
+    repositorio.add(c);
 
-	return c;
+    return c;
   }
 
   public Cuidado obtener(int id) {
-	return repositorio.stream().filter(cuidado -> cuidado.getId() == id).findAny().orElseThrow();
+    return repositorio.stream().filter(cuidado -> cuidado.getId() == id).findAny().orElseThrow();
   }
 
   public void actualizar(Cuidado cuidado) {
-	// TODO: Implementar
+    // TODO: Implementar
   }
 
   public void borrar(int id) {
-	repositorio.remove(
-		repositorio.stream().filter(cuidado -> cuidado.getId() == id).findAny().orElseThrow());
+    repositorio.remove(
+	repositorio.stream().filter(cuidado -> cuidado.getId() == id).findAny().orElseThrow());
   }
 }

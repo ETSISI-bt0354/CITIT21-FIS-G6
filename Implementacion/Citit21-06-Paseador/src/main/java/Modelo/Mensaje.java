@@ -3,16 +3,16 @@ package Modelo;
 import java.time.LocalDateTime;
 
 public class Mensaje {
-  private String contenido;
+  private String	contenido;
   private LocalDateTime timestamp;
-  private final int id;
-  private Usuario usuarioReceptor;
-  private Cuidado cuidado;
+  private final int	id;
+  private Usuario	usuarioReceptor;
+  private Cuidado	cuidado;
 
   public Mensaje(String contenido, LocalDateTime timestamp, int id) {
-	this.contenido = contenido;
-	this.timestamp = timestamp;
-	this.id		   = id;
+    this.contenido = contenido;
+    this.timestamp = timestamp;
+    this.id	   = id;
   }
 
   public String getContenido() { return contenido; }
@@ -32,10 +32,10 @@ public class Mensaje {
   public void setUsuarioEmisor(Usuario usuarioEmisor) { this.usuarioEmisor = usuarioEmisor; }
 
   public Usuario getUsuarioReceptor() { return usuarioReceptor; }
-  public void setUsuarioReceptor(Usuario usuarioReceptor) {
-	this.usuarioReceptor = usuarioReceptor;
+  public void	 setUsuarioReceptor(Usuario usuarioReceptor) {
+    this.usuarioReceptor = usuarioReceptor;
   }
 
   public Cuidado getCuidado() { return cuidado; }
-  public void setCuidado(Cuidado cuidado) { this.cuidado = cuidado; }
+  public void	 setCuidado(Cuidado cuidado) { this.cuidado = cuidado; }
 }

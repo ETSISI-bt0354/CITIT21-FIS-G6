@@ -8,15 +8,15 @@ import java.util.List;
 
 public class RepositorioResponsable {
   private final List<Responsable> repositorio;
-  private int maxId;
+  private int			  maxId;
 
   public RepositorioResponsable() {
-	repositorio = new ArrayList<>();
-	maxId		= 0;
+    repositorio = new ArrayList<>();
+    maxId	= 0;
   }
 
   public Responsable crear(HashMap<String, String> cuidador) {
-	TPlataforma plataforma = switch (cuidador.get("plataforma")) {
+    TPlataforma plataforma = switch (cuidador.get("plataforma")) {
 			case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
             case "google" -> TPlataforma.GOOGLE;
