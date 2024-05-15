@@ -2,7 +2,6 @@ package Repositorio;
 
 import Modelo.Cuidador;
 import Modelo.TPlataforma;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,16 +9,16 @@ import java.util.List;
 
 public class RepositorioCuidador {
   private final List<Cuidador> repositorio;
-  private int maxId;
+  private int				   maxId;
 
   public RepositorioCuidador() {
-    repositorio = new ArrayList<>();
-    maxId = 0;
+	repositorio = new ArrayList<>();
+	maxId		= 0;
   }
 
   public Cuidador crear(HashMap<String, String> cuidador) {
-    TPlataforma plataforma = switch (cuidador.get("plataforma")) {
-            case "twitter" -> TPlataforma.TWITTER;
+	TPlataforma plataforma = switch (cuidador.get("plataforma")) {
+			case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
             case "google" -> TPlataforma.GOOGLE;
             case "microsoft" -> TPlataforma.MICROSOFT;
