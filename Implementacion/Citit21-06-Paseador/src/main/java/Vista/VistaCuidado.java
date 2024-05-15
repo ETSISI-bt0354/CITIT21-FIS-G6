@@ -1,13 +1,9 @@
 package Vista;
 
-import Modelo.Cuidador;
 import Modelo.ICuidado;
-import Modelo.Mascota;
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 public class VistaCuidado {
-    public void CuidadoCreado(ICuidado cuidado) {
+    public void cuidadoCreado(ICuidado cuidado) {
         StringBuilder message = new StringBuilder();
         message.append("Cuidado creado con exito\n");
 

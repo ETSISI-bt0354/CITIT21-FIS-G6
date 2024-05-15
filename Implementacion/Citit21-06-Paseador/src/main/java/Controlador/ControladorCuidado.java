@@ -20,7 +20,7 @@ public class ControladorCuidado {
             throw new IllegalArgumentException(
                 "Faltan parametros para crear el cuidado.");
 
-        vista.CuidadoCreado(repositorio.crear(params));
+        vista.cuidadoCreado(repositorio.crear(params));
     }
 
     public void crearCuidadoMascota(HashMap<String, String> params) {
