@@ -26,8 +26,9 @@ public class RepositorioMascotaExotica {
 	Path		permiso		 = Paths.get(exotico.get("permiso"));
 	Path		certificadoLegal = Paths.get(exotico.get("certificado-legal"));
 	Path		certificadoSalud = Paths.get(exotico.get("certificado-salud"));
-	Exotico		e = new Exotico(exotico.get("nombre"), codigoPostal, exotico.get("descripcion"),
-								permiso, certificadoLegal, certificadoSalud);
+	Exotico		e =
+		new Exotico(assignId(), exotico.get("nombre"), codigoPostal, exotico.get("descripcion"),
+					responsable, permiso, certificadoLegal, certificadoSalud);
 
 	repositorio.add(e);
 
