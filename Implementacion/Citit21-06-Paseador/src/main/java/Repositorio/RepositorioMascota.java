@@ -12,9 +12,9 @@ public class RepositorioMascota {
   private int			       maxId;
 
   public RepositorioMascota(RepositorioResponsable responsables) {
-    repositorio	      = new ArrayList<>();
+    this.repositorio  = new ArrayList<>();
     this.responsables = responsables;
-    maxId	      = 0;
+    this.maxId	      = 0;
   }
 
   public Mascota crear(HashMap<String, String> mascota) {
@@ -40,6 +40,8 @@ public class RepositorioMascota {
     repositorio.remove(
 	repositorio.stream().filter(mascota -> mascota.getId() == id).findAny().orElseThrow());
   }
+
+  public List<Mascota> fetchAll() { return this.repositorio; }
 
   private int assignId() { return maxId++; }
 }
