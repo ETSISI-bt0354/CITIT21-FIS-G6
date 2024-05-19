@@ -25,11 +25,17 @@ public class InMemoryRepository<T extends Entidad>
         id = memory.stream().map(Entidad::getId).max(Integer::compare).orElse(0);
     }
 
-    public void crear(T t) throws IOException
+    public void crear(T t)
     {
         t.setId(asignId());
         memory.add(t);
-        repo.crear(t);
+        try
+        {
+            repo.crear(t);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public T obtener(int id)
@@ -45,15 +51,27 @@ public class InMemoryRepository<T extends Entidad>
         return memory.stream();
     }
 
-    public void actualizar(T t) throws IOException
+    public void actualizar(T t)
     {
-        repo.actualizar(t);
+        try
+        {
+            repo.actualizar(t);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void eliminar(T t) throws IOException
+    public void eliminar(T t)
     {
         memory.remove(t);
-        repo.eliminar(t);
+        try
+        {
+            repo.eliminar(t);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     private int asignId()
