@@ -1,6 +1,7 @@
 package Vista;
 
 import Modelo.IMascota;
+import java.util.List;
 
 public class VistaMascota {
   public void registrarMascota(IMascota mascota) {
@@ -32,5 +33,8 @@ public class VistaMascota {
     System.out.println(message);
   }
 
-  public void listarMascotas(IMascota mascotas) {}
+  public void listarMascotas(List<? extends IMascota> mascotas) {
+    for (IMascota m : mascotas)
+      mostrarMascota(m);
+  }
 }

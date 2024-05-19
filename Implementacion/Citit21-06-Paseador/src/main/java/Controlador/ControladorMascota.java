@@ -34,9 +34,7 @@ public class ControladorMascota {
     vista.registrarMascota(repositorioMascotaExotica.crear(params));
   }
 
-  public void listarMascotas() {
-    // TODO: Implementar
-  }
+  public void listarMascotas() { vista.listarMascotas(repositorioMascota.fetchAll()); }
 
   public void mostrarMascota(Mascota mascota) { vista.mostrarMascota(mascota); }
 }
