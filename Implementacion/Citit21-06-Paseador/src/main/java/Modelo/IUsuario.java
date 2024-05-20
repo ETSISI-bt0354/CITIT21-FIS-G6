@@ -1,6 +1,7 @@
 package Modelo;
 
 public interface IUsuario {
-  String      getNombre();
-  TPlataforma getPlataforma();
+    String getNombre();
+
+    TPlataforma getPlataforma();
 }
