@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class ControladorUsuario {
-    private static final ControladorUsuario instance;
+    private static final ControladorUsuario instance = null;
 
     private final IdAssigner idAssigner;
     private final VistaUsuario vista;
