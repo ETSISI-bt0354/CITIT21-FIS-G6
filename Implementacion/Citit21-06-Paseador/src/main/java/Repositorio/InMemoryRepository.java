@@ -3,59 +3,37 @@ package Repositorio;
 import Modelo.Id;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
 public class InMemoryRepository<T extends Id> {
-    private final List<T> memory;
-    private final FileRepository<T> repo;
+    private final List<T> repo;
 
-    public InMemoryRepository(FileRepository<T> repo) throws IOException {
-        this.repo = repo;
-
-        Stream<T> entidades = repo.obtenerTodos();
-        memory = entidades.collect(Collectors.toList());
-        entidades.close();
+    public InMemoryRepository() {
+        this.repo = new ArrayList<>();
     }
 
     public void crear(T t) {
-        memory.add(t);
-        try {
-            repo.crear(t);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        repo.add(t);
     }
 
     public T obtener(int id) {
-        Stream<T> entidades = memory.stream()
-                .filter(t -> t.getId() == id);
-        T t = entidades.findFirst()
+        return repo.stream()
+                .filter(t -> t.getId() == id)
+                .findFirst()
                 .orElseThrow();
-        entidades.close();
-        return t;
     }
 
     public Stream<T> obtenerTodos() {
-        return memory.stream();
+        return repo.stream();
     }
 
-    public void actualizar(T t) {
-        try {
-            repo.actualizar(t);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public void actualizar(T t) {}
 
     public void eliminar(T t) {
-        memory.remove(t);
-        try {
-            repo.eliminar(t);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        repo.remove(t);
     }
 }
