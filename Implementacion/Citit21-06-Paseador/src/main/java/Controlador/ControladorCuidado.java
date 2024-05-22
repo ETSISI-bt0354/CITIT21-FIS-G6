@@ -53,6 +53,7 @@ public class ControladorCuidado {
 
     public void crearCuidadoMascota(HashMap<String, String> params) {
         Cuidado cuidado;
+        int id;
 
         try {
             cuidado = crearCuidado(params);
@@ -61,12 +62,20 @@ public class ControladorCuidado {
             return;
         }
 
-        cuidado.setMascota();
+        try {
+            id = Integer.parseInt(params.get("masccota"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la mascota del cuidado.\n");
+        }
+
+        cuidado.setMascota(ControladorMascota.getInstance()
+                                   .obtener(id));
 
     }
 
     public void crearCuidadoCuidador(HashMap<String, String> params) {
         Cuidado cuidado;
+        int id;
 
         try {
             cuidado = crearCuidado(params);
@@ -75,6 +84,13 @@ public class ControladorCuidado {
             return;
         }
 
-        cuidado.setCuidador();
+        try {
+            id = Integer.parseInt(params.get("cuidador"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la mascota del cuidado.\n");
+        }
+
+        cuidado.setCuidador(ControladorUsuario.getInstance()
+                                    .getCuidador(id));
     }
 }
