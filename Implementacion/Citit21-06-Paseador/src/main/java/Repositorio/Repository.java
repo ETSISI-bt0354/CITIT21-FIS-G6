@@ -34,7 +34,7 @@ public class Repository<T extends Id> {
         return memory.obtener(id);
     }
 
-    public Stream<T> crear() {
+    public Stream<T> obtenerTodos() {
         return memory.obtenerTodos();
     }
 
