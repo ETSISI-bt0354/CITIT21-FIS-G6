@@ -4,8 +4,6 @@ import Modelo.Exotico;
 import Modelo.Id;
 import Modelo.Mascota;
 import Modelo.Responsable;
-import Repositorio.RepositorioMascota;
-import Repositorio.RepositorioMascotaExotica;
 import Repositorio.Repository;
 import Vista.VistaMascota;
 
@@ -28,10 +26,11 @@ public class ControladorMascota {
         this.vista = new VistaMascota();
 
         this.idAssigner = new IdAssigner(Stream.concat(repositorioMascota.obtenerTodos(),
-                        repositorioMascotaExotica.obtenerTodos())
-                .map(Id::getId)
-                .max(Integer::compareTo).map(id -> id + 1)
-                .orElse(0));
+                                                       repositorioMascotaExotica.obtenerTodos())
+                                                 .map(Id::getId)
+                                                 .max(Integer::compareTo)
+                                                 .map(id -> id + 1)
+                                                 .orElse(0));
     }
 
     public void registrarMascota(HashMap<String, String> params) {
@@ -127,7 +126,7 @@ public class ControladorMascota {
             throw new IllegalArgumentException("Descripcion no valida");
         }
         Mascota m = new Mascota(idAssigner.nextId(), nombre, codigoPostal,
-                descripcion, responsable);
+                                descripcion, responsable);
 
         repositorioMascota.add(m);
 
@@ -140,5 +139,9 @@ public class ControladorMascota {
 
     public void mostrarMascota(Mascota mascota) {
         vista.mostrarMascota(mascota);
+    }
+
+    public Mascota obtenerMascota(int id) {
+        return repositorioMascota.obtener(id);
     }
 }
