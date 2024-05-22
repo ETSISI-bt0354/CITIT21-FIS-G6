@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class ControladorUsuario {
-    private static final int MIN_REG_CUIDADOR_PARAMS = 5;
-    private static final int MIN_REG_RESPONSABLE_PARAMS = 2;
-    // private static Usuario loggedUser = null;
     private static final ControladorUsuario instance;
 
     private final IdAssigner idAssigner;
