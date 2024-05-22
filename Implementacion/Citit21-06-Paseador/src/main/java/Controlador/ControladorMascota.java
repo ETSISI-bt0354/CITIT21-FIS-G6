@@ -3,11 +3,13 @@ package Controlador;
 import Modelo.Exotico;
 import Modelo.Id;
 import Modelo.Mascota;
+import Modelo.Responsable;
 import Repositorio.RepositorioMascota;
 import Repositorio.RepositorioMascotaExotica;
 import Repositorio.Repository;
 import Vista.VistaMascota;
 
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
@@ -71,9 +73,65 @@ public class ControladorMascota {
         } catch (Exception e) {
             throw new IllegalArgumentException("Descripcion no valida");
         }
-        Int responsable;
+        Responsable responsable;
+        try {
+            responsable = null;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Responsable no valido");
+        }
+        Path permiso;
+        try {
+            permiso = Path.of(params.get(""));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Permiso no valido");
+        }
+        Path clegal;
+        try {
+            clegal = Path.of(params.get(""));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Certificado legal no valido");
+        }
+        Path csalud;
+        try {
+            csalud = Path.of(params.get(""));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Certificado de salud no valido");
+        }
 
         return new Exotico(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable, permiso, clegal, csalud);
+    }
+
+    public Mascota crearMascota(HashMap<String, String> params) {
+        int codigoPostal;
+        try {
+            codigoPostal = Integer.parseInt(params.get("codigo-postal"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Codigo postal no valido");
+        }
+        Responsable responsable;
+        try {
+            responsable = null;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Responsable no valido");
+        }
+        String nombre;
+        try {
+            nombre = params.get("nombre");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Nombre no valido");
+        }
+        String descripcion;
+        try {
+            descripcion = params.get("descripcion");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Descripcion no valida");
+        }
+        Mascota m = new Mascota(idAssigner.nextId(), nombre, codigoPostal,
+                descripcion, responsable);
+
+        repositorioMascota.add(m);
+
+        return m;
     }
 
     public void listarMascotas() {
