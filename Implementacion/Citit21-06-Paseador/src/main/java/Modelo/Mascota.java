@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.List;
 
-public class Mascota implements IMascota {
+public class Mascota implements IMascota, Id {
     private final int id;
     private String nombre;
     private int codigoPostal;
