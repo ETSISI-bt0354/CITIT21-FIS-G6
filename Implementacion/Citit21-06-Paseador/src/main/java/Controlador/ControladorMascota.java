@@ -34,17 +34,15 @@ public class ControladorMascota {
     }
 
     public void registrarMascota(HashMap<String, String> params) {
-        if (params.size() < MIN_REG_NO_EXOTICO_PARAMS)
-            throw new IllegalArgumentException("Faltan parametros para registrar la mascota.");
-
-        vista.registrarMascota(repositorioMascota.crear(params));
+        Mascota mascota = crearMascota(params);
+        repositorioMascota.crear(mascota);
+        vista.registrarMascota(mascota);
     }
 
     public void registrarMascotaExotica(HashMap<String, String> params) {
-        if (params.size() < MIN_REG_EXOTICO_PARAMS)
-            throw new IllegalArgumentException("Faltan parametros para registrar la mascota exotica.");
-
-        vista.registrarMascota(repositorioMascotaExotica.crear(params));
+        Exotico exotico = crearMascotaExotica(params);
+        repositorioMascotaExotica.crear(exotico);
+        vista.registrarMascota(exotico);
     }
 
     public Exotico crearMascotaExotica(HashMap<String, String> params) {
@@ -72,11 +70,19 @@ public class ControladorMascota {
         } catch (Exception e) {
             throw new IllegalArgumentException("Descripcion no valida");
         }
-        Responsable responsable;
+        int responsableId;
         try {
-            responsable = null;
+            responsableId = Integer.parseInt(params.get("responsable"));
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("Responsable no existe");
         } catch (Exception e) {
             throw new IllegalArgumentException("Responsable no valido");
+        }
+        Responsable responsable;
+        try {
+            responsable = ControladorUsuario.getInstance().obtenerResponsable(responsableId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Responsable no existe");
         }
         Path permiso;
         try {
@@ -107,11 +113,19 @@ public class ControladorMascota {
         } catch (Exception e) {
             throw new IllegalArgumentException("Codigo postal no valido");
         }
-        Responsable responsable;
+        int responsableId;
         try {
-            responsable = null;
+            responsableId = Integer.parseInt(params.get("responsable"));
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("Responsable no existe");
         } catch (Exception e) {
             throw new IllegalArgumentException("Responsable no valido");
+        }
+        Responsable responsable;
+        try {
+            responsable = ControladorUsuario.getInstance().obtenerResponsable(responsableId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Responsable no existe");
         }
         String nombre;
         try {
@@ -125,12 +139,8 @@ public class ControladorMascota {
         } catch (Exception e) {
             throw new IllegalArgumentException("Descripcion no valida");
         }
-        Mascota m = new Mascota(idAssigner.nextId(), nombre, codigoPostal,
-                                descripcion, responsable);
 
-        repositorioMascota.add(m);
-
-        return m;
+        return new Mascota(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable);
     }
 
     public void listarMascotas() {
