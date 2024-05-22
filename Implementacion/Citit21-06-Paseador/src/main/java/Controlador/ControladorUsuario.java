@@ -62,15 +62,19 @@ public class ControladorUsuario {
         } catch (Exception e) {
             throw new IllegalArgumentException("Falta el nombre del responsable.");
         }
-        TPlataforma plataforma = switch (params.get("plataforma")) {
+        TPlataforma plataforma = TPlataformaCheck(params);
+
+        return new Responsable(idAssigner.nextId(), plataforma, nombre);
+    }
+
+    private TPlataforma TPlataformaCheck(HashMap<String, String> params) {
+        return switch (params.get("plataforma")) {
             case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
             case "google" -> TPlataforma.GOOGLE;
             case "microsoft" -> TPlataforma.MICROSOFT;
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
-
-        return new Responsable(idAssigner.nextId(), plataforma, nombre);
     }
 
     public Cuidador crearCuidador(HashMap<String, String> params) {
@@ -98,13 +102,7 @@ public class ControladorUsuario {
         } catch (Exception e) {
             throw new IllegalArgumentException("Falta el nombre del cuidador.");
         }
-        TPlataforma plataforma = switch (params.get("plataforma")) {
-            case "twitter" -> TPlataforma.TWITTER;
-            case "facebook" -> TPlataforma.FACEBOOK;
-            case "google" -> TPlataforma.GOOGLE;
-            case "microsoft" -> TPlataforma.MICROSOFT;
-            default -> throw new IllegalArgumentException("Plataforma no valida");
-        };
+        TPlataforma plataforma = TPlataformaCheck(params);
 
         return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
