@@ -26,22 +26,12 @@ public class ControladorUsuario {
     }
 
     public void registrarCuidador(HashMap<String, String> params) {
-        if (params.get("descripcion") == null)
-            throw new IllegalArgumentException("Falta la descripcion del cuidador.");
-        if (params.get("tarifa") == null)
-            throw new IllegalArgumentException("Falta la tarifa del cuidador.");
-        if (params.get("horario") == null)
-            throw new IllegalArgumentException("Falta el horario del cuidador.");
-        if (params.get("nombre") == null)
-            throw new IllegalArgumentException("Falta el nombre del cuidador.");
         Responsable responsable = crearResponsable(params);
         repositorioResponsable.crear(responsable);
         vista.usuarioCreado(responsable);
     }
 
     public void registrarResponsable(HashMap<String, String> params) {
-        if (params.get("nombre") == null)
-            throw new IllegalArgumentException("Falta el nombre del responsable.");
         Cuidador cuidador = crearCuidador(params);
         repositorioCuidador.crear(cuidador);
         vista.usuarioCreado(cuidador);
@@ -52,6 +42,12 @@ public class ControladorUsuario {
     }
 
     public Responsable crearResponsable(HashMap<String, String> params) {
+        String nombre;
+        try {
+            nombre = params.get("nombre");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta el nombre del responsable.");
+        }
         TPlataforma plataforma = switch (params.get("plataforma")) {
             case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
@@ -60,10 +56,34 @@ public class ControladorUsuario {
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
 
-        return new Responsable(idAssigner.nextId(), plataforma, params.get("nombre"));
+        return new Responsable(idAssigner.nextId(), plataforma, nombre);
     }
 
     public Cuidador crearCuidador(HashMap<String, String> params) {
+        String descripcion;
+        try {
+            descripcion = params.get("descripcion");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la descripcion del cuidador.");
+        }
+        Double tarifa;
+        try {
+            tarifa = Double.parseDouble(params.get("tarifa"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la tarifa del cuidador.");
+        }
+        LocalDateTime horario;
+        try {
+            horario = LocalDateTime.parse(params.get("horario"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta el horario del cuidador.");
+        }
+        String nombre;
+        try {
+            nombre = params.get("nombre");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta el nombre del cuidador.");
+        }
         TPlataforma plataforma = switch (params.get("plataforma")) {
             case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
@@ -72,8 +92,6 @@ public class ControladorUsuario {
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
 
-        return new Cuidador(0, params.get("descripcion"),
-                            Double.parseDouble(params.get("tarifa")), LocalDateTime.parse(params.get("horario")),
-                            params.get("nombre"), idAssigner.nextId(), plataforma);
+        return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
 }
