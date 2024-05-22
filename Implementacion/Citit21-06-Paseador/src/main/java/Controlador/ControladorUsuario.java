@@ -84,7 +84,7 @@ public class ControladorUsuario {
         } catch (Exception e) {
             throw new IllegalArgumentException("Falta la descripcion del cuidador.");
         }
-        Double tarifa;
+        double tarifa;
         try {
             tarifa = Double.parseDouble(params.get("tarifa"));
         } catch (Exception e) {
