@@ -26,20 +26,22 @@ public class ControladorUsuario {
     }
 
     public void registrarCuidador(HashMap<String, String> params) {
-        if (params.size() < MIN_REG_CUIDADOR_PARAMS)
-            throw new IllegalArgumentException(
-                    "Faltan parametros para registrar el cuidador."); // TODO: Should we specify which
-        // parameters are missing?
+        if (params.get("descripcion") == null)
+            throw new IllegalArgumentException("Falta la descripcion del cuidador.");
+        if (params.get("tarifa") == null)
+            throw new IllegalArgumentException("Falta la tarifa del cuidador.");
+        if (params.get("horario") == null)
+            throw new IllegalArgumentException("Falta el horario del cuidador.");
+        if (params.get("nombre") == null)
+            throw new IllegalArgumentException("Falta el nombre del cuidador.");
         Responsable responsable = crearResponsable(params);
         repositorioResponsable.crear(responsable);
         vista.usuarioCreado(responsable);
     }
 
     public void registrarResponsable(HashMap<String, String> params) {
-        if (params.size() < MIN_REG_RESPONSABLE_PARAMS)
-            throw new IllegalArgumentException(
-                    "Faltan parametros para registrar el responsable."); // TODO: Should we specify which
-        // parameters are missing?
+        if (params.get("nombre") == null)
+            throw new IllegalArgumentException("Falta el nombre del responsable.");
         Cuidador cuidador = crearCuidador(params);
         repositorioCuidador.crear(cuidador);
         vista.usuarioCreado(cuidador);
