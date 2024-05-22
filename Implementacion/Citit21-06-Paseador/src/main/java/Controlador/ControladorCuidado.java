@@ -13,8 +13,9 @@ public class ControladorCuidado {
     private final VistaCuidado vista;
     private final IdAssigner idAssigner;
     private final Repository<Cuidado> repositorioCuidado;
+    private static final ControladorCuidado instance;
 
-    public ControladorCuidado(Repository<Cuidado> repositorioCuidado) {
+    private ControladorCuidado(Repository<Cuidado> repositorioCuidado) {
         this.repositorioCuidado = repositorioCuidado;
         this.vista = new VistaCuidado();
         this.idAssigner = new IdAssigner(repositorioCuidado.obtenerTodos()
@@ -22,6 +23,13 @@ public class ControladorCuidado {
                                                  .max(Integer::compareTo)
                                                  .map(x -> x + 1)
                                                  .orElse(0));
+    }
+
+    public static ControladorCuidado getInstance() {
+        if (instance == null)
+            return new ControladorCuidado();
+
+        return instance;
     }
 
     private Cuidado crearCuidado(HashMap<String, String> params) {
