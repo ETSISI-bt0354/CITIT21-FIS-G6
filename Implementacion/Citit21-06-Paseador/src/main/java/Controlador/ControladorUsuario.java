@@ -109,11 +109,11 @@ public class ControladorUsuario {
         return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
 
-    public Responsable getResponsable(int id) {
+    public Responsable obtenerResponsable(int id) {
         return repositorioResponsable.obtener(id);
     }
 
-    public Cuidador getCuidador(int id) {
+    public Cuidador obtenerCuidador(int id) {
         return repositorioCuidador.obtener(id);
     }
 }
