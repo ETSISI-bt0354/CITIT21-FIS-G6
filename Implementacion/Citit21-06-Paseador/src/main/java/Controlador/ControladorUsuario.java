@@ -100,4 +100,12 @@ public class ControladorUsuario {
 
         return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
+
+    public Responsable getResponsable(int id) {
+        return repositorioResponsable.obtener(id);
+    }
+
+    public Cuidador getCuidador(int id) {
+        return repositorioCuidador.obtener(id);
+    }
 }
