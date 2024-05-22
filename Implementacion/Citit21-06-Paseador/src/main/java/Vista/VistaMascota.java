@@ -3,6 +3,7 @@ package Vista;
 import Modelo.IMascota;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class VistaMascota {
     public void registrarMascota(IMascota mascota) {
@@ -38,8 +39,9 @@ public class VistaMascota {
         System.out.println(message);
     }
 
-    public void listarMascotas(List<? extends IMascota> mascotas) {
-        for (IMascota m : mascotas)
-            mostrarMascota(m);
+    public void listarMascotas(Stream mascotas) {
+        for (Object mascota : (List) mascotas.toList()) {
+            mostrarMascota((IMascota) mascota);
+        }
     }
 }

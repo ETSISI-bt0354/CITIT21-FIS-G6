@@ -19,10 +19,32 @@ public class RepositorioMascota {
     }
 
     public Mascota crear(HashMap<String, String> mascota) {
-        int codigoPostal = Integer.parseInt(mascota.get("codigo-postal"));
-        Responsable responsable = responsables.obtener(Integer.parseInt(mascota.get("responsable")));
-        Mascota m = new Mascota(assignId(), mascota.get("nombre"), codigoPostal,
-                                mascota.get("descripcion"), responsable);
+        int codigoPostal;
+        try {
+            codigoPostal = Integer.parseInt(mascota.get("codigo-postal"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Codigo postal no valido");
+        }
+        Responsable responsable;
+        try {
+            responsable = responsables.obtener(Integer.parseInt(mascota.get("responsable")));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Responsable no valido");
+        }
+        String nombre;
+        try {
+            nombre = mascota.get("nombre");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Nombre no valido");
+        }
+        String descripcion;
+        try {
+            descripcion = mascota.get("descripcion");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Descripcion no valida");
+        }
+        Mascota m = new Mascota(assignId(), nombre, codigoPostal,
+                descripcion, responsable);
 
         repositorio.add(m);
 
@@ -46,10 +68,6 @@ public class RepositorioMascota {
                         .filter(mascota -> mascota.getId() == id)
                         .findAny()
                         .orElseThrow());
-    }
-
-    public List<Mascota> fetchAll() {
-        return this.repositorio;
     }
 
     private int assignId() {
