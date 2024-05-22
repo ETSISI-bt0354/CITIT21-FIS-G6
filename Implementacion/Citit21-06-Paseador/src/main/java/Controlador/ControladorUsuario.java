@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.*;
+import Repositorio.FileRepository;
 import Repositorio.Repository;
 import Vista.VistaUsuario;
 
@@ -12,12 +13,22 @@ public class ControladorUsuario {
     private static final int MIN_REG_CUIDADOR_PARAMS = 5;
     private static final int MIN_REG_RESPONSABLE_PARAMS = 2;
     // private static Usuario loggedUser = null;
+    private static final ControladorUsuario instance;
+
     private final IdAssigner idAssigner;
     private final VistaUsuario vista;
     private final Repository<Responsable> repositorioResponsable;
     private final Repository<Cuidador> repositorioCuidador;
 
-    public ControladorUsuario(Repository<Responsable> repositorioResponsable,
+    public static ControladorUsuario getInstance() {
+        if (instance == null) {
+            instance = new ControladorUsuario();
+        }
+
+        return instance;
+    }
+
+    private ControladorUsuario(Repository<Responsable> repositorioResponsable,
                               Repository<Cuidador> repositorioCuidador) {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
