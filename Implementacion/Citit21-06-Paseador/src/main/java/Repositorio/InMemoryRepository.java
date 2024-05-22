@@ -1,6 +1,6 @@
 package Repositorio;
 
-import Modelo.Entidad;
+import Modelo.Id;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class InMemoryRepository<T extends Entidad> {
-    private int id;
+public class InMemoryRepository<T extends Id> {
     private final List<T> memory;
     private final FileRepository<T> repo;
 
@@ -19,15 +18,9 @@ public class InMemoryRepository<T extends Entidad> {
         Stream<T> entidades = repo.obtenerTodos();
         memory = entidades.collect(Collectors.toList());
         entidades.close();
-
-        id = memory.stream()
-                .map(Entidad::getId)
-                .max(Integer::compare)
-                .orElse(0);
     }
 
     public void crear(T t) {
-        t.setId(asignId());
         memory.add(t);
         try {
             repo.crear(t);
@@ -64,9 +57,5 @@ public class InMemoryRepository<T extends Entidad> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private int asignId() {
-        return id++;
     }
 }

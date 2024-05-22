@@ -2,16 +2,23 @@ package Modelo;
 
 import java.util.List;
 
-public abstract class Usuario extends Entidad implements IUsuario {
+public abstract class Usuario implements Id, IUsuario {
+    private final int id;
     private String nombre;
     private final TPlataforma plataforma;
     private List<Mensaje> mensajesRecibidos;
     private List<Mensaje> mensajesEnviados;
 
     public Usuario(int id, TPlataforma plataforma, String nombre) {
-        super(id);
+        this.id = id;
         this.plataforma = plataforma;
         this.nombre = nombre;
+    }
+
+    @Override
+    public int getId()
+    {
+        return id;
     }
 
     @Override

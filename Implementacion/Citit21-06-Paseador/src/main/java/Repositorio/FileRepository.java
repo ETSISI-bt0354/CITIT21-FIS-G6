@@ -1,6 +1,6 @@
 package Repositorio;
 
-import Modelo.Entidad;
+import Modelo.Id;
 import Serializers.Serializer;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-public class FileRepository<T extends Entidad> {
+public class FileRepository<T extends Id> {
     private final Serializer<T> serializer;
     private final Path repo;
 

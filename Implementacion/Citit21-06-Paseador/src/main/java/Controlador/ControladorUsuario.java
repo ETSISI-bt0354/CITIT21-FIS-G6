@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Cuidador;
-import Modelo.Responsable;
-import Modelo.TPlataforma;
-import Modelo.Usuario;
+import Modelo.*;
 import Repositorio.InMemoryRepository;
 import Vista.VistaUsuario;
 
@@ -13,8 +10,8 @@ import java.util.HashMap;
 public class ControladorUsuario {
     private static final int MIN_REG_CUIDADOR_PARAMS = 5;
     private static final int MIN_REG_RESPONSABLE_PARAMS = 2;
-    private static final int NO_ID = -1;
     // private static Usuario loggedUser = null;
+    private final IdAssigner idAssigner;
     private final VistaUsuario vista;
     private final InMemoryRepository<Responsable> repositorioResponsable;
     private final InMemoryRepository<Cuidador> repositorioCuidador;
@@ -24,6 +21,8 @@ public class ControladorUsuario {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
         this.vista = new VistaUsuario();
+
+        this.idAssigner = new IdAssigner(repositorioResponsable.obtenerTodos().map(Id::getId).max(Integer::compareTo).map(x -> x + 1).orElse(0));
     }
 
     public void registrarCuidador(HashMap<String, String> params) {
@@ -59,7 +58,7 @@ public class ControladorUsuario {
             default -> throw new IllegalArgumentException("Plataforma no valida");
         };
 
-        return new Responsable(NO_ID, plataforma, params.get("nombre"));
+        return new Responsable(idAssigner.nextId(), plataforma, params.get("nombre"));
     }
 
     public Cuidador crearCuidador(HashMap<String, String> params) {
@@ -73,6 +72,6 @@ public class ControladorUsuario {
 
         return new Cuidador(0, params.get("descripcion"),
                             Double.parseDouble(params.get("tarifa")), LocalDateTime.parse(params.get("horario")),
-                            params.get("nombre"), NO_ID, plataforma);
+                            params.get("nombre"), idAssigner.nextId(), plataforma);
     }
 }
