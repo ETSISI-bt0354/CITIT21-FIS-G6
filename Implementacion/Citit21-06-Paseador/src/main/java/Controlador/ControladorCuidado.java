@@ -69,7 +69,7 @@ public class ControladorCuidado {
         }
 
         cuidado.setMascota(ControladorMascota.getInstance()
-                                   .obtener(id));
+                                   .obtenerMascota(id));
 
     }
 }
