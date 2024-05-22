@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.*;
 import Repositorio.InMemoryRepository;
+import Repositorio.Repository;
 import Vista.VistaUsuario;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,11 @@ public class ControladorUsuario {
     // private static Usuario loggedUser = null;
     private final IdAssigner idAssigner;
     private final VistaUsuario vista;
-    private final InMemoryRepository<Responsable> repositorioResponsable;
-    private final InMemoryRepository<Cuidador> repositorioCuidador;
+    private final Repository<Responsable> repositorioResponsable;
+    private final Repository<Cuidador> repositorioCuidador;
 
-    public ControladorUsuario(InMemoryRepository<Responsable> repositorioResponsable,
-                              InMemoryRepository<Cuidador> repositorioCuidador) {
+    public ControladorUsuario(Repository<Responsable> repositorioResponsable,
+                              Repository<Cuidador> repositorioCuidador) {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
         this.vista = new VistaUsuario();
