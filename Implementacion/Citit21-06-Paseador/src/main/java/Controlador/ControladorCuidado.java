@@ -72,25 +72,4 @@ public class ControladorCuidado {
                                    .obtener(id));
 
     }
-
-    public void crearCuidadoCuidador(HashMap<String, String> params) {
-        Cuidado cuidado;
-        int id;
-
-        try {
-            cuidado = crearCuidado(params);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-
-        try {
-            id = Integer.parseInt(params.get("cuidador"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la mascota del cuidado.\n");
-        }
-
-        cuidado.setCuidador(ControladorUsuario.getInstance()
-                                    .getCuidador(id));
-    }
 }
