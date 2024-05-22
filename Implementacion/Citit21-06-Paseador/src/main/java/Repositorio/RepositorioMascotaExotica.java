@@ -21,21 +21,6 @@ public class RepositorioMascotaExotica {
         maxId = 0;
     }
 
-    public Exotico crear(HashMap<String, String> exotico) {
-        int codigoPostal = Integer.parseInt(exotico.get("codigo-postal"));
-        Responsable responsable = responsables.obtener(Integer.parseInt(exotico.get("responsable")));
-        Path permiso = Paths.get(exotico.get("permiso"));
-        Path certificadoLegal = Paths.get(exotico.get("certificado-legal"));
-        Path certificadoSalud = Paths.get(exotico.get("certificado-salud"));
-        Exotico e =
-                new Exotico(assignId(), exotico.get("nombre"), codigoPostal, exotico.get("descripcion"),
-                            responsable, permiso, certificadoLegal, certificadoSalud);
-
-        repositorio.add(e);
-
-        return e;
-    }
-
     public Mascota obtener(int id) {
         return repositorio.stream()
                 .filter(exotico -> exotico.getId() == id)
