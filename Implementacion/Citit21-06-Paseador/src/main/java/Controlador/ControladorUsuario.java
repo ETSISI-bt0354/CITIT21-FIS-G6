@@ -39,13 +39,13 @@ public class ControladorUsuario {
         );
     }
 
-    public void registrarCuidador(HashMap<String, String> params) {
+    public void registrarResponsable(HashMap<String, String> params) {
         Responsable responsable = crearResponsable(params);
         repositorioResponsable.crear(responsable);
         vista.usuarioCreado(responsable);
     }
 
-    public void registrarResponsable(HashMap<String, String> params) {
+    public void registrarCuidador(HashMap<String, String> params) {
         Cuidador cuidador = crearCuidador(params);
         repositorioCuidador.crear(cuidador);
         vista.usuarioCreado(cuidador);
