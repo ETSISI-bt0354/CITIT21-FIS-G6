@@ -6,6 +6,7 @@ import Vista.VistaUsuario;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 public class ControladorUsuario {
     private static final int MIN_REG_CUIDADOR_PARAMS = 5;
@@ -22,7 +23,12 @@ public class ControladorUsuario {
         this.repositorioCuidador = repositorioCuidador;
         this.vista = new VistaUsuario();
 
-        this.idAssigner = new IdAssigner(repositorioResponsable.obtenerTodos().map(Id::getId).max(Integer::compareTo).map(x -> x + 1).orElse(0));
+        this.idAssigner = new IdAssigner(Stream.concat(repositorioResponsable.obtenerTodos(), repositorioCuidador.obtenerTodos())
+                .map(Id::getId)
+                .max(Integer::compareTo)
+                .map(id -> id + 1)
+                .orElse(0)
+        );
     }
 
     public void registrarCuidador(HashMap<String, String> params) {
