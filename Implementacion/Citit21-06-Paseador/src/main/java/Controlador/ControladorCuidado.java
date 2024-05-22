@@ -27,7 +27,7 @@ public class ControladorCuidado {
 
     public static ControladorCuidado getInstance() {
         if (instance == null)
-            return new ControladorCuidado();
+            instance = new ControladorCuidado();
 
         return instance;
     }

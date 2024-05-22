@@ -18,9 +18,10 @@ public class ControladorMascota {
     private final Repository<Mascota> repositorioMascota;
     private final Repository<Exotico> repositorioMascotaExotica;
     private final VistaMascota vista;
+    private static final ControladorMascota instance;
 
-    public ControladorMascota(Repository<Mascota> repositorioMascota,
-                              Repository<Exotico> repositorioMascotaExotica) {
+    private ControladorMascota(Repository<Mascota> repositorioMascota,
+                               Repository<Exotico> repositorioMascotaExotica) {
         this.repositorioMascota = repositorioMascota;
         this.repositorioMascotaExotica = repositorioMascotaExotica;
         this.vista = new VistaMascota();
@@ -31,6 +32,13 @@ public class ControladorMascota {
                                                  .max(Integer::compareTo)
                                                  .map(id -> id + 1)
                                                  .orElse(0));
+    }
+
+    public static ControladorMascota getInstance() {
+        if (instance == null)
+            instance = new ControladorMascota();
+
+        return instance;
     }
 
     public void registrarMascota(HashMap<String, String> params) {
