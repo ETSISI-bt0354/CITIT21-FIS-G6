@@ -3,7 +3,7 @@ package Modelo;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Cuidado implements ICuidado {
+public class Cuidado implements Id, ICuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
     private final int id;
@@ -34,6 +34,7 @@ public class Cuidado implements ICuidado {
         this.duracion = duracion;
     }
 
+    @Override
     public int getId() {
         return id;
     }

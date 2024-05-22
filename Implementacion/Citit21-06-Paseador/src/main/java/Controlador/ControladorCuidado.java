@@ -1,32 +1,72 @@
 package Controlador;
 
-import Repositorio.RepositorioCuidado;
+import Modelo.Cuidado;
+import Modelo.Id;
+import Repositorio.Repository;
 import Vista.VistaCuidado;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class ControladorCuidado {
-    private static final int MIN_CREATE_PARAMS = 3;
-    private final RepositorioCuidado repositorio;
-    private VistaCuidado vista;
+    private final VistaCuidado vista;
+    private final IdAssigner idAssigner;
+    private final Repository<Cuidado> repositorioCuidado;
 
-    public ControladorCuidado(RepositorioCuidado repositorio) {
-        this.repositorio = repositorio;
+    public ControladorCuidado(Repository<Cuidado> repositorioCuidado) {
+        this.repositorioCuidado = repositorioCuidado;
         this.vista = new VistaCuidado();
+        this.idAssigner = new IdAssigner(repositorioCuidado.obtenerTodos()
+                                                 .map(Id::getId)
+                                                 .max(Integer::compareTo)
+                                                 .map(x -> x + 1)
+                                                 .orElse(0));
     }
 
-    private void crearCuidado(HashMap<String, String> params) {
-        if (params.size() < MIN_CREATE_PARAMS)
-            throw new IllegalArgumentException("Faltan parametros para crear el cuidado.");
+    private Cuidado crearCuidado(HashMap<String, String> params) {
+        LocalDateTime fecha;
+        Duration duracion;
 
-        vista.cuidadoCreado(repositorio.crear(params));
+        try {
+            fecha = LocalDateTime.parse(params.get("fecha"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la fecha del cuidado.\n");
+        }
+
+        try {
+            duracion = Duration.parse(params.get("duracion"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Falta la duracion del cuidado.\n");
+        }
+
+        return new Cuidado(fecha, duracion, idAssigner.nextId());
     }
 
     public void crearCuidadoMascota(HashMap<String, String> params) {
-        // TODO: Implementar
+        Cuidado cuidado;
+
+        try {
+            cuidado = crearCuidado(params);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        cuidado.setMascota();
+
     }
 
     public void crearCuidadoCuidador(HashMap<String, String> params) {
-        // TODO: Implementar
+        Cuidado cuidado;
+
+        try {
+            cuidado = crearCuidado(params);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        cuidado.setCuidador();
     }
 }
