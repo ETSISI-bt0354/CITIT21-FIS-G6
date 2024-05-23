@@ -88,7 +88,8 @@ public class ControladorMascota {
         }
         Responsable responsable;
         try {
-            responsable = ControladorUsuario.getInstance().obtenerResponsable(responsableId);
+            responsable = ControladorUsuario.getInstance()
+                    .obtenerResponsable(responsableId);
         } catch (Exception e) {
             throw new IllegalArgumentException("Responsable no existe");
         }
@@ -131,7 +132,8 @@ public class ControladorMascota {
         }
         Responsable responsable;
         try {
-            responsable = ControladorUsuario.getInstance().obtenerResponsable(responsableId);
+            responsable = ControladorUsuario.getInstance()
+                    .obtenerResponsable(responsableId);
         } catch (Exception e) {
             throw new IllegalArgumentException("Responsable no existe");
         }

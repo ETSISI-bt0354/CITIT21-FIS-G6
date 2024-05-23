@@ -15,7 +15,8 @@ public class Repository<T extends Id> {
         this.memory = new InMemoryRepository<>();
 
         try {
-            this.persistance.obtenerTodos().forEach(memory::crear);
+            this.persistance.obtenerTodos()
+                    .forEach(memory::crear);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

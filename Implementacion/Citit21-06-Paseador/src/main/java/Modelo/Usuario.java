@@ -16,8 +16,7 @@ public abstract class Usuario implements Id, IUsuario {
     }
 
     @Override
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 

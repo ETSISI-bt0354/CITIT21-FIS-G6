@@ -1,6 +1,5 @@
 package Modelo;
 
-public interface Id
-{
+public interface Id {
     int getId();
 }

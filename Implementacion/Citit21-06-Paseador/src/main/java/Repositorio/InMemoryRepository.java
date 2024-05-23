@@ -2,10 +2,8 @@ package Repositorio;
 
 import Modelo.Id;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -31,7 +29,8 @@ public class InMemoryRepository<T extends Id> {
         return repo.stream();
     }
 
-    public void actualizar(T t) {}
+    public void actualizar(T t) {
+    }
 
     public void eliminar(T t) {
         repo.remove(t);
