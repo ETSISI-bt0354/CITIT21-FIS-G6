@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class ControladorMascota {
-    private static final int MIN_REG_NO_EXOTICO_PARAMS = 4;
-    private static final int MIN_REG_EXOTICO_PARAMS = 7;
     private final IdAssigner idAssigner;
     private final Repository<Mascota> repositorioMascota;
     private final Repository<Exotico> repositorioMascotaExotica;
