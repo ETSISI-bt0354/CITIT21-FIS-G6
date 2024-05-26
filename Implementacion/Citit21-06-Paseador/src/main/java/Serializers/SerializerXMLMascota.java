@@ -2,16 +2,15 @@ package Serializers;
 
 import Modelo.Mascota;
 import Modelo.Responsable;
-import Repositorio.InMemoryRepository;
+import Repositorio.IGet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 public class SerializerXMLMascota implements Serializer<Mascota> {
-    private final InMemoryRepository<Responsable> responsables;
+    private final IGet<Responsable> responsables;
 
-    public SerializerXMLMascota(InMemoryRepository<Responsable> responsable) {
+    public SerializerXMLMascota(IGet<Responsable> responsable) {
         this.responsables = responsable;
     }
 

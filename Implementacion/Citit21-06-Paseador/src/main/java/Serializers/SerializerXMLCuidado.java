@@ -3,7 +3,7 @@ package Serializers;
 import Modelo.Cuidado;
 import Modelo.Cuidador;
 import Modelo.Mascota;
-import Repositorio.InMemoryRepository;
+import Repositorio.IGet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 
 public class SerializerXMLCuidado implements Serializer<Cuidado> {
 
-    private final InMemoryRepository<Cuidador> cuidadores;
-    private final InMemoryRepository<Mascota> mascotas;
+    private final IGet<Cuidador> cuidadores;
+    private final IGet<Mascota> mascotas;
 
-    public SerializerXMLCuidado(InMemoryRepository<Cuidador> cuidadores, InMemoryRepository<Mascota> mascotas) {
+    public SerializerXMLCuidado(IGet<Cuidador> cuidadores, IGet<Mascota> mascotas) {
         this.cuidadores = cuidadores;
         this.mascotas = mascotas;
     }

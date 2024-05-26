@@ -2,7 +2,7 @@ package Serializers;
 
 import Modelo.Exotico;
 import Modelo.Responsable;
-import Repositorio.InMemoryRepository;
+import Repositorio.IGet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,9 +10,9 @@ import org.w3c.dom.Node;
 import java.nio.file.Path;
 
 public class SerializerXMLExotico implements Serializer<Exotico> {
-    private final InMemoryRepository<Responsable> responsables;
+    private final IGet<Responsable> responsables;
 
-    public SerializerXMLExotico(InMemoryRepository<Responsable> responsable) {
+    public SerializerXMLExotico(IGet<Responsable> responsable) {
         this.responsables = responsable;
     }
 
