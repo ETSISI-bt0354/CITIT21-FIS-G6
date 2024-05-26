@@ -15,4 +15,13 @@ public enum TPlataforma {
             default -> throw new RuntimeException("Plataforma no valida.");
         };
     }
+
+    public String toString() {
+        return switch (this) {
+            case TWITTER -> "Twitter";
+            case FACEBOOK -> "Facebook";
+            case GOOGLE -> "Google";
+            case MICROSOFT -> "Microsoft";
+        };
+    }
 }
