@@ -56,7 +56,7 @@ public class XML
 
 
     // Jorge
-    private Document newDocument() {
+    public static Document newDocument() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -66,7 +66,7 @@ public class XML
         }
     }
 
-    private String toString(Document doc) {
+    public static String toString(Document doc) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -81,7 +81,7 @@ public class XML
         }
     }
 
-    private Document getDocumentt(String xmlStr) {
+    public static Document getDocumentt(String xmlStr) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
