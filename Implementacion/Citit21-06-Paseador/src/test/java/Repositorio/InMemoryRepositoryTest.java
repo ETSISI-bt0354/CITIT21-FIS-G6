@@ -21,11 +21,11 @@ class InMemoryRepositoryTest {
     @org.junit.jupiter.api.Test
     void updatingExistentEntity() throws AlreadyExist, NotFound {
         InMemoryRepository<Mock> repository = new InMemoryRepository<>();
-        Mock mock = new Mock(1);
+        Mock mock = new Mock(1, "Tomatoes");
         repository.crear(mock);
-        Mock mock2 = new Mock(2);
-        repository.actualizar(mock2);
-        assertEquals(mock2, repository.obtener(1));
+        mock.setTomatoe("Potatoes");
+        repository.actualizar(mock);
+        assertEquals(mock, repository.obtener(1));
     }
 
     @org.junit.jupiter.api.Test
