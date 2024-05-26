@@ -1,5 +1,6 @@
 package Serializers;
 
+import Excepciones.NotFound;
 import Modelo.Mascota;
 import Modelo.Responsable;
 import Repositorio.IGet;
@@ -52,7 +53,12 @@ public class SerializerXMLMascota implements Serializer<Mascota> {
         String nombre = document.getElementsByTagName("nombre").item(0).getTextContent();
         int codigoPostal = Integer.parseInt(document.getElementsByTagName("codigoPostal").item(0).getTextContent());
         String descripcion = document.getElementsByTagName("descripcion").item(0).getTextContent();
-        Responsable responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable").item(0).getTextContent()));
+        Responsable responsable = null;
+        try {
+            responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable").item(0).getTextContent()));
+        } catch (NotFound e) {
+            throw new RuntimeException(e);
+        }
 
         return new Mascota(id, nombre, codigoPostal, descripcion, responsable);
     }

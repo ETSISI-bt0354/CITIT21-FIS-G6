@@ -1,5 +1,6 @@
 package Serializers;
 
+import Excepciones.NotFound;
 import Modelo.Exotico;
 import Modelo.Responsable;
 import Repositorio.IGet;
@@ -78,9 +79,14 @@ public class SerializerXMLExotico implements Serializer<Exotico> {
                 .item(0)
                 .getTextContent();
 
-        Responsable responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable")
-                                                                                .item(0)
-                                                                                .getTextContent()));
+        Responsable responsable = null;
+        try {
+            responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable")
+                                                                                    .item(0)
+                                                                                    .getTextContent()));
+        } catch (NotFound e) {
+            throw new RuntimeException(e);
+        }
 
         Path permiso = Path.of(document.getElementsByTagName("permiso")
                                        .item(0)

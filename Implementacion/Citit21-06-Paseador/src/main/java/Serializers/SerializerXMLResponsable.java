@@ -1,5 +1,6 @@
 package Serializers;
 
+import Excepciones.PlataformaInvalida;
 import Modelo.Responsable;
 import Modelo.TPlataforma;
 import org.w3c.dom.Document;
@@ -37,8 +38,13 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
                                           .item(0)
                                           .getNodeValue());
 
-        TPlataforma plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
-                                                           .getTextContent());
+        TPlataforma plataforma = null;
+        try {
+            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
+                                                               .getTextContent());
+        } catch (PlataformaInvalida e) {
+            throw new RuntimeException(e);
+        }
         String nombre = document.getElementsByTagName("nombre").item(0)
                 .getTextContent();
 

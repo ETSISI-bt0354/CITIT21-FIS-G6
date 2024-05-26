@@ -1,5 +1,6 @@
 package Serializers;
 
+import Excepciones.NotFound;
 import Modelo.Cuidado;
 import Modelo.Cuidador;
 import Modelo.Mascota;
@@ -70,10 +71,20 @@ public class SerializerXMLCuidado implements Serializer<Cuidado> {
 
         Cuidado le_cuidado = new Cuidado(fechaCuidado, duracion, id);
 
-        Cuidador cuidador = doc.getElementsByTagName("cuidador").item(0).getTextContent().equals("nil") ?
-                null : cuidadores.obtener(Integer.parseInt(doc.getElementsByTagName("cuidador").item(0).getTextContent()));
-        Mascota mascota = doc.getElementsByTagName("mascota").item(0).getTextContent().equals("nil") ?
-                null : mascotas.obtener(Integer.parseInt(doc.getElementsByTagName("mascota").item(0).getTextContent()));
+        Cuidador cuidador = null;
+        try {
+            cuidador = doc.getElementsByTagName("cuidador").item(0).getTextContent().equals("nil") ?
+                    null : cuidadores.obtener(Integer.parseInt(doc.getElementsByTagName("cuidador").item(0).getTextContent()));
+        } catch (NotFound e) {
+            throw new RuntimeException(e);
+        }
+        Mascota mascota = null;
+        try {
+            mascota = doc.getElementsByTagName("mascota").item(0).getTextContent().equals("nil") ?
+                    null : mascotas.obtener(Integer.parseInt(doc.getElementsByTagName("mascota").item(0).getTextContent()));
+        } catch (NotFound e) {
+            throw new RuntimeException(e);
+        }
 
         if (cuidador != null) {
             le_cuidado.setCuidador(cuidador);
