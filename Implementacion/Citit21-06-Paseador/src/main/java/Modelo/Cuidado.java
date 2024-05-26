@@ -56,7 +56,12 @@ public class Cuidado implements Id, ICuidado {
     }
 
     public void setCuidador(Cuidador cuidador) {
+        if (this.cuidador != null) {
+            this.cuidador.removeCuidado(this);
+        }
+
         this.cuidador = cuidador;
+        cuidador.addCuidado(this);
     }
 
     public Cuidador getCuidador() {
@@ -64,7 +69,12 @@ public class Cuidado implements Id, ICuidado {
     }
 
     public void setMascota(Mascota mascota) {
+        if (this.mascota != null) {
+            this.mascota.removeCuidado(this);
+        }
+
         this.mascota = mascota;
+        mascota.addCuidado(this);
     }
 
     public Mascota getMascota() {
