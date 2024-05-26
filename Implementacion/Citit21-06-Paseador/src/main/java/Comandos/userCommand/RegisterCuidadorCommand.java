@@ -6,25 +6,25 @@ import Controlador.ControladorUsuario;
 
 import java.util.List;
 
-public class RegisterUserCommand extends UserCommand {
-    public RegisterUserCommand(ControladorUsuario controller) {
+public class RegisterCuidadorCommand extends UserCommand {
+    public RegisterCuidadorCommand(ControladorUsuario controller) {
         super(controller);
     }
 
     @Override
     public String exec(List<String> args) {
-        return controller.registerUser(args.toArray(new String[0]));
+        return super.controller.registrarCuidador(CommandHelper.argsToMap(args));
     }
 
     @Override
     public String description() {
-        return "Register a user";
+        return "Register a Cuidador";
     }
 
     @Override
     public String help(List<String> args, String prefixCommand) {
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
-        message.append(controller.registerUserHelp());
+        message.append(super.controller.registerUserHelp());
         return message.toString();
     }
 }
