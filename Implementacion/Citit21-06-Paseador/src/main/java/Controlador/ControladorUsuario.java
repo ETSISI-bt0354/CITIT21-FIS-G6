@@ -135,7 +135,7 @@ public class ControladorUsuario {
         try {
             horario = LocalDateTime.parse(params.get("horario"));
         } catch (DateTimeParseException e) {
-            throw new HorarioInvalido("Falta el horario del cuidador.");
+            throw new HorarioInvalido(params.get("horario"));
         }
 
         String nombre = params.get("nombre");
