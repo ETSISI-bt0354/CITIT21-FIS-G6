@@ -3,6 +3,7 @@ package Modelo;
 public abstract class Premio {
     private final int id;
     private double precioPanchoPuntos;
+    private Cuidador cuidador;
 
     public Premio(int id, double precioPanchoPuntos) {
         this.id = id;
