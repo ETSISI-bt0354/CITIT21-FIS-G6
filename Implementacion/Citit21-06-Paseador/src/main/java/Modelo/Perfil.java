@@ -8,17 +8,20 @@ public class Perfil {
         this.codigoRiac = codigoRiac;
         this.numeroPoliza = numeroPoliza;
     }
+
     public int getCodigoRiac() {
         return codigoRiac;
     }
+
     public void setCodigoRiac(int codigoRiac) {
         this.codigoRiac = codigoRiac;
     }
+
     public int getNumeroPoliza() {
         return numeroPoliza;
     }
+
     public void setNumeroPoliza(int numeroPoliza) {
         this.numeroPoliza = numeroPoliza;
     }
-
 }

@@ -2,7 +2,8 @@ package Modelo;
 
 import java.util.List;
 
-public class Mascota implements IMascota {
+public class Mascota implements IMascota, Id {
+    private final int id;
     private String nombre;
     private int codigoPostal;
     private final int id;
@@ -10,14 +11,24 @@ public class Mascota implements IMascota {
     private List<Foto> fotos;
     private Perfil perfil;
     private List<Cuidado> cuidados;
+    private Responsable responsable;
 
-    public Mascota(String nombre, int codigoPostal, String descripcion, int id) {
+    public Mascota(int id, String nombre, int codigoPostal, String descripcion,
+                   Responsable responsable) {
+        this.id = id;
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
         this.descripcion = descripcion;
-        this.id = id;
+        this.responsable = responsable;
+        responsable.addMascotas(this);
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -26,6 +37,7 @@ public class Mascota implements IMascota {
         this.nombre = nombre;
     }
 
+    @Override
     public int getCodigoPostal() {
         return codigoPostal;
     }
@@ -34,6 +46,7 @@ public class Mascota implements IMascota {
         this.codigoPostal = codigoPostal;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
@@ -45,6 +58,7 @@ public class Mascota implements IMascota {
     public void setFotos(List<Foto> fotos) {
         this.fotos = fotos;
     }
+
     public List<Foto> getFotos() {
         return fotos;
     }
@@ -68,14 +82,20 @@ public class Mascota implements IMascota {
     public void setCuidados(List<Cuidado> cuidados) {
         this.cuidados = cuidados;
     }
+
     public List<Cuidado> getCuidados() {
         return cuidados;
     }
+
     public void addCuidado(Cuidado cuidado) {
         this.cuidados.add(cuidado);
     }
+
     public void removeCuidado(Cuidado cuidado) {
         this.cuidados.remove(cuidado);
     }
 
+    public Responsable getResponsable() {
+        return responsable;
+    }
 }

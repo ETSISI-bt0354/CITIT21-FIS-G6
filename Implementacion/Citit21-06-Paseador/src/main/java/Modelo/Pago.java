@@ -5,7 +5,6 @@ public class Pago {
     private int factura;
     private Cuidado cuidado;
 
-
     public Pago(double cantidad, int factura) {
         this.cantidad = cantidad;
         this.factura = factura;
@@ -27,10 +26,10 @@ public class Pago {
         this.factura = factura;
     }
 
-
     public Cuidado getCuidado() {
         return cuidado;
     }
+
     public void setCuidado(Cuidado cuidado) {
         this.cuidado = cuidado;
     }

@@ -2,9 +2,8 @@ package Modelo;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
 
-public class Cuidado implements ICuidado {
+public class Cuidado implements Id, ICuidado {
     private LocalDateTime fechaCuidado;
     private Duration duracion;
     private final int id;
@@ -18,44 +17,67 @@ public class Cuidado implements ICuidado {
         this.duracion = duracion;
         this.id = id;
     }
+
     public LocalDateTime getFechaCuidado() {
         return fechaCuidado;
     }
+
     public void setFechaCuidado(LocalDateTime fechaCuidado) {
         this.fechaCuidado = fechaCuidado;
     }
+
     public Duration getDuracion() {
         return duracion;
     }
+
     public void setDuracion(Duration duracion) {
         this.duracion = duracion;
     }
+
+    @Override
     public int getId() {
         return id;
     }
+
     public void setPago(Pago pago) {
         this.pago = pago;
     }
+
     public Pago getPago() {
         return pago;
     }
+
     public void setMensaje(Mensaje mensaje) {
         this.mensaje = mensaje;
     }
+
     public Mensaje getMensaje() {
         return mensaje;
     }
+
     public void setCuidador(Cuidador cuidador) {
+        if (this.cuidador != null) {
+            this.cuidador.removeCuidado(this);
+        }
+
         this.cuidador = cuidador;
+        cuidador.addCuidado(this);
     }
+
     public Cuidador getCuidador() {
         return cuidador;
     }
+
     public void setMascota(Mascota mascota) {
+        if (this.mascota != null) {
+            this.mascota.removeCuidado(this);
+        }
+
         this.mascota = mascota;
+        mascota.addCuidado(this);
     }
+
     public Mascota getMascota() {
         return mascota;
     }
-
 }

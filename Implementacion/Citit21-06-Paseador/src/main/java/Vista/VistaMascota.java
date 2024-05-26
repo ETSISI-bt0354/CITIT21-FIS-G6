@@ -1,21 +1,77 @@
 package Vista;
 
 import Modelo.IMascota;
+import Modelo.Mascota;
 
-public class VistaMascota implements IMascota
-{
-    @Override
-    public String getNombre() {
-        return "";
+import java.util.stream.Stream;
+
+public class VistaMascota {
+    public void registrarMascota(IMascota mascota) {
+        StringBuilder message = new StringBuilder();
+        message.append("\033[0;32m");
+        message.append("La mascota con nombre: ");
+        message.append("\033[0;36m");
+        message.append(mascota.getNombre());
+        message.append("\033[0;32m");
+        message.append("código postal: ");
+        message.append("\033[0;36m");
+        message.append(mascota.getCodigoPostal());
+        message.append("\033[0;32m");
+        message.append("y descripción: ");
+        message.append("\033[0;36m");
+        message.append(mascota.getDescripcion());
+        message.append("\033[0;32m");
+        message.append(" ha sido registrada correctamente.");
+        message.append("\033[0;0m");
+
+        System.out.println(message);
     }
 
-    @Override
-    public int getCodigoPostal() {
-        return 0;
+    public void mostrarMascota(IMascota mascota) {
+        StringBuilder message = new StringBuilder();
+        message.append("Nombre: ")
+                .append(mascota.getNombre())
+                .append("\n");
+        message.append("Descripcion: ")
+                .append(mascota.getDescripcion())
+                .append("\n");
+        message.append("Id: ")
+                .append(String.valueOf(mascota.getId()))
+                .append("\n");
+
+        System.out.println(message);
     }
 
-    @Override
-    public String getDescripcion() {
-        return "";
+    public void listarMascotas(Stream<Mascota> mascotas) {
+        mascotas.forEach(this::mostrarMascota);
+    }
+
+    public void campoNoExistente(String campo) {
+        StringBuilder message = new StringBuilder();
+        message.append("El campo ");
+        message.append(campo);
+        message.append(" no ha sido introducido\n");
+
+        System.out.println(message);
+    }
+
+    public void codigoPostalInvalido(String codigoPostal) {
+        StringBuilder message = new StringBuilder();
+        message.append(codigoPostal);
+        message.append(" es inválido");
+
+        System.out.println(message);
+    }
+
+    public void usuarioNoConectado() {
+        System.out.println("Ningún usuario ha iniciado sesión");
+    }
+
+    public void mascotaExistente() {
+        System.out.println("La mascota ya ha sido registrado anteriormente");
+    }
+
+    public void usuarioNoResponsable() {
+        System.out.println("El usuario conectado no es un responsable");
     }
 }

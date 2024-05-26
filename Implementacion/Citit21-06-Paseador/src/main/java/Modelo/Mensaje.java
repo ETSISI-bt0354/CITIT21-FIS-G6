@@ -10,7 +10,6 @@ public class Mensaje {
     private Usuario usuarioEmisor;
     private Cuidado cuidado;
 
-
     public Mensaje(String contenido, LocalDateTime timestamp, int id) {
         this.contenido = contenido;
         this.timestamp = timestamp;
@@ -37,8 +36,6 @@ public class Mensaje {
         return id;
     }
 
-;
-
     public Usuario getUsuarioEmisor() {
         return usuarioEmisor;
     }
@@ -47,11 +44,10 @@ public class Mensaje {
         this.usuarioEmisor = usuarioEmisor;
     }
 
-
-
     public Usuario getUsuarioReceptor() {
         return usuarioReceptor;
     }
+
     public void setUsuarioReceptor(Usuario usuarioReceptor) {
         this.usuarioReceptor = usuarioReceptor;
     }
@@ -59,6 +55,7 @@ public class Mensaje {
     public Cuidado getCuidado() {
         return cuidado;
     }
+
     public void setCuidado(Cuidado cuidado) {
         this.cuidado = cuidado;
     }
