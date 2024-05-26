@@ -13,7 +13,7 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
 
     @Override
     public String serialize(Cuidador cuidador) {
-        Document doc = XML.newDocument();
+        Document doc = XML.getEmptyDocument();
         Element root = doc.createElement("cuidador");
         doc.appendChild(root);
         root.setAttribute("id", String.valueOf(cuidador.getId()));
@@ -46,12 +46,12 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
         plataforma.appendChild(doc.createTextNode(cuidador.getPlataforma().toString()));
         root.appendChild(plataforma);
 
-        return XML.toString(doc);
+        return XML.DocumentToString(doc);
     }
 
     @Override
     public Cuidador deserialize(String data) {
-        Document doc = XML.getDocumentt(data);
+        Document doc = XML.getDocument(data);
         Node cuidador = doc.getElementsByTagName("cuidador").item(0);
 
         int id = Integer.parseInt(cuidador.getAttributes().item(0).getNodeValue());
