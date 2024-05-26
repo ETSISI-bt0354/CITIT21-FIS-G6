@@ -3,8 +3,10 @@ package Controlador;
 import Excepciones.CampoNoExistente;
 import Excepciones.DuracionInvalida;
 import Excepciones.FechaInvalida;
+import Excepciones.IdInvalido;
 import Modelo.Cuidado;
 import Modelo.Id;
+import Modelo.Mascota;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaCuidado;
@@ -37,6 +39,29 @@ public class ControladorCuidado {
         return instance;
     }
 
+    public void registrarCuidado(HashMap<String, String> params) {
+        Cuidado cuidado;
+        try {
+            cuidado = crearCuidadoMascota(params);
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (FechaInvalida e) {
+            vista.fechaInvalida(e.getFecha());
+            return;
+        } catch (DuracionInvalida e) {
+            vista.duracionInvalida(e.getDuracion());
+            return;
+        }
+        catch (IdInvalido e) {
+            vista.idInvalido(e.getId());
+            return;
+        }
+
+        repositorioCuidado.crear(cuidado);
+        vista.cuidadoCreado(cuidado);
+    }
+
     private Cuidado crearCuidado(HashMap<String, String> params)
             throws CampoNoExistente, FechaInvalida, DuracionInvalida {
         LocalDateTime fecha;
@@ -63,31 +88,25 @@ public class ControladorCuidado {
         return new Cuidado(fecha, duracion, idAssigner.nextId());
     }
 
-    public void crearCuidadoMascota(HashMap<String, String> params) {
+    private Cuidado crearCuidadoMascota(HashMap<String, String> params)
+            throws FechaInvalida, DuracionInvalida, CampoNoExistente, IdInvalido {
         Cuidado cuidado;
-        int id;
+        int mascotaId;
 
-        try {
-            cuidado = crearCuidado(params);
-        } catch (CampoNoExistente e) {
-            vista.campoNoExistente(e.getCampo());
-            return;
-        } catch (FechaInvalida e) {
-            vista.fechaInvalida(e.getFecha());
-            return;
-        } catch (DuracionInvalida e) {
-            vista.duracionInvalida(e.getDuracion());
-            return;
+        cuidado = crearCuidado(params);
+
+        if (!params.containsKey("mascota")) {
+            throw new CampoNoExistente("mascota");
         }
-
         try {
-            id = Integer.parseInt(params.get("masccota"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la mascota del cuidado.\n");
+            mascotaId = Integer.parseInt(params.get("mascota"));
+        } catch (NumberFormatException e) {
+            throw new IdInvalido(params.get("mascota"));
         }
 
         cuidado.setMascota(ControladorMascota.getInstance()
-                                   .obtenerMascota(id));
+                                   .obtenerMascota(mascotaId));
 
+        return cuidado;
     }
 }

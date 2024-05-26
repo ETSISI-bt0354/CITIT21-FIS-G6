@@ -34,4 +34,12 @@ public class VistaCuidado {
 
         System.out.println(message);
     }
+
+    public void idInvalido(String id) {
+        StringBuilder message = new StringBuilder();
+        message.append(id);
+        message.append(" no es un id válido\n");
+
+        System.out.println(message);
+    }
 }
