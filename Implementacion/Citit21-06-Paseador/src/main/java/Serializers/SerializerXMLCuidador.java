@@ -5,7 +5,6 @@ import Modelo.TPlataforma;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.time.LocalDateTime;
 
@@ -51,19 +50,18 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
 
     @Override
     public Cuidador deserialize(String data) {
-        Document doc = XML.getDocument(data);
-        Node cuidador = doc.getElementsByTagName("cuidador").item(0);
+        Document document = XML.getDocument(data);
+        Node cuidador = document.getElementsByTagName("cuidador").item(0);
 
         int id = Integer.parseInt(cuidador.getAttributes().item(0).getNodeValue());
-        NodeList elem = cuidador.getChildNodes();
 
 
-        String nombre = elem.item(0).getTextContent();
-        String descripcion = elem.item(1).getTextContent();
-        int panchoPuntos = Integer.parseInt(elem.item(2).getTextContent());
-        double tarifa = Double.parseDouble(elem.item(3).getTextContent());
-        LocalDateTime horario = LocalDateTime.parse(elem.item(4).getTextContent());
-        TPlataforma plataforma = TPlataforma.valueOf(elem.item(5).getTextContent());
+        String nombre = document.getElementsByTagName("nombre").item(0).getTextContent();
+        String descripcion = document.getElementsByTagName("descripcion").item(0).getTextContent();
+        int panchoPuntos = Integer.parseInt(document.getElementsByTagName("panchoPuntos").item(0).getTextContent());
+        double tarifa = Double.parseDouble(document.getElementsByTagName("tarifa").item(0).getTextContent());
+        LocalDateTime horario = LocalDateTime.parse(document.getElementsByTagName("horario").item(0).getTextContent());
+        TPlataforma plataforma = TPlataforma.valueOf(document.getElementsByTagName("plataforma").item(0).getTextContent());
 
         return new Cuidador(panchoPuntos, descripcion, tarifa, horario, nombre, id, plataforma);
     }

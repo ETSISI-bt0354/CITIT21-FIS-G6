@@ -37,11 +37,9 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
                                           .item(0)
                                           .getNodeValue());
 
-        NodeList nodeList = responsable.getChildNodes();
-
-        TPlataforma plataforma = TPlataforma.parse(nodeList.item(0)
+        TPlataforma plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
                                                            .getTextContent());
-        String nombre = nodeList.item(1)
+        String nombre = document.getElementsByTagName("nombre").item(0)
                 .getTextContent();
 
         return new Responsable(id, plataforma, nombre);
