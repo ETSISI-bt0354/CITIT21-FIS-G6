@@ -161,6 +161,19 @@ public class ControladorUsuarioTest extends TestCase {
     }
 
     @org.junit.jupiter.api.Test
+    void registrarCuidadorWithInexistantPlatform() {
+        ControladorUsuario controladorUsuario = ControladorUsuario.getInstance();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("codigoPlataforma", "1");
+        params.put("descripcion", "descripcion");
+        params.put("horario", "1970-01-01T00:00:01");
+        params.put("nombre", "nombre");
+        params.put("tarifa", "1");
+        controladorUsuario.registrarCuidador(params);
+        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString().trim());
+    }
+
+    @org.junit.jupiter.api.Test
     void pruebaResponsablePlatFacebook() {
         ControladorUsuario controladorUsuario = ControladorUsuario.getInstance();
         HashMap<String, String> params = new HashMap<>();
