@@ -1,11 +1,13 @@
 package Comandos;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface Command {
-    void exec(List<String> args);
+    void exec();
+    void setParams(List<String> args);
 
     String getDescription();
 
-    String getHelp(List<String> args, String prefixCommand);
+    String getHelp(String prefixCommand);
 }

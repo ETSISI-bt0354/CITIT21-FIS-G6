@@ -1,14 +1,15 @@
-package Comandos;
+package Comandos.mascotaCommand;
 
+import Comandos.CommandHelper;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class ExitCommand implements Command {
-
+public class ListarMascotaCommand extends MascotaCommand
+{
     @Override
     public void exec() {
-        System.out.println();
+        super.controladorMascota.listarMascotas();
     }
 
     @Override
@@ -19,7 +20,7 @@ public class ExitCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "Salir del programa";
+        return "Listar tus mascotas";
     }
 
     @Override

@@ -1,21 +1,21 @@
 package Comandos;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommandHandler
-{
-    private Map<String, ICommandFactory> factories;
+public class CommandFactory implements ICommandFactory {
+    private Map<String, Command> commands;
     private String description;
 
-    public CommandHandler(String description) {
-        this.factories = new HashMap<>();
+    public CommandFactory(String description) {
+        this.commands = new HashMap<>();
         this.description = description;
     }
 
-    public void addCommand(String commandName, ICommandFactory factory) {
-        factories.put(commandName, factory);
+    public void addCommand(String commandName, Command command) {
+        commands.put(commandName, command);
     }
 
 
@@ -25,11 +25,12 @@ public class CommandHandler
             System.out.println(handlerHelp());
             return null;
         }
+
         String commandName = args.get(0);
         args.remove(0);
 
-        ICommandFactory factory = factories.get(commandName);
-        if (factory == null) {
+        Command command = commands.get(commandName);
+        if (command == null) {
             StringBuilder message = new StringBuilder();
             if (!commandName.isEmpty()) {
                 message.append(commandName);
@@ -40,7 +41,9 @@ public class CommandHandler
             return null;
         }
 
-        return factory.getCommand(args);
+        command.setParams(args);
+        command.setParams(args);
+        return command;
     }
 
 
@@ -59,8 +62,8 @@ public class CommandHandler
         String commandName = args.get(0);
         args.remove(0);
 
-        ICommandFactory factory = factories.get(commandName);
-        if (factory == null) {
+        Command command = commands.get(commandName);
+        if (command == null) {
             StringBuilder message = new StringBuilder();
             if (!commandName.isEmpty()) {
                 message.append(CommandHelper.prefixCommandBuilder(prefixCommand, " "));
@@ -79,16 +82,17 @@ public class CommandHandler
 
         StringBuilder helpMessage = new StringBuilder();
         if (args.isEmpty()) {
-            helpMessage.append(factory.getDescription());
+            helpMessage.append(command.getDescription());
             helpMessage.append("\n");
         }
 
-        factory.getHelp(args, message.toString());
+        helpMessage.append(command.getHelp(message.toString()));
+        System.out.println(helpMessage);
     }
 
     private String handlerHelp() {
         StringBuilder message = new StringBuilder();
-        factories.forEach((commandName, command) -> {
+        commands.forEach((commandName, command) -> {
             StringBuilder aux = new StringBuilder();
             aux.append(commandName);
             aux.append(" ".repeat(5));

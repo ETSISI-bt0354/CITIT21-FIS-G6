@@ -3,16 +3,27 @@ package Comandos.mascotaCommand;
 import Comandos.CommandHelper;
 import Controlador.ControladorMascota;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RegistrarMascotaCommand extends MascotaCommand {
-    public RegistrarMascotaCommand(ControladorMascota controlador) {
-        super(controlador);
+    private HashMap<String, String> params;
+    public RegistrarMascotaCommand() {
+        params = new HashMap<>();
     }
 
+    public void setParams(List<String> args)
+    {
+        try
+        {
+            params.put("nombre", args.get(0));
+            params.put("descripcion", args.get(1));
+            params.put("codigoPostal", args.get(2));
+        } catch (IndexOutOfBoundsException ignored) {}
+    }
     @Override
-    public void exec(List<String> args) {
-        super.controladorMascota.registrarMascota(CommandHelper.argsToMap(args));
+    public void exec() {
+        super.controladorMascota.registrarMascota(params);
     }
 
     @Override
@@ -21,9 +32,9 @@ public class RegistrarMascotaCommand extends MascotaCommand {
     }
 
     @Override
-    public String getHelp(List<String> args, String prefixCommand) {
+    public String getHelp(String prefixCommand) {
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
-        message.append("");
+        message.append("nombre descripcion codigo-postal");
         return message.toString();
     }
 }

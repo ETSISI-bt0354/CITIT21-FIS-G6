@@ -3,16 +3,27 @@ package Comandos.userCommand;
 import Comandos.CommandHelper;
 import Controlador.ControladorUsuario;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RegisterResponsableCommand extends UserCommand {
-    public RegisterResponsableCommand(ControladorUsuario controller) {
-        super(controller);
+    private HashMap<String, String> params;
+    public RegisterResponsableCommand() {
+        params = new HashMap<>();
+    }
+
+    public void setParams(List<String> args) {
+        try
+        {
+            params.put("nombre", args.get(0));
+            params.put("descripcion", args.get(1));
+            params.put("plataforma", args.get(2));
+        } catch (IndexOutOfBoundsException ignored) {}
     }
 
     @Override
-    public void exec(List<String> args) {
-        super.controller.registrarResponsable(CommandHelper.argsToMap(args));
+    public void exec() {
+        super.controller.registrarResponsable(params);
     }
 
     @Override
@@ -21,9 +32,9 @@ public class RegisterResponsableCommand extends UserCommand {
     }
 
     @Override
-    public String getHelp(List<String> args, String prefixCommand) {
+    public String getHelp(String prefixCommand) {
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
-        message.append("");
+        message.append("nombre descripcion plataforma");
         return message.toString();
     }
 }

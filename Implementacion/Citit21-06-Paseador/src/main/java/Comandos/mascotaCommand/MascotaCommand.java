@@ -6,7 +6,7 @@ import Controlador.ControladorMascota;
 public abstract class MascotaCommand implements Command {
     protected ControladorMascota controladorMascota;
 
-    public MascotaCommand(ControladorMascota controlador) {
-        this.controladorMascota = controlador;
+    public MascotaCommand() {
+        this.controladorMascota = ControladorMascota.getInstance();
     }
 }
