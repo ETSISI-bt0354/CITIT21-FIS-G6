@@ -6,17 +6,19 @@ import java.util.List;
 public class ExitCommand implements Command {
 
     @Override
-    public String exec(List<String> args) {
-        return "Exiting Paseador Platform";
+    public void exec(List<String> args) {
+        System.out.println();
     }
 
     @Override
-    public String description() {
-        return "Exit the program";
+    public String getDescription() {
+        return "Salir del programa";
     }
 
     @Override
-    public String help(List<String> args, String prefixCommand) {
-        return CommandHelper.prefixCommandBuilder(prefixCommand, "").toString();
+    public String getHelp(List<String> args, String prefixCommand) {
+        StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
+        message.append("");
+        return message.toString();
     }
 }

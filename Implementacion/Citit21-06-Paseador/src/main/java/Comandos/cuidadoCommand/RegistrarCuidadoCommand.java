@@ -1,23 +1,23 @@
-package Comandos.userCommand;
+package Comandos.cuidadoCommand;
 
 import Comandos.CommandHelper;
-import Controlador.ControladorUsuario;
+import Controlador.ControladorCuidado;
 
 import java.util.List;
 
-public class RegisterResponsableCommand extends UserCommand {
-    public RegisterResponsableCommand(ControladorUsuario controller) {
-        super(controller);
+public class RegistrarCuidadoCommand extends CuidadoCommand {
+    public RegistrarCuidadoCommand(ControladorCuidado controlador) {
+        super(controlador);
     }
 
     @Override
     public void exec(List<String> args) {
-        super.controller.registrarResponsable(CommandHelper.argsToMap(args));
+        super.controladorCuidado.registrarCuidado(CommandHelper.argsToMap(args));
     }
 
     @Override
     public String getDescription() {
-        return "Registrar un responsable";
+        return "Registrar un cuidado";
     }
 
     @Override

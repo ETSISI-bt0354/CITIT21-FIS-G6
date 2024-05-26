@@ -1,23 +1,19 @@
-package Comandos.userCommand;
+package Comandos.mascotaCommand;
 
 import Comandos.CommandHelper;
-import Controlador.ControladorUsuario;
 
 import java.util.List;
 
-public class RegisterResponsableCommand extends UserCommand {
-    public RegisterResponsableCommand(ControladorUsuario controller) {
-        super(controller);
-    }
+public class RegistrarMascotaExoticaCommand extends MascotaCommand {
 
     @Override
     public void exec(List<String> args) {
-        super.controller.registrarResponsable(CommandHelper.argsToMap(args));
+        super.controladorMascota.crearMascotaExotica(CommandHelper.argsToMap(args));
     }
 
     @Override
     public String getDescription() {
-        return "Registrar un responsable";
+        return "Registrar una mascota exotica";
     }
 
     @Override

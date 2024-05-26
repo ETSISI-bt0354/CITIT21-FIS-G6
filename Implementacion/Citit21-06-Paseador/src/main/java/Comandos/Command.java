@@ -1,12 +1,11 @@
 package Comandos;
 
-
 import java.util.List;
 
 public interface Command {
-    String exec(List<String> args);
+    void exec(List<String> args);
 
-    String description();
+    String getDescription();
 
-    String help(List<String> args, String prefixCommand);
+    String getHelp(List<String> args, String prefixCommand);
 }

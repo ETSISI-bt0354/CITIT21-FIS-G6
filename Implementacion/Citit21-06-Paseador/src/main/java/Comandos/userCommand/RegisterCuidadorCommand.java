@@ -12,20 +12,19 @@ public class RegisterCuidadorCommand extends UserCommand {
     }
 
     @Override
-    public String exec(List<String> args) {
-        // return super.controller.registrarCuidador(CommandHelper.argsToMap(args));
-        return "";
+    public void exec(List<String> args) {
+        super.controller.registrarCuidador(CommandHelper.argsToMap(args));
     }
 
     @Override
-    public String description() {
-        return "Register a Cuidador";
+    public String getDescription() {
+        return "Registrar un cuidador";
     }
 
     @Override
-    public String help(List<String> args, String prefixCommand) {
+    public String getHelp(List<String> args, String prefixCommand) {
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
-        //message.append(super.controller.registerUserHelp());
+        message.append("");
         return message.toString();
     }
 }

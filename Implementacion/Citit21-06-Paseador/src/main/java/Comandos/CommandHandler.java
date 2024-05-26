@@ -19,9 +19,9 @@ public class CommandHandler implements Command {
     }
 
     @Override
-    public String exec(List<String> args) {
+    public void exec(List<String> args) {
         if (args.isEmpty())
-            return handlerHelp();
+            System.out.println(handlerHelp());
 
         String commandName = args.get(0);
         args.remove(0);
@@ -34,21 +34,21 @@ public class CommandHandler implements Command {
                 message.append(" is not a command\n");
             }
             message.append(handlerHelp());
-            return message.toString();
+            System.out.println(message);
         }
 
-        return command.exec(args);
+        command.exec(args);
     }
 
     @Override
-    public String description() {
+    public String getDescription() {
         return description;
     }
 
     @Override
-    public String help(List<String> args, String prefixCommand) {
+    public String getHelp(List<String> args, String prefixCommand) {
         if (args.isEmpty())
-            return handlerHelp();
+            System.out.println(handlerHelp());
 
         String commandName = args.get(0);
         args.remove(0);
@@ -62,7 +62,7 @@ public class CommandHandler implements Command {
                 message.append(" is not a command\n");
             }
             message.append(handlerHelp());
-            return message.toString();
+            System.out.println(message);
         }
 
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
@@ -72,11 +72,11 @@ public class CommandHandler implements Command {
 
         StringBuilder helpMessage = new StringBuilder();
         if (args.isEmpty()) {
-            helpMessage.append(command.description());
+            helpMessage.append(command.getDescription());
             helpMessage.append("\n");
         }
 
-        helpMessage.append(command.help(args, message.toString()));
+        helpMessage.append(command.getHelp(args, message.toString()));
         return helpMessage.toString();
     }
 
@@ -88,7 +88,7 @@ public class CommandHandler implements Command {
             aux.append(" ".repeat(5));
             if (aux.length() < 30)
                 aux.append(" ".repeat(30 - aux.length()));
-            aux.append(command.description());
+            aux.append(command.getDescription());
 
             message.append(aux);
             message.append("\n");
