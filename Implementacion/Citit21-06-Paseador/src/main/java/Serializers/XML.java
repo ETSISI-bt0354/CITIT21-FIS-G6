@@ -22,7 +22,9 @@ public class XML
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
-            return db.parse(new ByteArrayInputStream(data.getBytes()));
+            Document d = db.parse(new ByteArrayInputStream(data.getBytes()));
+            d.getDocumentElement().normalize();
+            return d;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new RuntimeException(e);
         }
