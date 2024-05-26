@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cuidador extends Usuario {
@@ -20,6 +21,10 @@ public class Cuidador extends Usuario {
         this.descripcion = descripcion;
         this.tarifa = tarifa;
         this.horario = horario;
+        this.documentosAportados = new ArrayList<>();
+        this.cuidados = new ArrayList<>();
+        this.premiosCanjeados = new ArrayList<>();
+        this.mascotasFavoritas = new ArrayList<>();
     }
 
     public int getPanchoPuntos() {

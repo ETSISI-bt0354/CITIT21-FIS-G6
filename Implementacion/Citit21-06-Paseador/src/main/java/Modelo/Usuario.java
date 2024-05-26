@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Usuario implements Id, IUsuario {
@@ -15,6 +16,8 @@ public abstract class Usuario implements Id, IUsuario {
         this.codigoPlatafoma = codigoPlatafoma;
         this.plataforma = plataforma;
         this.nombre = nombre;
+        this.mensajesRecibidos = new ArrayList<>();
+        this.mensajesEnviados = new ArrayList<>();
     }
 
     @Override

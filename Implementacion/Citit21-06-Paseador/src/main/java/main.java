@@ -46,7 +46,7 @@ public class main {
         CommandFactory mascotaCommands = new CommandFactory("Comandos de para gestionar mascotas");
         mascotaCommands.addCommand("registrar-mascota", new RegistrarMascotaCommand());
         mascotaCommands.addCommand("registrar-exotico", new RegistrarMascotaExoticaCommand());
-        mascotaCommands.addCommand("listar-mascota", new ListarMascotaCommand());
+        mascotaCommands.addCommand("listar-mascotas", new ListarMascotaCommand());
         commands.addCommand("mascota", mascotaCommands);
 
         CommandFactory usuarioCommands = new CommandFactory("Comandos de para gestionar usuarios");

@@ -12,15 +12,15 @@ public class VistaMascota {
         message.append("La mascota con nombre: ");
         message.append("\033[0;36m");
         message.append(mascota.getNombre());
-        message.append("\033[0;32m");
+        message.append("\033[0;32m ");
         message.append("código postal: ");
         message.append("\033[0;36m");
         message.append(mascota.getCodigoPostal());
-        message.append("\033[0;32m");
+        message.append("\033[0;32m ");
         message.append("y descripción: ");
         message.append("\033[0;36m");
         message.append(mascota.getDescripcion());
-        message.append("\033[0;32m");
+        message.append("\033[0;32m ");
         message.append(" ha sido registrada correctamente.");
         message.append("\033[0;0m");
 

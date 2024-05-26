@@ -1,12 +1,12 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mascota implements IMascota, Id {
     private final int id;
     private String nombre;
     private int codigoPostal;
-    private final int id;
     private String descripcion;
     private List<Foto> fotos;
     private Perfil perfil;
@@ -20,6 +20,7 @@ public class Mascota implements IMascota, Id {
         this.codigoPostal = codigoPostal;
         this.descripcion = descripcion;
         this.responsable = responsable;
+        this.cuidados = new ArrayList<>();
         responsable.addMascotas(this);
     }
 
