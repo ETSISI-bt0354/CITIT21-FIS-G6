@@ -35,6 +35,9 @@ public class VistaMascota {
         message.append("Descripcion: ")
                 .append(mascota.getDescripcion())
                 .append("\n");
+        message.append("Id: ")
+                .append(String.valueOf(mascota.getId()))
+                .append("\n");
 
         System.out.println(message);
     }

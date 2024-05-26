@@ -22,6 +22,7 @@ public class Mascota implements IMascota, Id {
         responsable.addMascotas(this);
     }
 
+    @Override
     public int getId() {
         return id;
     }
