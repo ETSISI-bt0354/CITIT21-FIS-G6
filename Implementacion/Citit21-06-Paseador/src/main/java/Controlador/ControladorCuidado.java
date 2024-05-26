@@ -3,7 +3,6 @@ package Controlador;
 import Excepciones.*;
 import Modelo.Cuidado;
 import Modelo.Id;
-import Modelo.Mascota;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaCuidado;
@@ -49,8 +48,7 @@ public class ControladorCuidado {
         } catch (DuracionInvalida e) {
             vista.duracionInvalida(e.getDuracion());
             return;
-        }
-        catch (IdInvalido e) {
+        } catch (IdInvalido e) {
             vista.idInvalido(e.getId());
             return;
         } catch (NotFound e) {

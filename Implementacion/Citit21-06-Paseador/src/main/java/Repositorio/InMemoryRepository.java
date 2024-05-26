@@ -18,7 +18,8 @@ public class InMemoryRepository<T extends Id> implements IRepository<T> {
 
     @Override
     public void crear(T t) throws AlreadyExist {
-        if (repo.stream().anyMatch(x -> x.getId() == t.getId())) {
+        if (repo.stream()
+                .anyMatch(x -> x.getId() == t.getId())) {
             throw new AlreadyExist(t.getId());
         }
 
@@ -40,7 +41,8 @@ public class InMemoryRepository<T extends Id> implements IRepository<T> {
 
     @Override
     public void actualizar(T t) throws NotFound {
-        if (repo.stream().noneMatch(x -> x.getId() == t.getId())) {
+        if (repo.stream()
+                .noneMatch(x -> x.getId() == t.getId())) {
             throw new NotFound(t.getId());
         }
     }

@@ -1,24 +1,24 @@
 package Comandos.userCommand;
 
 import Comandos.CommandHelper;
-import Controlador.ControladorUsuario;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class RegisterResponsableCommand extends UserCommand {
     private HashMap<String, String> params;
+
     public RegisterResponsableCommand() {
         params = new HashMap<>();
     }
 
     public void setParams(List<String> args) {
-        try
-        {
+        try {
             params.put("nombre", args.get(0));
             params.put("descripcion", args.get(1));
             params.put("plataforma", args.get(2));
-        } catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {
+        }
     }
 
     @Override

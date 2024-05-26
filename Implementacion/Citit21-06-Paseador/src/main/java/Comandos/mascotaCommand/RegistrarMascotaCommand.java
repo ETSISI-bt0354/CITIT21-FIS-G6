@@ -1,26 +1,26 @@
 package Comandos.mascotaCommand;
 
 import Comandos.CommandHelper;
-import Controlador.ControladorMascota;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class RegistrarMascotaCommand extends MascotaCommand {
     private HashMap<String, String> params;
+
     public RegistrarMascotaCommand() {
         params = new HashMap<>();
     }
 
-    public void setParams(List<String> args)
-    {
-        try
-        {
+    public void setParams(List<String> args) {
+        try {
             params.put("nombre", args.get(0));
             params.put("descripcion", args.get(1));
             params.put("codigoPostal", args.get(2));
-        } catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {
+        }
     }
+
     @Override
     public void exec() {
         super.controladorMascota.registrarMascota(params);

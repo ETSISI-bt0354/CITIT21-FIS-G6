@@ -44,15 +44,15 @@ public class FileRepository<T extends Id> {
 
     public Stream<T> obtenerTodos() throws IOException {
         return Files.list(repo)
-                    .map(archivo -> {
-                        try {
-                            return Files.readAllBytes(archivo);
-                        } catch (IOException e) {
-                            throw new UncheckedIOException(e);
-                        }
-                    })
-                    .map(String::new)
-                    .map(serializer::deserialize);
+                .map(archivo -> {
+                    try {
+                        return Files.readAllBytes(archivo);
+                    } catch (IOException e) {
+                        throw new UncheckedIOException(e);
+                    }
+                })
+                .map(String::new)
+                .map(serializer::deserialize);
     }
 
     public void actualizar(T t) throws IOException, NotFound {
@@ -63,7 +63,8 @@ public class FileRepository<T extends Id> {
 
         try {
             crear(t);
-        } catch (AlreadyExist ignored) {}
+        } catch (AlreadyExist ignored) {
+        }
     }
 
     public void eliminar(T t) throws IOException, NotFound {

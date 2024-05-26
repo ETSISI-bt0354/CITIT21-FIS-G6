@@ -41,12 +41,14 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
         root.appendChild(tarifa);
 
         Element horario = doc.createElement("horario");
-        horario.appendChild(doc.createTextNode(cuidador.getHorario().toString()));
+        horario.appendChild(doc.createTextNode(cuidador.getHorario()
+                                                       .toString()));
         root.appendChild(horario);
 
 
         Element plataforma = doc.createElement("plataforma");
-        plataforma.appendChild(doc.createTextNode(cuidador.getPlataforma().toString()));
+        plataforma.appendChild(doc.createTextNode(cuidador.getPlataforma()
+                                                          .toString()));
         root.appendChild(plataforma);
 
         return XML.DocumentToString(doc);
@@ -55,21 +57,37 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
     @Override
     public Cuidador deserialize(String data) {
         Document document = XML.getDocument(data);
-        Node cuidador = document.getElementsByTagName("cuidador").item(0);
+        Node cuidador = document.getElementsByTagName("cuidador")
+                .item(0);
 
-        int id = Integer.parseInt(cuidador.getAttributes().item(0).getNodeValue());
+        int id = Integer.parseInt(cuidador.getAttributes()
+                                          .item(0)
+                                          .getNodeValue());
 
 
-        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma").item(0).getTextContent();
-        String nombre = document.getElementsByTagName("nombre").item(0).getTextContent();
-        String descripcion = document.getElementsByTagName("descripcion").item(0).getTextContent();
-        int panchoPuntos = Integer.parseInt(document.getElementsByTagName("panchoPuntos").item(0).getTextContent());
-        double tarifa = Double.parseDouble(document.getElementsByTagName("tarifa").item(0).getTextContent());
-        LocalDateTime horario = LocalDateTime.parse(document.getElementsByTagName("horario").item(0).getTextContent());
+        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma")
+                .item(0)
+                .getTextContent();
+        String nombre = document.getElementsByTagName("nombre")
+                .item(0)
+                .getTextContent();
+        String descripcion = document.getElementsByTagName("descripcion")
+                .item(0)
+                .getTextContent();
+        int panchoPuntos = Integer.parseInt(document.getElementsByTagName("panchoPuntos")
+                                                    .item(0)
+                                                    .getTextContent());
+        double tarifa = Double.parseDouble(document.getElementsByTagName("tarifa")
+                                                   .item(0)
+                                                   .getTextContent());
+        LocalDateTime horario = LocalDateTime.parse(document.getElementsByTagName("horario")
+                                                            .item(0)
+                                                            .getTextContent());
         TPlataforma plataforma = null;
         try {
-            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
-                    .getTextContent());
+            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma")
+                                                   .item(0)
+                                                   .getTextContent());
         } catch (PlataformaInvalida e) {
             throw new RuntimeException(e);
         }

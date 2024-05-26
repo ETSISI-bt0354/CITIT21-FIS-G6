@@ -3,51 +3,42 @@ import Comandos.CommandFactory;
 import Comandos.CommandHandler;
 import Comandos.cuidadoCommand.RegistrarCuidadoCommand;
 import Comandos.mascotaCommand.ListarMascotaCommand;
-import Comandos.mascotaCommand.MascotaCommand;
 import Comandos.mascotaCommand.RegistrarMascotaCommand;
 import Comandos.mascotaCommand.RegistrarMascotaExoticaCommand;
 import Comandos.userCommand.RegisterCuidadorCommand;
 import Comandos.userCommand.RegisterResponsableCommand;
-import Controlador.ControladorCuidado;
 import Controlador.LoginController;
 import Excepciones.AlreadyExist;
 import Modelo.Mascota;
 import Modelo.Responsable;
 import Modelo.TPlataforma;
-import Repositorio.FileRepository;
 import Repositorio.GlobalRepository;
-import Repositorio.InMemoryRepository;
-import Serializers.SerializerXMLMascota;
-import servidor.ExternalRRSS;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
         Responsable r = new Responsable(0, "fhdashfughadjkghfdjk", TPlataforma.GOOGLE, "Lucas");
-        try
-        {
-            GlobalRepository.getResponsables().crear(r);
-        } catch (AlreadyExist ignored)
-        {
+        try {
+            GlobalRepository.getResponsables()
+                    .crear(r);
+        } catch (AlreadyExist ignored) {
         }
 
-        LoginController.getInstance().setLogInUser(0);
+        LoginController.getInstance()
+                .setLogInUser(0);
 
         Mascota m1 = new Mascota(0, "Rufian", 8214, "Un perro mordaz y preparado para todo", r);
         Mascota m2 = new Mascota(1, "Puerro", 28040, "No acerques tu dinero que se lo lleva", r);
 
-        try
-        {
-            GlobalRepository.getMascotas().crear(m1);
-            GlobalRepository.getMascotas().crear(m2);
-        } catch (AlreadyExist ignored)
-        {
+        try {
+            GlobalRepository.getMascotas()
+                    .crear(m1);
+            GlobalRepository.getMascotas()
+                    .crear(m2);
+        } catch (AlreadyExist ignored) {
         }
 
         CommandHandler commands = new CommandHandler("App cuidando a Pancho");
@@ -70,21 +61,18 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         boolean finish = false;
         System.out.println("Cuidando a Pancho\n");
-        do
-        {
+        do {
             System.out.print("cp> ");
 
             String input = scanner.nextLine();
             ArrayList<String> arg = new ArrayList<>(Arrays.asList(input.split(" ")));
 
             String command = arg.get(0);
-            if (command.equals("help"))
-            {
+            if (command.equals("help")) {
                 arg.remove(0);
                 commands.getHelp(arg, "");
             }
-            else
-            {
+            else {
                 finish = command.equals("exit");
                 Command c = commands.getCommand(arg);
                 if (c != null) c.exec();

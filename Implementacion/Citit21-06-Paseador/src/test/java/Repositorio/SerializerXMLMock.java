@@ -25,11 +25,16 @@ public class SerializerXMLMock implements Serializer<Mock> {
     @Override
     public Mock deserialize(String data) {
         Document document = XML.getDocument(data);
-        Node mock = document.getElementsByTagName("mocks").item(0);
+        Node mock = document.getElementsByTagName("mocks")
+                .item(0);
 
-        int id = Integer.parseInt(mock.getAttributes().item(0).getNodeValue());
+        int id = Integer.parseInt(mock.getAttributes()
+                                          .item(0)
+                                          .getNodeValue());
 
-        String tomatoe = document.getElementsByTagName("tomatoe").item(0).getTextContent();
+        String tomatoe = document.getElementsByTagName("tomatoe")
+                .item(0)
+                .getTextContent();
 
         return new Mock(id, tomatoe);
     }

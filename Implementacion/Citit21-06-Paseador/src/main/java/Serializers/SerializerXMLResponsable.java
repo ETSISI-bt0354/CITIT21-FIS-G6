@@ -41,17 +41,20 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
                                           .item(0)
                                           .getNodeValue());
 
-        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma").item(0)
+        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma")
+                .item(0)
                 .getTextContent();
 
         TPlataforma plataforma = null;
         try {
-            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
-                                                               .getTextContent());
+            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma")
+                                                   .item(0)
+                                                   .getTextContent());
         } catch (PlataformaInvalida e) {
             throw new RuntimeException(e);
         }
-        String nombre = document.getElementsByTagName("nombre").item(0)
+        String nombre = document.getElementsByTagName("nombre")
+                .item(0)
                 .getTextContent();
 
         return new Responsable(id, codigoPlataforma, plataforma, nombre);

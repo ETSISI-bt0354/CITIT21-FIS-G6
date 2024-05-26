@@ -8,19 +8,20 @@ import java.util.List;
 
 public class RegisterCuidadorCommand extends UserCommand {
     private HashMap<String, String> params;
+
     public RegisterCuidadorCommand() {
         params = new HashMap<>();
     }
 
     public void setParams(List<String> args) {
-        try
-        {
+        try {
             params.put("nombre", args.get(0));
             params.put("descripcion", args.get(1));
             params.put("tarifa", args.get(2));
             params.put("horario", args.get(3));
             params.put("plataforma", args.get(4));
-        } catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {
+        }
     }
 
     @Override

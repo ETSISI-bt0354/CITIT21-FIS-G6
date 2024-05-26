@@ -36,7 +36,8 @@ public class SerializerXMLMascota implements Serializer<Mascota> {
         root.appendChild(descripcion);
 
         Element responsable = document.createElement("responsable");
-        responsable.appendChild(document.createTextNode(String.valueOf(mascota.getResponsable().getId())));
+        responsable.appendChild(document.createTextNode(String.valueOf(mascota.getResponsable()
+                                                                               .getId())));
         root.appendChild(responsable);
 
         return XML.DocumentToString(document);
@@ -45,17 +46,28 @@ public class SerializerXMLMascota implements Serializer<Mascota> {
     @Override
     public Mascota deserialize(String data) {
         Document document = XML.getDocument(data);
-        Node mascota = document.getElementsByTagName("mascota").item(0);
+        Node mascota = document.getElementsByTagName("mascota")
+                .item(0);
 
-        int id = Integer.parseInt(mascota.getAttributes().item(0).getNodeValue());
+        int id = Integer.parseInt(mascota.getAttributes()
+                                          .item(0)
+                                          .getNodeValue());
 
 
-        String nombre = document.getElementsByTagName("nombre").item(0).getTextContent();
-        int codigoPostal = Integer.parseInt(document.getElementsByTagName("codigoPostal").item(0).getTextContent());
-        String descripcion = document.getElementsByTagName("descripcion").item(0).getTextContent();
+        String nombre = document.getElementsByTagName("nombre")
+                .item(0)
+                .getTextContent();
+        int codigoPostal = Integer.parseInt(document.getElementsByTagName("codigoPostal")
+                                                    .item(0)
+                                                    .getTextContent());
+        String descripcion = document.getElementsByTagName("descripcion")
+                .item(0)
+                .getTextContent();
         Responsable responsable = null;
         try {
-            responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable").item(0).getTextContent()));
+            responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable")
+                                                                        .item(0)
+                                                                        .getTextContent()));
         } catch (NotFound e) {
             throw new RuntimeException(e);
         }

@@ -33,7 +33,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("codigoPlataforma", "1");
         params.put("plataforma", "GOOGLE");
         controladorUsuario.registrarResponsable(params);
-        assertEquals("El campo nombre no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo nombre no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -44,7 +45,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("plataforma", "INVALID");
         params.put("nombre", "nombre");
         controladorUsuario.registrarResponsable(params);
-        assertEquals("La plataforma INVALID no está soportada", outputStreamCaptor.toString().trim());
+        assertEquals("La plataforma INVALID no está soportada", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -54,7 +56,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("codigoPlataforma", "1");
         params.put("nombre", "nombre");
         controladorUsuario.registrarResponsable(params);
-        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -68,7 +71,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "INVALID");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("INVALID no es una tarifa válida", outputStreamCaptor.toString().trim());
+        assertEquals("INVALID no es una tarifa válida", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -81,7 +85,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("horario", "1970-01-01T00:00:01");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("El campo nombre no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo nombre no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -95,7 +100,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("La plataforma INVALID no está soportada", outputStreamCaptor.toString().trim());
+        assertEquals("La plataforma INVALID no está soportada", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -109,7 +115,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("INVALID no es un horario válido", outputStreamCaptor.toString().trim());
+        assertEquals("INVALID no es un horario válido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -122,7 +129,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("El campo descripcion no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo descripcion no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -135,7 +143,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("horario", "1970-01-01T00:00:01");
         params.put("nombre", "nombre");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("El campo tarifa no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo tarifa no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -148,7 +157,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("El campo horario no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo horario no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
@@ -161,7 +171,8 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
-        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test

@@ -28,36 +28,42 @@ public class VistaUsuarioTest extends TestCase {
     void usuarioCreadoReturnsExpectedMessage() {
         Responsable mockUser = new Responsable(1, "codigoPlataforma", TPlataforma.GOOGLE, "nombre");
         new VistaUsuario().usuarioCreado(mockUser);
-        assertEquals("Usuario creado con exito", outputStreamCaptor.toString().trim());
+        assertEquals("Usuario creado con exito", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
     void campoNoExistentePrintsExpectedMessage() {
         new VistaUsuario().campoNoExistente("test");
-        assertEquals("El campo test no ha sido introducido", outputStreamCaptor.toString().trim());
+        assertEquals("El campo test no ha sido introducido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
     void plataformaInvalidaPrintsExpectedMessage() {
         new VistaUsuario().plataformaInvalida("test");
-        assertEquals("La plataforma test no está soportada", outputStreamCaptor.toString().trim());
+        assertEquals("La plataforma test no está soportada", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
     void tarifaInvalidaPrintsExpectedMessage() {
         new VistaUsuario().tarifaInvalida("test");
-        assertEquals("test no es una tarifa válida", outputStreamCaptor.toString().trim());
+        assertEquals("test no es una tarifa válida", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
     void horarioInvalidoPrintsExpectedMessage() {
         new VistaUsuario().horarioInvalido("test");
-        assertEquals("test no es un horario válido", outputStreamCaptor.toString().trim());
+        assertEquals("test no es un horario válido", outputStreamCaptor.toString()
+                .trim());
     }
 
     @org.junit.jupiter.api.Test
     void usuarioExistentePrintsExpectedMessage() {
         new VistaUsuario().usuarioExistente();
-        assertEquals("El responsable ya ha sido registrado anteriormente", outputStreamCaptor.toString().trim());
+        assertEquals("El responsable ya ha sido registrado anteriormente", outputStreamCaptor.toString()
+                .trim());
     }
 }

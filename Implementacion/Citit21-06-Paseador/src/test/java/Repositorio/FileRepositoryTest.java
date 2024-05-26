@@ -16,7 +16,8 @@ class FileRepositoryTest {
         FileRepository<Mock> fileRepository = new FileRepository<>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
         Mock mock = new Mock(1, "dsfdsfsd");
         fileRepository.crear(mock);
-        assertEquals(mock.getId(), fileRepository.obtener(1).getId());
+        assertEquals(mock.getId(), fileRepository.obtener(1)
+                .getId());
     }
 
     @org.junit.jupiter.api.Test
@@ -26,7 +27,8 @@ class FileRepositoryTest {
         fileRepository.crear(mock);
         mock.setTomatoe("new value");
         fileRepository.actualizar(mock);
-        assertEquals(mock.getTomatoe(), fileRepository.obtener(1).getTomatoe());
+        assertEquals(mock.getTomatoe(), fileRepository.obtener(1)
+                .getTomatoe());
     }
 
     @org.junit.jupiter.api.Test
@@ -36,7 +38,8 @@ class FileRepositoryTest {
         Mock mock2 = new Mock(2, "dsfdsfsd");
         fileRepository.crear(mock1);
         fileRepository.crear(mock2);
-        assertEquals(2, fileRepository.obtenerTodos().count());
+        assertEquals(2, fileRepository.obtenerTodos()
+                .count());
     }
 
     @org.junit.jupiter.api.Test

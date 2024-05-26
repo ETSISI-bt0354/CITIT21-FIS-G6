@@ -82,8 +82,8 @@ public class SerializerXMLExotico implements Serializer<Exotico> {
         Responsable responsable = null;
         try {
             responsable = responsables.obtener(Integer.parseInt(document.getElementsByTagName("responsable")
-                                                                                    .item(0)
-                                                                                    .getTextContent()));
+                                                                        .item(0)
+                                                                        .getTextContent()));
         } catch (NotFound e) {
             throw new RuntimeException(e);
         }

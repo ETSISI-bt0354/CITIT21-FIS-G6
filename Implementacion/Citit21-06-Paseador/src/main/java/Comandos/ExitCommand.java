@@ -1,7 +1,6 @@
 package Comandos;
 
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ExitCommand implements Command {
@@ -12,8 +11,7 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public void setParams(List<String> args)
-    {
+    public void setParams(List<String> args) {
 
     }
 

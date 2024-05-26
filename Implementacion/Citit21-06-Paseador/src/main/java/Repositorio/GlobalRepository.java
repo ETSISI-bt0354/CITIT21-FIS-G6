@@ -16,7 +16,9 @@ public class GlobalRepository {
     private final Repository<Cuidado> cuidados;
 
     private GlobalRepository() {
-        Path currentPath = Paths.get("").toAbsolutePath().resolve("repositorio");
+        Path currentPath = Paths.get("")
+                .toAbsolutePath()
+                .resolve("repositorio");
 
         try {
             this.responsables = new Repository<>(new FileRepository<>(new SerializerXMLResponsable(), currentPath.resolve("responsables")));

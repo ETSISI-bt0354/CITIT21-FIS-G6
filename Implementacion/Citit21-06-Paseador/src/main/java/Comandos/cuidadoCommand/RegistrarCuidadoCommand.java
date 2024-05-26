@@ -1,25 +1,25 @@
 package Comandos.cuidadoCommand;
 
 import Comandos.CommandHelper;
-import Controlador.ControladorCuidado;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class RegistrarCuidadoCommand extends CuidadoCommand {
     private HashMap<String, String> params;
+
     public RegistrarCuidadoCommand() {
         params = new HashMap<>();
     }
 
     @Override
     public void setParams(List<String> args) {
-        try
-        {
+        try {
             params.put("fecha", args.get(0));
             params.put("duracion", args.get(1));
             params.put("mascota", args.get(2));
-        } catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {
+        }
     }
 
     @Override

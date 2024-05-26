@@ -56,8 +56,8 @@ public class ControladorMascota {
             vista.usuarioNoConectado();
             return;
         } catch (NotFound e) {
-        vista.usuarioNoResponsable();
-        return;
+            vista.usuarioNoResponsable();
+            return;
         }
 
         try {
@@ -118,9 +118,11 @@ public class ControladorMascota {
             throw new CampoNoExistente("descripcion");
         }
 
-        int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
+        int responsableId = LoginController.getInstance()
+                .getLogInUser()
+                .orElseThrow(UsuarioNoConectado::new);
         Responsable responsable = ControladorUsuario.getInstance()
-                    .obtenerResponsable(responsableId);
+                .obtenerResponsable(responsableId);
 
         if (!params.containsKey("permiso")) {
             throw new CampoNoExistente("permiso");
@@ -162,9 +164,11 @@ public class ControladorMascota {
             throw new CampoNoExistente("descripcion");
         }
 
-        int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
+        int responsableId = LoginController.getInstance()
+                .getLogInUser()
+                .orElseThrow(UsuarioNoConectado::new);
         Responsable responsable = ControladorUsuario.getInstance()
-                    .obtenerResponsable(responsableId);
+                .obtenerResponsable(responsableId);
 
         return new Mascota(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable);
     }
@@ -172,20 +176,25 @@ public class ControladorMascota {
     public void listarMascotas() {
         int logInUser;
         try {
-            logInUser = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
+            logInUser = LoginController.getInstance()
+                    .getLogInUser()
+                    .orElseThrow(UsuarioNoConectado::new);
         } catch (UsuarioNoConectado e) {
             vista.usuarioNoConectado();
             return;
         }
 
         vista.listarMascotas(Stream.concat(repositorioMascota.obtenerTodos(),
-                repositorioMascotaExotica.obtenerTodos()).filter(m -> m.getResponsable().getId() == logInUser));
+                                           repositorioMascotaExotica.obtenerTodos())
+                                     .filter(m -> m.getResponsable()
+                                             .getId() == logInUser));
     }
 
     protected Mascota obtenerMascota(int id) throws NotFound {
         try {
             return repositorioMascota.obtener(id);
-        } catch (NotFound ignored) {}
+        } catch (NotFound ignored) {
+        }
 
         return repositorioMascotaExotica.obtener(id);
     }

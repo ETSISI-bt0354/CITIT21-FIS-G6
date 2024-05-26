@@ -15,15 +15,14 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class XML
-{
-    public static Document getDocument(String data)
-    {
+public class XML {
+    public static Document getDocument(String data) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document d = db.parse(new ByteArrayInputStream(data.getBytes()));
-            d.getDocumentElement().normalize();
+            d.getDocumentElement()
+                    .normalize();
             return d;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new RuntimeException(e);
@@ -47,7 +46,8 @@ public class XML
         DOMSource source = new DOMSource(document);
 
         try {
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            Transformer transformer = TransformerFactory.newInstance()
+                    .newTransformer();
             transformer.transform(source, result);
         } catch (TransformerException e) {
             throw new RuntimeException(e);

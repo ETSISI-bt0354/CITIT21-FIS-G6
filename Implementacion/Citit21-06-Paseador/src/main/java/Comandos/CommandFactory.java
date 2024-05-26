@@ -20,8 +20,7 @@ public class CommandFactory implements ICommandFactory {
 
 
     public Command getCommand(List<String> args) {
-        if (args.isEmpty())
-        {
+        if (args.isEmpty()) {
             System.out.println(handlerHelp());
             return null;
         }
@@ -53,8 +52,7 @@ public class CommandFactory implements ICommandFactory {
 
 
     public void getHelp(List<String> args, String prefixCommand) {
-        if (args.isEmpty())
-        {
+        if (args.isEmpty()) {
             System.out.println(handlerHelp());
             return;
         }

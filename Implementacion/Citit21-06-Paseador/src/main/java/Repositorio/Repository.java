@@ -18,10 +18,11 @@ public class Repository<T extends Id> implements IRepository<T> {
 
         try (Stream<T> stream = this.persistance.obtenerTodos()) {
             stream.forEach(t -> {
-                        try {
-                            memory.crear(t);
-                        } catch (AlreadyExist ignored) {}
-                    });
+                try {
+                    memory.crear(t);
+                } catch (AlreadyExist ignored) {
+                }
+            });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -41,6 +42,7 @@ public class Repository<T extends Id> implements IRepository<T> {
     public T obtener(int id) throws NotFound {
         return memory.obtener(id);
     }
+
     @Override
     public Stream<T> obtenerTodos() {
         return memory.obtenerTodos();

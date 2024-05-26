@@ -32,26 +32,32 @@ public class SerializerXMLCuidado implements Serializer<Cuidado> {
         root.setAttribute("id", String.valueOf(cuidado.getId()));
 
         Element fechaCuidado = document.createElement("fechaCuidado");
-        fechaCuidado.appendChild(document.createTextNode(cuidado.getFechaCuidado().toString()));
+        fechaCuidado.appendChild(document.createTextNode(cuidado.getFechaCuidado()
+                                                                 .toString()));
         root.appendChild(fechaCuidado);
 
         Element duracion = document.createElement("duracion");
-        duracion.appendChild(document.createTextNode(cuidado.getDuracion().toString()));
+        duracion.appendChild(document.createTextNode(cuidado.getDuracion()
+                                                             .toString()));
         root.appendChild(duracion);
 
         Element cuidador = document.createElement("cuidador");
         if (cuidado.getCuidador() == null) {
             cuidador.appendChild(document.createTextNode("nil"));
-        } else {
-            cuidador.appendChild(document.createTextNode(String.valueOf(cuidado.getCuidador().getId())));
+        }
+        else {
+            cuidador.appendChild(document.createTextNode(String.valueOf(cuidado.getCuidador()
+                                                                                .getId())));
         }
         root.appendChild(cuidador);
 
         Element mascota = document.createElement("mascota");
         if (cuidado.getMascota() == null) {
             mascota.appendChild(document.createTextNode("nil"));
-        } else {
-            mascota.appendChild(document.createTextNode(String.valueOf(cuidado.getMascota().getId())));
+        }
+        else {
+            mascota.appendChild(document.createTextNode(String.valueOf(cuidado.getMascota()
+                                                                               .getId())));
         }
         root.appendChild(mascota);
 
@@ -61,27 +67,42 @@ public class SerializerXMLCuidado implements Serializer<Cuidado> {
     @Override
     public Cuidado deserialize(String data) {
         Document doc = XML.getDocument(data);
-        Node cuidado = doc.getElementsByTagName("cuidado").item(0);
-        int id = Integer.parseInt(cuidado.getAttributes().item(0).getNodeValue());
+        Node cuidado = doc.getElementsByTagName("cuidado")
+                .item(0);
+        int id = Integer.parseInt(cuidado.getAttributes()
+                                          .item(0)
+                                          .getNodeValue());
 
         LocalDateTime fechaCuidado = LocalDateTime.parse(doc.getElementsByTagName("fechaCuidado")
-                .item(0).getTextContent());
+                                                                 .item(0)
+                                                                 .getTextContent());
         Duration duracion = Duration.parse(doc.getElementsByTagName("duracion")
-                .item(0).getTextContent());
+                                                   .item(0)
+                                                   .getTextContent());
 
         Cuidado le_cuidado = new Cuidado(fechaCuidado, duracion, id);
 
         Cuidador cuidador = null;
         try {
-            cuidador = doc.getElementsByTagName("cuidador").item(0).getTextContent().equals("nil") ?
-                    null : cuidadores.obtener(Integer.parseInt(doc.getElementsByTagName("cuidador").item(0).getTextContent()));
+            cuidador = doc.getElementsByTagName("cuidador")
+                    .item(0)
+                    .getTextContent()
+                    .equals("nil") ?
+                    null : cuidadores.obtener(Integer.parseInt(doc.getElementsByTagName("cuidador")
+                                                                       .item(0)
+                                                                       .getTextContent()));
         } catch (NotFound e) {
             throw new RuntimeException(e);
         }
         Mascota mascota = null;
         try {
-            mascota = doc.getElementsByTagName("mascota").item(0).getTextContent().equals("nil") ?
-                    null : mascotas.obtener(Integer.parseInt(doc.getElementsByTagName("mascota").item(0).getTextContent()));
+            mascota = doc.getElementsByTagName("mascota")
+                    .item(0)
+                    .getTextContent()
+                    .equals("nil") ?
+                    null : mascotas.obtener(Integer.parseInt(doc.getElementsByTagName("mascota")
+                                                                     .item(0)
+                                                                     .getTextContent()));
         } catch (NotFound e) {
             throw new RuntimeException(e);
         }

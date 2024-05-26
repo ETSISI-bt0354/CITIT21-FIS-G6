@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommandHandler
-{
+public class CommandHandler {
     private Map<String, ICommandFactory> factories;
     private String description;
 
@@ -20,8 +19,7 @@ public class CommandHandler
 
 
     public Command getCommand(List<String> args) {
-        if (args.isEmpty())
-        {
+        if (args.isEmpty()) {
             System.out.println(handlerHelp());
             return null;
         }
@@ -50,8 +48,7 @@ public class CommandHandler
 
 
     public void getHelp(List<String> args, String prefixCommand) {
-        if (args.isEmpty())
-        {
+        if (args.isEmpty()) {
             System.out.println(handlerHelp());
             return;
         }

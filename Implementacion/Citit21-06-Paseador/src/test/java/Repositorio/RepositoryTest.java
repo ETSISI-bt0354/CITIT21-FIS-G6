@@ -17,7 +17,8 @@ class RepositoryTest {
         FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
         Repository repo = new Repository<Mock>(fileRepository);
         repo.crear(mock);
-        assertEquals(mock.getId(), repo.obtener(1).getId());
+        assertEquals(mock.getId(), repo.obtener(1)
+                .getId());
     }
 
     @org.junit.jupiter.api.Test
@@ -78,6 +79,7 @@ class RepositoryTest {
         FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
         Repository repo = new Repository<Mock>(fileRepository);
         repo.crear(mock);
-        assertEquals(mock.getId(), repo.obtener(1).getId());
+        assertEquals(mock.getId(), repo.obtener(1)
+                .getId());
     }
 }
