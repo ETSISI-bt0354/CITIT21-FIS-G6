@@ -1,5 +1,7 @@
 package Repositorio;
 
+import Excepciones.AlreadyExist;
+import Excepciones.NotFound;
 import Modelo.Id;
 
 import java.io.IOException;
@@ -16,14 +18,18 @@ public class Repository<T extends Id> implements IRepository<T> {
 
         try {
             this.persistance.obtenerTodos()
-                    .forEach(memory::crear);
+                    .forEach(t -> {
+                        try {
+                            memory.crear(t);
+                        } catch (AlreadyExist ignored) {}
+                    });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
     }
 
     @Override
-    public void crear(T t) {
+    public void crear(T t) throws AlreadyExist {
         memory.crear(t);
         try {
             persistance.crear(t);
@@ -33,7 +39,7 @@ public class Repository<T extends Id> implements IRepository<T> {
     }
 
     @Override
-    public T obtener(int id) {
+    public T obtener(int id) throws NotFound {
         return memory.obtener(id);
     }
     @Override
@@ -42,7 +48,7 @@ public class Repository<T extends Id> implements IRepository<T> {
     }
 
     @Override
-    public void actualizar(T t) {
+    public void actualizar(T t) throws NotFound {
         memory.actualizar(t);
         try {
             persistance.actualizar(t);
@@ -52,7 +58,7 @@ public class Repository<T extends Id> implements IRepository<T> {
     }
 
     @Override
-    public void eliminar(T t) {
+    public void eliminar(T t) throws NotFound {
         memory.eliminar(t);
         try {
             persistance.eliminar(t);

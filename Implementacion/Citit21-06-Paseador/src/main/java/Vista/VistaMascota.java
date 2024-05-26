@@ -63,4 +63,12 @@ public class VistaMascota {
     public void usuarioNoConectado() {
         System.out.println("Ningún usuario ha iniciado sesión");
     }
+
+    public void mascotaExistente() {
+        System.out.println("La mascota ya ha sido registrado anteriormente");
+    }
+
+    public void usuarioNoResponsable() {
+        System.out.println("El usuario conectado no es un responsable");
+    }
 }

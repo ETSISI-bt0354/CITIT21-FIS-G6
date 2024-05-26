@@ -1,9 +1,6 @@
 package Controlador;
 
-import Excepciones.HorarioInvalido;
-import Excepciones.PlataformaInvalida;
-import Excepciones.TarifaInvalida;
-import Excepciones.CampoNoExistente;
+import Excepciones.*;
 import Modelo.*;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
@@ -56,7 +53,12 @@ public class ControladorUsuario {
             return;
         }
 
-        repositorioResponsable.crear(responsable);
+        try {
+            repositorioResponsable.crear(responsable);
+        } catch (AlreadyExist e) {
+            vista.usuarioExistente();
+            return;
+        }
         vista.usuarioCreado(responsable);
     }
 
@@ -78,7 +80,13 @@ public class ControladorUsuario {
             return;
         }
 
-        repositorioCuidador.crear(cuidador);
+        try {
+            repositorioCuidador.crear(cuidador);
+        } catch (AlreadyExist e) {
+            vista.usuarioExistente();
+            return;
+        }
+
         vista.usuarioCreado(cuidador);
     }
 
@@ -137,11 +145,11 @@ public class ControladorUsuario {
         return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
 
-    protected Responsable obtenerResponsable(int id) {
+    protected Responsable obtenerResponsable(int id) throws NotFound {
         return repositorioResponsable.obtener(id);
     }
 
-    protected Cuidador obtenerCuidador(int id) {
+    protected Cuidador obtenerCuidador(int id) throws NotFound {
         return repositorioCuidador.obtener(id);
     }
 }

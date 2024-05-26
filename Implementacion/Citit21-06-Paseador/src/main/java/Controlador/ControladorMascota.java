@@ -1,8 +1,6 @@
 package Controlador;
 
-import Excepciones.CampoNoExistente;
-import Excepciones.CodigoPostalInvalido;
-import Excepciones.UsuarioNoConectado;
+import Excepciones.*;
 import Modelo.Exotico;
 import Modelo.Id;
 import Modelo.Mascota;
@@ -57,9 +55,17 @@ public class ControladorMascota {
         } catch (UsuarioNoConectado e) {
             vista.usuarioNoConectado();
             return;
+        } catch (NotFound e) {
+        vista.usuarioNoResponsable();
+        return;
         }
 
-        repositorioMascota.crear(mascota);
+        try {
+            repositorioMascota.crear(mascota);
+        } catch (AlreadyExist e) {
+            vista.mascotaExistente();
+            return;
+        }
         vista.registrarMascota(mascota);
     }
 
@@ -76,14 +82,22 @@ public class ControladorMascota {
         } catch (UsuarioNoConectado e) {
             vista.usuarioNoConectado();
             return;
+        } catch (NotFound e) {
+            vista.usuarioNoResponsable();
+            return;
         }
 
-        repositorioMascotaExotica.crear(exotico);
+        try {
+            repositorioMascotaExotica.crear(exotico);
+        } catch (AlreadyExist e) {
+            vista.mascotaExistente();
+            return;
+        }
         vista.registrarMascota(exotico);
     }
 
     public Exotico crearMascotaExotica(HashMap<String, String> params)
-            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado {
+            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado, NotFound {
         if (!params.containsKey("codigoPostal")) {
             throw new CampoNoExistente("codigoPostal");
         }
@@ -105,13 +119,8 @@ public class ControladorMascota {
         }
 
         int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
-        Responsable responsable;
-        try {
-            responsable = ControladorUsuario.getInstance()
+        Responsable responsable = ControladorUsuario.getInstance()
                     .obtenerResponsable(responsableId);
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException("Responsable no existe");
-        }
 
         if (!params.containsKey("permiso")) {
             throw new CampoNoExistente("permiso");
@@ -132,7 +141,7 @@ public class ControladorMascota {
     }
 
     public Mascota crearMascota(HashMap<String, String> params)
-            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado {
+            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado, NotFound {
         if (!params.containsKey("codigoPostal")) {
             throw new CampoNoExistente("codigoPostal");
         }
@@ -154,13 +163,8 @@ public class ControladorMascota {
         }
 
         int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
-        Responsable responsable;
-        try {
-            responsable = ControladorUsuario.getInstance()
+        Responsable responsable = ControladorUsuario.getInstance()
                     .obtenerResponsable(responsableId);
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException("Responsable no existe");
-        }
 
         return new Mascota(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable);
     }
@@ -169,7 +173,7 @@ public class ControladorMascota {
         vista.listarMascotas(repositorioMascota.obtenerTodos());
     }
 
-    protected Mascota obtenerMascota(int id) {
+    protected Mascota obtenerMascota(int id) throws NotFound {
         return repositorioMascota.obtener(id);
     }
 }

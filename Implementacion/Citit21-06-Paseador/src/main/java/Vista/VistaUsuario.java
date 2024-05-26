@@ -43,4 +43,8 @@ public class VistaUsuario {
 
         System.out.println(message);
     }
+
+    public void usuarioExistente() {
+        System.out.println("El responsable ya ha sido registrado anteriormente");
+    }
 }

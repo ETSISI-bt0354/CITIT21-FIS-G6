@@ -1,9 +1,6 @@
 package Controlador;
 
-import Excepciones.CampoNoExistente;
-import Excepciones.DuracionInvalida;
-import Excepciones.FechaInvalida;
-import Excepciones.IdInvalido;
+import Excepciones.*;
 import Modelo.Cuidado;
 import Modelo.Id;
 import Modelo.Mascota;
@@ -56,9 +53,17 @@ public class ControladorCuidado {
         catch (IdInvalido e) {
             vista.idInvalido(e.getId());
             return;
+        } catch (NotFound e) {
+            vista.mascotaNoExistente();
+            return;
         }
 
-        repositorioCuidado.crear(cuidado);
+        try {
+            repositorioCuidado.crear(cuidado);
+        } catch (AlreadyExist e) {
+            vista.cuidadoExistente();
+            return;
+        }
         vista.cuidadoCreado(cuidado);
     }
 
@@ -89,7 +94,7 @@ public class ControladorCuidado {
     }
 
     private Cuidado crearCuidadoMascota(HashMap<String, String> params)
-            throws FechaInvalida, DuracionInvalida, CampoNoExistente, IdInvalido {
+            throws FechaInvalida, DuracionInvalida, CampoNoExistente, IdInvalido, NotFound {
         Cuidado cuidado;
         int mascotaId;
 

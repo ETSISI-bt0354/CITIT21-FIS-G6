@@ -42,4 +42,12 @@ public class VistaCuidado {
 
         System.out.println(message);
     }
+
+    public void cuidadoExistente() {
+        System.out.println("El cuidado ya ha sido registrado anteriormente");
+    }
+
+    public void mascotaNoExistente() {
+        System.out.println("La mascota no existe");
+    }
 }

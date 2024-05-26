@@ -1,5 +1,7 @@
 package Repositorio;
 
+import Excepciones.AlreadyExist;
+import Excepciones.NotFound;
 import Modelo.Id;
 import Serializers.Serializer;
 
@@ -18,14 +20,22 @@ public class FileRepository<T extends Id> {
         repo = Files.createDirectories(directorio);
     }
 
-    public void crear(T t) throws IOException {
+    public void crear(T t) throws IOException, AlreadyExist {
         Path archivo = getPathFromId(t.getId());
+        if (Files.exists(archivo)) {
+            throw new AlreadyExist(t.getId());
+        }
+
         Files.write(archivo, serializer.serialize(t)
                 .getBytes());
     }
 
-    public T obtener(int id) throws IOException {
+    public T obtener(int id) throws IOException, NotFound {
         Path archivo = getPathFromId(id);
+        if (!Files.exists(archivo)) {
+            throw new NotFound(id);
+        }
+
         byte[] contenido = Files.readAllBytes(archivo);
 
         return serializer.deserialize(new String(contenido));
@@ -47,13 +57,22 @@ public class FileRepository<T extends Id> {
         }
     }
 
-    public void actualizar(T t) throws IOException {
-        crear(t);
+    public void actualizar(T t) throws IOException, NotFound {
+        Path archivo = getPathFromId(t.getId());
+        if (!Files.deleteIfExists(archivo)) {
+            throw new NotFound(t.getId());
+        }
+
+        try {
+            crear(t);
+        } catch (AlreadyExist ignored) {}
     }
 
-    public void eliminar(T t) throws IOException {
+    public void eliminar(T t) throws IOException, NotFound {
         Path archivo = getPathFromId(t.getId());
-        Files.delete(archivo);
+        if (!Files.deleteIfExists(archivo)) {
+            throw new NotFound(t.getId());
+        }
     }
 
     private Path getPathFromId(int id) {
