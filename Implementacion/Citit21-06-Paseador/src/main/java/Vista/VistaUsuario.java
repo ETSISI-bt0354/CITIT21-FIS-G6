@@ -9,16 +9,4 @@ public class VistaUsuario {
 
         System.out.println(message);
     }
-
-    public void mostrarUsuario(IUsuario usuario) {
-        StringBuilder message = new StringBuilder();
-        message.append("Nombre: ")
-                .append(usuario.getNombre())
-                .append("\n");
-        message.append("Plataforma: ")
-                .append(usuario.getPlataforma())
-                .append("\n");
-
-        System.out.println(message);
-    }
 }

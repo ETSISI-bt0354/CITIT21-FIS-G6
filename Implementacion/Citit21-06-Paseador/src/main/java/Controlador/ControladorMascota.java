@@ -158,10 +158,6 @@ public class ControladorMascota {
         vista.listarMascotas(repositorioMascota.obtenerTodos());
     }
 
-    public void mostrarMascota(Mascota mascota) {
-        vista.mostrarMascota(mascota);
-    }
-
     protected Mascota obtenerMascota(int id) {
         return repositorioMascota.obtener(id);
     }

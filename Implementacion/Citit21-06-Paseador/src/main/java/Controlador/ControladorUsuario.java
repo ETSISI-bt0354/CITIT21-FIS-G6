@@ -51,10 +51,6 @@ public class ControladorUsuario {
         vista.usuarioCreado(cuidador);
     }
 
-    public void mostrarUsuario(Usuario usuario) {
-        vista.mostrarUsuario(usuario);
-    }
-
     public Responsable crearResponsable(HashMap<String, String> params) {
         String nombre;
         try {
