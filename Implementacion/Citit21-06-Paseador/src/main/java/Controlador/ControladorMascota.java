@@ -170,8 +170,16 @@ public class ControladorMascota {
     }
 
     public void listarMascotas() {
+        int logInUser;
+        try {
+            logInUser = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
+        } catch (UsuarioNoConectado e) {
+            vista.usuarioNoConectado();
+            return;
+        }
+
         vista.listarMascotas(Stream.concat(repositorioMascota.obtenerTodos(),
-                repositorioMascotaExotica.obtenerTodos()));
+                repositorioMascotaExotica.obtenerTodos()).filter(m -> m.getResponsable().getId() == logInUser));
     }
 
     protected Mascota obtenerMascota(int id) throws NotFound {
