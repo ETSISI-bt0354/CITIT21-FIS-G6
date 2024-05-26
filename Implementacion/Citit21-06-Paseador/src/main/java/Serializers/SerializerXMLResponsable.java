@@ -6,7 +6,6 @@ import Modelo.TPlataforma;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 public class SerializerXMLResponsable implements Serializer<Responsable> {
     @Override
@@ -20,6 +19,10 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
         nombre.appendChild(newDoc.createTextNode(responsable.getNombre()));
         root.appendChild(nombre);
 
+        Element codigoPlataforma = newDoc.createElement("codigoPlataforma");
+        codigoPlataforma.appendChild(newDoc.createTextNode(responsable.getCodigoPlatafoma()));
+        root.appendChild(codigoPlataforma);
+
         Element plataforma = newDoc.createElement("plataforma");
         plataforma.appendChild(newDoc.createTextNode(responsable.getPlataforma()
                                                              .toString()));
@@ -31,12 +34,13 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
     @Override
     public Responsable deserialize(String data) {
         Document document = XML.getDocument(data);
-        Node responsable = document.getElementsByTagName("responsable")
+        Node responsable = document.getElementsByTagName("responsables")
                 .item(0);
 
         int id = Integer.parseInt(responsable.getAttributes()
                                           .item(0)
                                           .getNodeValue());
+
         String codigoPlataforma = document.getElementsByTagName("codigoPlataforma").item(0)
                 .getTextContent();
 
