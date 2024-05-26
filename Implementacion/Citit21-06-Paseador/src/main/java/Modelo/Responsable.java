@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Responsable extends Usuario {
@@ -9,6 +10,8 @@ public class Responsable extends Usuario {
 
     public Responsable(int id, TPlataforma plataforma, String nombre) {
         super(id, plataforma, nombre);
+        this.mascotas = new ArrayList<>();
+        this.cuidadoresFavoritos = new ArrayList<>();
     }
 
     public List<Mascota> getMascotas() {
