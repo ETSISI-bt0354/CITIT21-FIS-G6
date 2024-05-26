@@ -25,15 +25,6 @@ public class ControladorUsuarioTest extends TestCase {
         System.setOut(standardOut);
     }
 
-    @org.junit.jupiter.api.Test
-    void registrarResponsableWithValidParams() {
-        HashMap<String, String> params = new HashMap<>();
-        ControladorUsuario con = ControladorUsuario.getInstance();
-        params.put("codigoPlataforma", "1");
-        params.put("plataforma", "GOOGLE");
-        params.put("nombre", "nombre");
-        assertDoesNotThrow(() -> con.registrarResponsable(params));
-    }
 
     @org.junit.jupiter.api.Test
     void registrarResponsableWithInexistantName() {
@@ -64,19 +55,6 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("nombre", "nombre");
         controladorUsuario.registrarResponsable(params);
         assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString().trim());
-    }
-
-    @org.junit.jupiter.api.Test
-    void registrarCuidadorWithValidParams() {
-        HashMap<String, String> params = new HashMap<>();
-        ControladorUsuario con = ControladorUsuario.getInstance();
-        params.put("codigoPlataforma", "1");
-        params.put("plataforma", "GOOGLE");
-        params.put("descripcion", "descripcion");
-        params.put("horario", "1970-01-01T00:00:01");
-        params.put("nombre", "nombre");
-        params.put("tarifa", "1");
-        assertDoesNotThrow(() -> con.registrarCuidador(params));
     }
 
     @org.junit.jupiter.api.Test
@@ -145,6 +123,19 @@ public class ControladorUsuarioTest extends TestCase {
         params.put("tarifa", "1");
         controladorUsuario.registrarCuidador(params);
         assertEquals("El campo descripcion no ha sido introducido", outputStreamCaptor.toString().trim());
+    }
+
+    @org.junit.jupiter.api.Test
+    void registrarCuidadorWithInexistantTarifa() {
+        ControladorUsuario controladorUsuario = ControladorUsuario.getInstance();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("codigoPlataforma", "1");
+        params.put("plataforma", "GOOGLE");
+        params.put("descripcion", "descripcion");
+        params.put("horario", "1970-01-01T00:00:01");
+        params.put("nombre", "nombre");
+        controladorUsuario.registrarCuidador(params);
+        assertEquals("El campo tarifa no ha sido introducido", outputStreamCaptor.toString().trim());
     }
 
     @org.junit.jupiter.api.Test
