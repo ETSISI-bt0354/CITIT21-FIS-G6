@@ -1,7 +1,10 @@
 package Controlador;
 
 import Excepciones.*;
-import Modelo.*;
+import Modelo.Cuidador;
+import Modelo.Id;
+import Modelo.Responsable;
+import Modelo.TPlataforma;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaUsuario;
@@ -41,7 +44,7 @@ public class ControladorUsuario {
         );
     }
 
-    public void registrarResponsable(HashMap<String, String> params) {
+    public String registrarResponsable(HashMap<String, String> params) {
         Responsable responsable;
         try {
             responsable = crearResponsable(params);
@@ -59,10 +62,10 @@ public class ControladorUsuario {
             vista.usuarioExistente();
             return;
         }
-        vista.usuarioCreado(responsable);
+        return vista.usuarioCreado(responsable);
     }
 
-    public void registrarCuidador(HashMap<String, String> params) {
+    public String registrarCuidador(HashMap<String, String> params) {
         Cuidador cuidador;
         try {
             cuidador = crearCuidador(params);
@@ -87,7 +90,7 @@ public class ControladorUsuario {
             return;
         }
 
-        vista.usuarioCreado(cuidador);
+        return vista.usuarioCreado(cuidador);
     }
 
     public Responsable crearResponsable(HashMap<String, String> params)
