@@ -1,5 +1,8 @@
 package Controlador;
 
+import Excepciones.CampoNoExistente;
+import Excepciones.DuracionInvalida;
+import Excepciones.FechaInvalida;
 import Modelo.Cuidado;
 import Modelo.Id;
 import Repositorio.GlobalRepository;
@@ -8,6 +11,7 @@ import Vista.VistaCuidado;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 public class ControladorCuidado {
@@ -33,20 +37,27 @@ public class ControladorCuidado {
         return instance;
     }
 
-    private Cuidado crearCuidado(HashMap<String, String> params) {
+    private Cuidado crearCuidado(HashMap<String, String> params)
+            throws CampoNoExistente, FechaInvalida, DuracionInvalida {
         LocalDateTime fecha;
         Duration duracion;
 
+        if (!params.containsKey("fecha")) {
+            throw new CampoNoExistente("fecha");
+        }
         try {
             fecha = LocalDateTime.parse(params.get("fecha"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la fecha del cuidado.\n");
+        } catch (DateTimeParseException e) {
+            throw new FechaInvalida(params.get("fecha"));
         }
 
+        if (!params.containsKey("duracion")) {
+            throw new CampoNoExistente("duracion");
+        }
         try {
             duracion = Duration.parse(params.get("duracion"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la duracion del cuidado.\n");
+        } catch (DateTimeParseException e) {
+            throw new DuracionInvalida(params.get("duracion"));
         }
 
         return new Cuidado(fecha, duracion, idAssigner.nextId());
@@ -58,8 +69,14 @@ public class ControladorCuidado {
 
         try {
             cuidado = crearCuidado(params);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (FechaInvalida e) {
+            vista.fechaInvalida(e.getFecha());
+            return;
+        } catch (DuracionInvalida e) {
+            vista.duracionInvalida(e.getDuracion());
             return;
         }
 

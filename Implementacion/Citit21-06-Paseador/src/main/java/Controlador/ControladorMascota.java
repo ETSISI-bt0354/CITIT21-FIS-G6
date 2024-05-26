@@ -1,5 +1,8 @@
 package Controlador;
 
+import Excepciones.CampoNoExistente;
+import Excepciones.CodigoPostalInvalido;
+import Excepciones.UsuarioNoConectado;
 import Modelo.Exotico;
 import Modelo.Id;
 import Modelo.Mascota;
@@ -8,7 +11,6 @@ import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaMascota;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.stream.Stream;
@@ -43,112 +45,121 @@ public class ControladorMascota {
     }
 
     public void registrarMascota(HashMap<String, String> params) {
-        Mascota mascota = crearMascota(params);
+        Mascota mascota;
+        try {
+            mascota = crearMascota(params);
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (CodigoPostalInvalido e) {
+            vista.codigoPostalInvalido(e.getCodigoPostal());
+            return;
+        } catch (UsuarioNoConectado e) {
+            vista.usuarioNoConectado();
+            return;
+        }
+
         repositorioMascota.crear(mascota);
         vista.registrarMascota(mascota);
     }
 
     public void registrarMascotaExotica(HashMap<String, String> params) {
-        Exotico exotico = crearMascotaExotica(params);
+        Exotico exotico;
+        try {
+            exotico = crearMascotaExotica(params);
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (CodigoPostalInvalido e) {
+            vista.codigoPostalInvalido(e.getCodigoPostal());
+            return;
+        } catch (UsuarioNoConectado e) {
+            vista.usuarioNoConectado();
+            return;
+        }
+
         repositorioMascotaExotica.crear(exotico);
         vista.registrarMascota(exotico);
     }
 
-    public Exotico crearMascotaExotica(HashMap<String, String> params) {
+    public Exotico crearMascotaExotica(HashMap<String, String> params)
+            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado {
+        if (!params.containsKey("codigoPostal")) {
+            throw new CampoNoExistente("codigoPostal");
+        }
         int codigoPostal;
         try {
-            codigoPostal = Integer.parseInt(params.get("codigo-postal"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Codigo postal no valido");
+            codigoPostal = Integer.parseInt(params.get("codigoPostal"));
+        } catch (NumberFormatException e) {
+            throw new CodigoPostalInvalido(params.get("codigoPostal"));
         }
-        Mascota mascota;
-        try {
-            mascota = repositorioMascota.obtener(Integer.parseInt(params.get("mascota")));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Mascota no valida");
+
+        String nombre = params.get("nombre");
+        if (nombre == null) {
+            throw new CampoNoExistente("nombre");
         }
-        String nombre;
-        try {
-            nombre = params.get("nombre");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Nombre no valido");
+
+        String descripcion = params.get("descripcion");
+        if (descripcion == null) {
+            throw new CampoNoExistente("descripcion");
         }
-        String descripcion;
-        try {
-            descripcion = params.get("descripcion");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Descripcion no valida");
-        }
-        int responsableId;
-        try {
-            responsableId = Integer.parseInt(params.get("responsable"));
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("Responsable no existe");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Responsable no valido");
-        }
+
+        int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
         Responsable responsable;
         try {
             responsable = ControladorUsuario.getInstance()
                     .obtenerResponsable(responsableId);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new IllegalArgumentException("Responsable no existe");
         }
-        Path permiso;
-        try {
-            permiso = Path.of(params.get(""));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Permiso no valido");
-        }
-        Path clegal;
-        try {
-            clegal = Path.of(params.get(""));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Certificado legal no valido");
-        }
-        Path csalud;
-        try {
-            csalud = Path.of(params.get(""));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Certificado de salud no valido");
-        }
 
-        return new Exotico(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable, permiso, clegal, csalud);
+        if (!params.containsKey("permiso")) {
+            throw new CampoNoExistente("permiso");
+        }
+        Path permiso = Path.of(params.get("permiso"));
+
+        if (!params.containsKey("certificadoLegal")) {
+            throw new CampoNoExistente("certificadoLegal");
+        }
+        Path certificadoLegal = Path.of(params.get("certificadoLegal"));
+
+        if (!params.containsKey("certificadoSalud")) {
+            throw new CampoNoExistente("certificadoSalud");
+        }
+        Path certificadoSalud = Path.of(params.get(""));
+
+        return new Exotico(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable, permiso, certificadoLegal, certificadoSalud);
     }
 
-    public Mascota crearMascota(HashMap<String, String> params) {
+    public Mascota crearMascota(HashMap<String, String> params)
+            throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado {
+        if (!params.containsKey("codigoPostal")) {
+            throw new CampoNoExistente("codigoPostal");
+        }
         int codigoPostal;
         try {
-            codigoPostal = Integer.parseInt(params.get("codigo-postal"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Codigo postal no valido");
+            codigoPostal = Integer.parseInt(params.get("codigoPostal"));
+        } catch (NumberFormatException e) {
+            throw new CodigoPostalInvalido(params.get("codigoPostal"));
         }
-        int responsableId;
-        try {
-            responsableId = Integer.parseInt(params.get("responsable"));
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("Responsable no existe");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Responsable no valido");
+
+        String nombre = params.get("nombre");
+        if (nombre == null) {
+            throw new CampoNoExistente("nombre");
         }
+
+        String descripcion = params.get("descripcion");
+        if (descripcion == null) {
+            throw new CampoNoExistente("descripcion");
+        }
+
+        int responsableId = LoginController.getInstance().getLogInUser().orElseThrow(UsuarioNoConectado::new);
         Responsable responsable;
         try {
             responsable = ControladorUsuario.getInstance()
                     .obtenerResponsable(responsableId);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new IllegalArgumentException("Responsable no existe");
-        }
-        String nombre;
-        try {
-            nombre = params.get("nombre");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Nombre no valido");
-        }
-        String descripcion;
-        try {
-            descripcion = params.get("descripcion");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Descripcion no valida");
         }
 
         return new Mascota(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable);

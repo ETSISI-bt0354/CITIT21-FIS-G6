@@ -42,4 +42,25 @@ public class VistaMascota {
     public void listarMascotas(Stream<Mascota> mascotas) {
         mascotas.forEach(this::mostrarMascota);
     }
+
+    public void campoNoExistente(String campo) {
+        StringBuilder message = new StringBuilder();
+        message.append("El campo ");
+        message.append(campo);
+        message.append(" no ha sido introducido\n");
+
+        System.out.println(message);
+    }
+
+    public void codigoPostalInvalido(String codigoPostal) {
+        StringBuilder message = new StringBuilder();
+        message.append(codigoPostal);
+        message.append(" es inválido");
+
+        System.out.println(message);
+    }
+
+    public void usuarioNoConectado() {
+        System.out.println("Ningún usuario ha iniciado sesión");
+    }
 }

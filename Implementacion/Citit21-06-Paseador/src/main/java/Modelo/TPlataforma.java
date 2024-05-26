@@ -1,18 +1,20 @@
 package Modelo;
 
+import Excepciones.PlataformaInvalida;
+
 public enum TPlataforma {
     TWITTER,
     FACEBOOK,
     GOOGLE,
     MICROSOFT;
 
-    public static TPlataforma parse(String data) {
+    public static TPlataforma parse(String data) throws PlataformaInvalida {
         return switch (data) {
             case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
             case "google" -> TPlataforma.GOOGLE;
             case "microsoft" -> TPlataforma.MICROSOFT;
-            default -> throw new RuntimeException("Plataforma no valida.");
+            default -> throw new PlataformaInvalida(data);
         };
     }
 

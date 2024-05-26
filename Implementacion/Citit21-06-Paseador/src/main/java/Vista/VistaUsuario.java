@@ -9,4 +9,38 @@ public class VistaUsuario {
 
         System.out.println(message);
     }
+
+    public void campoNoExistente(String campo) {
+        StringBuilder message = new StringBuilder();
+        message.append("El campo ");
+        message.append(campo);
+        message.append(" no ha sido introducido\n");
+
+        System.out.println(message);
+    }
+
+    public void plataformaInvalida(String plataforma) {
+        StringBuilder message = new StringBuilder();
+        message.append("La plataforma ");
+        message.append(plataforma);
+        message.append(" no está soportada\n");
+
+        System.out.println(message);
+    }
+
+    public void tarifaInvalida(String tarifa) {
+        StringBuilder message = new StringBuilder();
+        message.append(tarifa);
+        message.append(" no es una tarifa válida\n");
+
+        System.out.println(message);
+    }
+
+    public void horarioInvalido(String horario) {
+        StringBuilder message = new StringBuilder();
+        message.append(horario);
+        message.append(" no es un horario válido\n");
+
+        System.out.println(message);
+    }
 }

@@ -1,11 +1,16 @@
 package Controlador;
 
+import Excepciones.HorarioInvalido;
+import Excepciones.PlataformaInvalida;
+import Excepciones.TarifaInvalida;
+import Excepciones.CampoNoExistente;
 import Modelo.*;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaUsuario;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
@@ -40,65 +45,94 @@ public class ControladorUsuario {
     }
 
     public void registrarResponsable(HashMap<String, String> params) {
-        Responsable responsable = crearResponsable(params);
+        Responsable responsable;
+        try {
+            responsable = crearResponsable(params);
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (PlataformaInvalida e) {
+            vista.plataformaInvalida(e.getPlataforma());
+            return;
+        }
+
         repositorioResponsable.crear(responsable);
         vista.usuarioCreado(responsable);
     }
 
     public void registrarCuidador(HashMap<String, String> params) {
-        Cuidador cuidador = crearCuidador(params);
+        Cuidador cuidador;
+        try {
+            cuidador = crearCuidador(params);
+        } catch (CampoNoExistente e) {
+            vista.campoNoExistente(e.getCampo());
+            return;
+        } catch (PlataformaInvalida e) {
+            vista.plataformaInvalida(e.getPlataforma());
+            return;
+        } catch (TarifaInvalida e) {
+            vista.tarifaInvalida(e.getTarifa());
+            return;
+        } catch (HorarioInvalido e) {
+            vista.horarioInvalido(e.getHorario());
+            return;
+        }
+
         repositorioCuidador.crear(cuidador);
         vista.usuarioCreado(cuidador);
     }
 
-    public Responsable crearResponsable(HashMap<String, String> params) {
-        String nombre;
-        try {
-            nombre = params.get("nombre");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta el nombre del responsable.");
+    public Responsable crearResponsable(HashMap<String, String> params)
+            throws CampoNoExistente, PlataformaInvalida {
+        String nombre = params.get("nombre");
+        if (nombre == null) {
+            throw new CampoNoExistente("nombre");
         }
-        TPlataforma plataforma = TPlataformaCheck(params);
+
+        if (!params.containsKey("plataforma")) {
+            throw new CampoNoExistente("plataforma");
+        }
+        TPlataforma plataforma = TPlataforma.parse(params.get("plataforma"));
 
         return new Responsable(idAssigner.nextId(), plataforma, nombre);
     }
 
-    private TPlataforma TPlataformaCheck(HashMap<String, String> params) {
-        return switch (params.get("plataforma")) {
-            case "twitter" -> TPlataforma.TWITTER;
-            case "facebook" -> TPlataforma.FACEBOOK;
-            case "google" -> TPlataforma.GOOGLE;
-            case "microsoft" -> TPlataforma.MICROSOFT;
-            default -> throw new IllegalArgumentException("Plataforma no valida");
-        };
-    }
-
-    public Cuidador crearCuidador(HashMap<String, String> params) {
-        String descripcion;
-        try {
-            descripcion = params.get("descripcion");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la descripcion del cuidador.");
+    public Cuidador crearCuidador(HashMap<String, String> params)
+            throws CampoNoExistente, TarifaInvalida, HorarioInvalido, PlataformaInvalida {
+        String descripcion = params.get("descripcion");
+        if (descripcion == null) {
+            throw new CampoNoExistente("descripcion");
         }
+
         double tarifa;
         try {
             tarifa = Double.parseDouble(params.get("tarifa"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta la tarifa del cuidador.");
+        } catch (NullPointerException e) {
+            throw new CampoNoExistente("tarifa");
+        } catch (NumberFormatException e) {
+            throw new TarifaInvalida(params.get("tarifa"));
+        }
+
+
+        if (!params.containsKey("horario")) {
+            throw new CampoNoExistente("horario");
         }
         LocalDateTime horario;
         try {
             horario = LocalDateTime.parse(params.get("horario"));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta el horario del cuidador.");
+        } catch (DateTimeParseException e) {
+            throw new HorarioInvalido("Falta el horario del cuidador.");
         }
-        String nombre;
-        try {
-            nombre = params.get("nombre");
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falta el nombre del cuidador.");
+
+        String nombre = params.get("nombre");
+        if (nombre == null) {
+            throw new CampoNoExistente("nombre");
         }
-        TPlataforma plataforma = TPlataformaCheck(params);
+
+        if (!params.containsKey("plataforma")) {
+            throw new CampoNoExistente("plataforma");
+        }
+        TPlataforma plataforma = TPlataforma.parse(params.get("plataforma"));
 
         return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
     }
