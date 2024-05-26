@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.stream.Stream;
 
-public class Repository<T extends Id> {
+public class Repository<T extends Id> implements IRepository<T> {
     private final FileRepository<T> persistance;
     private final InMemoryRepository<T> memory;
 
@@ -22,6 +22,7 @@ public class Repository<T extends Id> {
         }
     }
 
+    @Override
     public void crear(T t) {
         memory.crear(t);
         try {
@@ -31,14 +32,16 @@ public class Repository<T extends Id> {
         }
     }
 
+    @Override
     public T obtener(int id) {
         return memory.obtener(id);
     }
-
+    @Override
     public Stream<T> obtenerTodos() {
         return memory.obtenerTodos();
     }
 
+    @Override
     public void actualizar(T t) {
         memory.actualizar(t);
         try {
@@ -48,6 +51,7 @@ public class Repository<T extends Id> {
         }
     }
 
+    @Override
     public void eliminar(T t) {
         memory.eliminar(t);
         try {
