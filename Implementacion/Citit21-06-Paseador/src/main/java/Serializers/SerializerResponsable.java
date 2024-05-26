@@ -10,7 +10,21 @@ import org.w3c.dom.NodeList;
 public class SerializerResponsable implements Serializer<Responsable> {
     @Override
     public String serialize(Responsable responsable) {
-        return "";
+        Document newDoc = XML.getEmptyDocument();
+        Element root = newDoc.createElement("responsables");
+        newDoc.appendChild(root);
+        root.setAttribute("id", String.valueOf(responsable.getId()));
+
+        Element nombre = newDoc.createElement("nombre");
+        nombre.appendChild(newDoc.createTextNode(responsable.getNombre()));
+        root.appendChild(nombre);
+
+        Element plataforma = newDoc.createElement("plataforma");
+        plataforma.appendChild(newDoc.createTextNode(responsable.getPlataforma()
+                                                             .toString()));
+        root.appendChild(plataforma);
+
+        return XML.DocumentToString(newDoc);
     }
 
     @Override
