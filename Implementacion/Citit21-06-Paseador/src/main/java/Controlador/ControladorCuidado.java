@@ -3,7 +3,7 @@ package Controlador;
 import Modelo.Cuidado;
 import Modelo.Id;
 import Repositorio.GlobalRepository;
-import Repositorio.Repository;
+import Repositorio.IRepository;
 import Vista.VistaCuidado;
 
 import java.time.Duration;
@@ -13,10 +13,10 @@ import java.util.HashMap;
 public class ControladorCuidado {
     private final VistaCuidado vista;
     private final IdAssigner idAssigner;
-    private final Repository<Cuidado> repositorioCuidado;
+    private final IRepository<Cuidado> repositorioCuidado;
     private static ControladorCuidado instance;
 
-    private ControladorCuidado(Repository<Cuidado> repositorioCuidado) {
+    private ControladorCuidado(IRepository<Cuidado> repositorioCuidado) {
         this.repositorioCuidado = repositorioCuidado;
         this.vista = new VistaCuidado();
         this.idAssigner = new IdAssigner(repositorioCuidado.obtenerTodos()

@@ -4,12 +4,8 @@ import Modelo.Exotico;
 import Modelo.Id;
 import Modelo.Mascota;
 import Modelo.Responsable;
-import Repositorio.FileRepository;
 import Repositorio.GlobalRepository;
-import Repositorio.InMemoryRepository;
-import Repositorio.Repository;
-import Serializers.SerializerXMLExotico;
-import Serializers.SerializerXMLMascota;
+import Repositorio.IRepository;
 import Vista.VistaMascota;
 
 import java.io.IOException;
@@ -19,13 +15,13 @@ import java.util.stream.Stream;
 
 public class ControladorMascota {
     private final IdAssigner idAssigner;
-    private final Repository<Mascota> repositorioMascota;
-    private final Repository<Exotico> repositorioMascotaExotica;
+    private final IRepository<Mascota> repositorioMascota;
+    private final IRepository<Exotico> repositorioMascotaExotica;
     private final VistaMascota vista;
     private static ControladorMascota instance;
 
-    private ControladorMascota(Repository<Mascota> repositorioMascota,
-                               Repository<Exotico> repositorioMascotaExotica) {
+    private ControladorMascota(IRepository<Mascota> repositorioMascota,
+                               IRepository<Exotico> repositorioMascotaExotica) {
         this.repositorioMascota = repositorioMascota;
         this.repositorioMascotaExotica = repositorioMascotaExotica;
         this.vista = new VistaMascota();

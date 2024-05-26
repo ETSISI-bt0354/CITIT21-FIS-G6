@@ -2,7 +2,7 @@ package Controlador;
 
 import Modelo.*;
 import Repositorio.GlobalRepository;
-import Repositorio.Repository;
+import Repositorio.IRepository;
 import Vista.VistaUsuario;
 
 import java.time.LocalDateTime;
@@ -14,8 +14,8 @@ public class ControladorUsuario {
 
     private final IdAssigner idAssigner;
     private final VistaUsuario vista;
-    private final Repository<Responsable> repositorioResponsable;
-    private final Repository<Cuidador> repositorioCuidador;
+    private final IRepository<Responsable> repositorioResponsable;
+    private final IRepository<Cuidador> repositorioCuidador;
 
     public static ControladorUsuario getInstance() {
         if (instance == null) {
@@ -25,8 +25,8 @@ public class ControladorUsuario {
         return instance;
     }
 
-    private ControladorUsuario(Repository<Responsable> repositorioResponsable,
-                               Repository<Cuidador> repositorioCuidador) {
+    private ControladorUsuario(IRepository<Responsable> repositorioResponsable,
+                               IRepository<Cuidador> repositorioCuidador) {
         this.repositorioResponsable = repositorioResponsable;
         this.repositorioCuidador = repositorioCuidador;
         this.vista = new VistaUsuario();
