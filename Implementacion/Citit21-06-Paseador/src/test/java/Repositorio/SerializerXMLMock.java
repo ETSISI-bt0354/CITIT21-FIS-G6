@@ -4,6 +4,7 @@ import Serializers.Serializer;
 import Serializers.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 public class SerializerXMLMock implements Serializer<Mock> {
@@ -24,14 +25,11 @@ public class SerializerXMLMock implements Serializer<Mock> {
     @Override
     public Mock deserialize(String data) {
         Document document = XML.getDocument(data);
-        Element mock = (Element) document.getElementsByTagName("mock")
-                .item(0);
+        Node mock = document.getElementsByTagName("mocks").item(0);
 
-        int id = Integer.parseInt(mock.getAttributes()
-                .item(0)
-                .getNodeValue());
-        String tomatoe = document.getElementsByTagName("tomatoe").item(0)
-                .getTextContent();
+        int id = Integer.parseInt(mock.getAttributes().item(0).getNodeValue());
+
+        String tomatoe = document.getElementsByTagName("tomatoe").item(0).getTextContent();
 
         return new Mock(id, tomatoe);
     }
