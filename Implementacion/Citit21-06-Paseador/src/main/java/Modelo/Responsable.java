@@ -8,8 +8,8 @@ public class Responsable extends Usuario {
     private List<Mascota> mascotas;
     private List<Cuidador> cuidadoresFavoritos;
 
-    public Responsable(int id, TPlataforma plataforma, String nombre) {
-        super(id, plataforma, nombre);
+    public Responsable(int id, String codigoPlataforma, TPlataforma plataforma, String nombre) {
+        super(id, codigoPlataforma, plataforma, nombre);
         this.mascotas = new ArrayList<>();
         this.cuidadoresFavoritos = new ArrayList<>();
     }

@@ -1,5 +1,6 @@
 package Serializers;
 
+import Excepciones.PlataformaInvalida;
 import Modelo.Cuidador;
 import Modelo.TPlataforma;
 import org.w3c.dom.Document;
@@ -17,6 +18,9 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
         doc.appendChild(root);
         root.setAttribute("id", String.valueOf(cuidador.getId()));
 
+        Element codigoPlataforma = doc.createElement("codigoPlataforma");
+        codigoPlataforma.appendChild(doc.createTextNode(cuidador.getCodigoPlatafoma()));
+        root.appendChild(codigoPlataforma);
 
         Element nombre = doc.createElement("nombre");
         nombre.appendChild(doc.createTextNode(cuidador.getNombre()));
@@ -56,13 +60,20 @@ public class SerializerXMLCuidador implements Serializer<Cuidador> {
         int id = Integer.parseInt(cuidador.getAttributes().item(0).getNodeValue());
 
 
+        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma").item(0).getTextContent();
         String nombre = document.getElementsByTagName("nombre").item(0).getTextContent();
         String descripcion = document.getElementsByTagName("descripcion").item(0).getTextContent();
         int panchoPuntos = Integer.parseInt(document.getElementsByTagName("panchoPuntos").item(0).getTextContent());
         double tarifa = Double.parseDouble(document.getElementsByTagName("tarifa").item(0).getTextContent());
         LocalDateTime horario = LocalDateTime.parse(document.getElementsByTagName("horario").item(0).getTextContent());
-        TPlataforma plataforma = TPlataforma.valueOf(document.getElementsByTagName("plataforma").item(0).getTextContent());
+        TPlataforma plataforma = null;
+        try {
+            plataforma = TPlataforma.parse(document.getElementsByTagName("plataforma").item(0)
+                    .getTextContent());
+        } catch (PlataformaInvalida e) {
+            throw new RuntimeException(e);
+        }
 
-        return new Cuidador(panchoPuntos, descripcion, tarifa, horario, nombre, id, plataforma);
+        return new Cuidador(panchoPuntos, descripcion, tarifa, horario, nombre, id, plataforma, codigoPlataforma);
     }
 }

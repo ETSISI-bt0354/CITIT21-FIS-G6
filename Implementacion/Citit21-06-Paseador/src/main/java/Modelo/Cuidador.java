@@ -14,8 +14,8 @@ public class Cuidador extends Usuario {
     private List<Mascota> mascotasFavoritas;
 
     public Cuidador(int panchoPuntos, String descripcion, double tarifa, LocalDateTime horario,
-                    String nombre, int id, TPlataforma plataforma) {
-        super(id, plataforma, nombre);
+                    String nombre, int id, TPlataforma plataforma, String codigoPlataforma) {
+        super(id, codigoPlataforma, plataforma, nombre);
         this.panchoPuntos = panchoPuntos;
         this.descripcion = descripcion;
         this.tarifa = tarifa;

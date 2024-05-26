@@ -8,6 +8,7 @@ import Modelo.TPlataforma;
 import Repositorio.GlobalRepository;
 import Repositorio.IRepository;
 import Vista.VistaUsuario;
+import servidor.ExternalRRSS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -105,7 +106,9 @@ public class ControladorUsuario {
         }
         TPlataforma plataforma = TPlataforma.parse(params.get("plataforma"));
 
-        return new Responsable(idAssigner.nextId(), plataforma, nombre);
+        String codigoPlataforma = ExternalRRSS.LoginRRSS();
+
+        return new Responsable(idAssigner.nextId(), codigoPlataforma, plataforma, nombre);
     }
 
     public Cuidador crearCuidador(HashMap<String, String> params)
@@ -145,7 +148,9 @@ public class ControladorUsuario {
         }
         TPlataforma plataforma = TPlataforma.parse(params.get("plataforma"));
 
-        return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma);
+        String codigoPlataforma = ExternalRRSS.LoginRRSS();
+
+        return new Cuidador(0, descripcion, tarifa, horario, nombre, idAssigner.nextId(), plataforma, codigoPlataforma);
     }
 
     protected Responsable obtenerResponsable(int id) throws NotFound {

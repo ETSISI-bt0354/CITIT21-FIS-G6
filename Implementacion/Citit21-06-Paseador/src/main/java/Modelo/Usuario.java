@@ -4,13 +4,15 @@ import java.util.List;
 
 public abstract class Usuario implements Id, IUsuario {
     private final int id;
+    private final String codigoPlatafoma;
     private String nombre;
     private final TPlataforma plataforma;
     private List<Mensaje> mensajesRecibidos;
     private List<Mensaje> mensajesEnviados;
 
-    public Usuario(int id, TPlataforma plataforma, String nombre) {
+    public Usuario(int id, String codigoPlatafoma, TPlataforma plataforma, String nombre) {
         this.id = id;
+        this.codigoPlatafoma = codigoPlatafoma;
         this.plataforma = plataforma;
         this.nombre = nombre;
     }
@@ -18,6 +20,10 @@ public abstract class Usuario implements Id, IUsuario {
     @Override
     public int getId() {
         return id;
+    }
+
+    public String getCodigoPlatafoma() {
+        return codigoPlatafoma;
     }
 
     @Override

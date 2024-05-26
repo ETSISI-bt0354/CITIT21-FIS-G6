@@ -37,6 +37,8 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
         int id = Integer.parseInt(responsable.getAttributes()
                                           .item(0)
                                           .getNodeValue());
+        String codigoPlataforma = document.getElementsByTagName("codigoPlataforma").item(0)
+                .getTextContent();
 
         TPlataforma plataforma = null;
         try {
@@ -48,6 +50,6 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
         String nombre = document.getElementsByTagName("nombre").item(0)
                 .getTextContent();
 
-        return new Responsable(id, plataforma, nombre);
+        return new Responsable(id, codigoPlataforma, plataforma, nombre);
     }
 }
