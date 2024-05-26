@@ -14,11 +14,20 @@ public class XML
     public static Document getDocument(String data)
     {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = null;
         try {
-            db = dbf.newDocumentBuilder();
+            DocumentBuilder db = dbf.newDocumentBuilder();
             return db.parse(new ByteArrayInputStream(data.getBytes()));
         } catch (ParserConfigurationException | SAXException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Document getEmptyDocument() {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            return db.newDocument();
+        } catch (ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
     }
