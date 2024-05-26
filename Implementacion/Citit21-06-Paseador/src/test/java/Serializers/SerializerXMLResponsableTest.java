@@ -2,18 +2,11 @@ package Serializers;
 
 import Modelo.Responsable;
 import Modelo.TPlataforma;
-import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SerializerXMLResponsableTest {
-
-    @BeforeEach
-    void setUp() {
-        Serializer ser = new SerializerXMLResponsable();
-        Responsable mock = new Responsable(1, "codigoPlataforma", TPlataforma.FACEBOOK, "nombre");
-    }
 
     @org.junit.jupiter.api.Test
     void serializeFullResponsable() {
@@ -22,6 +15,7 @@ class SerializerXMLResponsableTest {
         String result = ser.serialize(mock);
         assertTrue(result.contains("<responsables id=\"1\">"));
         assertTrue(result.contains("<nombre>nombre</nombre>"));
+        assertTrue(result.contains("<codigoPlataforma>codigoPlataforma</codigoPlataforma>"));
         assertTrue(result.contains("<plataforma>FACEBOOK</plataforma>"));
     }
 
