@@ -6,7 +6,7 @@ public enum TPlataforma {
     GOOGLE,
     MICROSOFT;
 
-    public TPlataforma parse(String data) {
+    public static TPlataforma parse(String data) {
         return switch (data) {
             case "twitter" -> TPlataforma.TWITTER;
             case "facebook" -> TPlataforma.FACEBOOK;
