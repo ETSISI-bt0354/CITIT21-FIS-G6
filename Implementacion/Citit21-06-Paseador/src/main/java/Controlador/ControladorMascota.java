@@ -5,6 +5,7 @@ import Modelo.Id;
 import Modelo.Mascota;
 import Modelo.Responsable;
 import Repositorio.FileRepository;
+import Repositorio.GlobalRepository;
 import Repositorio.InMemoryRepository;
 import Repositorio.Repository;
 import Serializers.SerializerXMLExotico;
@@ -39,11 +40,7 @@ public class ControladorMascota {
 
     public static ControladorMascota getInstance() {
         if (instance == null) {
-            try {
-                instance = new ControladorMascota(new Repository<>(new FileRepository<>(new SerializerXMLMascota(new InMemoryRepository<>()), Path.of(""))), new Repository<>(new FileRepository<>(new SerializerXMLExotico(new InMemoryRepository<>()), Path.of(""))));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            instance = new ControladorMascota(GlobalRepository.getMascotas(), GlobalRepository.getExoticos());
         }
 
         return instance;

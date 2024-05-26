@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Cuidado;
 import Modelo.Id;
+import Repositorio.GlobalRepository;
 import Repositorio.Repository;
 import Vista.VistaCuidado;
 
@@ -13,7 +14,7 @@ public class ControladorCuidado {
     private final VistaCuidado vista;
     private final IdAssigner idAssigner;
     private final Repository<Cuidado> repositorioCuidado;
-    private static final ControladorCuidado instance;
+    private static ControladorCuidado instance;
 
     private ControladorCuidado(Repository<Cuidado> repositorioCuidado) {
         this.repositorioCuidado = repositorioCuidado;
@@ -27,7 +28,7 @@ public class ControladorCuidado {
 
     public static ControladorCuidado getInstance() {
         if (instance == null)
-            instance = new ControladorCuidado();
+            instance = new ControladorCuidado(GlobalRepository.getCuidados());
 
         return instance;
     }

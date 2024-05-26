@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.*;
+import Repositorio.GlobalRepository;
 import Repositorio.Repository;
 import Vista.VistaUsuario;
 
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class ControladorUsuario {
-    private static final ControladorUsuario instance = null;
+    private static ControladorUsuario instance = null;
 
     private final IdAssigner idAssigner;
     private final VistaUsuario vista;
@@ -18,7 +19,7 @@ public class ControladorUsuario {
 
     public static ControladorUsuario getInstance() {
         if (instance == null) {
-            instance = new ControladorUsuario();
+            instance = new ControladorUsuario(GlobalRepository.getResponsables(), GlobalRepository.getCuidadores());
         }
 
         return instance;
