@@ -16,9 +16,8 @@ public class Repository<T extends Id> implements IRepository<T> {
         this.persistance = persistance;
         this.memory = new InMemoryRepository<>();
 
-        try {
-            this.persistance.obtenerTodos()
-                    .forEach(t -> {
+        try (Stream<T> stream = this.persistance.obtenerTodos()) {
+            stream.forEach(t -> {
                         try {
                             memory.crear(t);
                         } catch (AlreadyExist ignored) {}

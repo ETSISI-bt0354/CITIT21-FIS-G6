@@ -43,8 +43,7 @@ public class FileRepository<T extends Id> {
     }
 
     public Stream<T> obtenerTodos() throws IOException {
-        try (Stream<Path> stream = Files.list(repo)) {
-            return stream
+        return Files.list(repo)
                     .map(archivo -> {
                         try {
                             return Files.readAllBytes(archivo);
@@ -54,7 +53,6 @@ public class FileRepository<T extends Id> {
                     })
                     .map(String::new)
                     .map(serializer::deserialize);
-        }
     }
 
     public void actualizar(T t) throws IOException, NotFound {
