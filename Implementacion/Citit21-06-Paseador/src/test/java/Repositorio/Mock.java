@@ -11,6 +11,6 @@ public class Mock implements Id {
 
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 }

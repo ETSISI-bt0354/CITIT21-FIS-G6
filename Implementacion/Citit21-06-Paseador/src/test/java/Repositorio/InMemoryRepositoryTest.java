@@ -4,6 +4,7 @@ import Excepciones.AlreadyExist;
 import Excepciones.NotFound;
 import Modelo.Id;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InMemoryRepositoryTest {
@@ -22,8 +23,17 @@ class InMemoryRepositoryTest {
         InMemoryRepository<Mock> repository = new InMemoryRepository<>();
         Mock mock = new Mock(1);
         repository.crear(mock);
-        Mock mock2 = new Mock(1);
+        Mock mock2 = new Mock(2);
         repository.actualizar(mock2);
+        assertEquals(mock2, repository.obtener(1));
+    }
+
+    @org.junit.jupiter.api.Test
+    void obtainingExistentEntity() throws AlreadyExist, NotFound {
+        InMemoryRepository<Mock> repository = new InMemoryRepository<>();
+        Mock mock = new Mock(1);
+        repository.crear(mock);
+        assertEquals(mock, repository.obtener(1));
     }
 
     @org.junit.jupiter.api.Test
