@@ -96,7 +96,7 @@ public class ControladorMascota {
         vista.registrarMascota(exotico);
     }
 
-    public Exotico crearMascotaExotica(HashMap<String, String> params)
+    private Exotico crearMascotaExotica(HashMap<String, String> params)
             throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado, NotFound {
         if (!params.containsKey("codigoPostal")) {
             throw new CampoNoExistente("codigoPostal");
@@ -140,7 +140,7 @@ public class ControladorMascota {
         return new Exotico(idAssigner.nextId(), nombre, codigoPostal, descripcion, responsable, permiso, certificadoLegal, certificadoSalud);
     }
 
-    public Mascota crearMascota(HashMap<String, String> params)
+    private Mascota crearMascota(HashMap<String, String> params)
             throws CampoNoExistente, CodigoPostalInvalido, UsuarioNoConectado, NotFound {
         if (!params.containsKey("codigoPostal")) {
             throw new CampoNoExistente("codigoPostal");
