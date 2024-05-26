@@ -3,10 +3,10 @@ package Vista;
 import Modelo.IUsuario;
 
 public class VistaUsuario {
-    public String usuarioCreado(IUsuario usuario) {
+    public void usuarioCreado(IUsuario usuario) {
         StringBuilder message = new StringBuilder();
         message.append("Usuario creado con exito\n");
-        return message.toString();
+        System.out.println(message);
     }
 
     public void campoNoExistente(String campo) {
