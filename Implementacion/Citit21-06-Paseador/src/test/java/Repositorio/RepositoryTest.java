@@ -50,4 +50,34 @@ class RepositoryTest {
         repo.eliminar(mock);
         assertThrows(NotFound.class, () -> repo.obtener(1));
     }
+
+    @org.junit.jupiter.api.Test
+    void updatingNonExistentEntityThrowsException() throws IOException {
+        FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
+        Repository repo = new Repository<Mock>(fileRepository);
+        assertThrows(NotFound.class, () -> repo.actualizar(new Mock(1)));
+    }
+
+    @org.junit.jupiter.api.Test
+    void deletingNonExistentEntityThrowsException() throws IOException {
+        FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
+        Repository repo = new Repository<Mock>(fileRepository);
+        assertThrows(NotFound.class, () -> repo.eliminar(new Mock(1)));
+    }
+
+    @org.junit.jupiter.api.Test
+    void obtainingNonExistentEntityThrowsException() throws IOException {
+        FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
+        Repository repo = new Repository<Mock>(fileRepository);
+        assertThrows(NotFound.class, () -> repo.obtener(1));
+    }
+
+    @org.junit.jupiter.api.Test
+    void obtainingExistentEntity() throws IOException, AlreadyExist, NotFound {
+        Mock mock = new Mock(1, "tomatoe");
+        FileRepository<Mock> fileRepository = new FileRepository<Mock>(new SerializerXMLMock(), Files.createTempDirectory("mocks"));
+        Repository repo = new Repository<Mock>(fileRepository);
+        repo.crear(mock);
+        assertEquals(mock.getId(), repo.obtener(1).getId());
+    }
 }
