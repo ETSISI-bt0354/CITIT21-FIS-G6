@@ -1,6 +1,7 @@
 package Vista;
 
 import Modelo.Responsable;
+import Modelo.TPlataforma;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ public class VistaUsuarioTest extends TestCase {
 
     @org.junit.jupiter.api.Test
     void usuarioCreadoReturnsExpectedMessage() {
-        Responsable mockUser = new Responsable(1, "codigoPlataforma", null, "nombre");
+        Responsable mockUser = new Responsable(1, "codigoPlataforma", TPlataforma.GOOGLE, "nombre");
         new VistaUsuario().usuarioCreado(mockUser);
         assertEquals("Usuario creado con exito", outputStreamCaptor.toString().trim());
     }
