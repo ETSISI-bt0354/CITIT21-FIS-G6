@@ -45,7 +45,7 @@ public class ControladorUsuario {
         );
     }
 
-    public String registrarResponsable(HashMap<String, String> params) {
+    public void registrarResponsable(HashMap<String, String> params) {
         Responsable responsable;
         try {
             responsable = crearResponsable(params);
@@ -63,10 +63,10 @@ public class ControladorUsuario {
             vista.usuarioExistente();
             return;
         }
-        return vista.usuarioCreado(responsable);
+        vista.usuarioCreado(responsable);
     }
 
-    public String registrarCuidador(HashMap<String, String> params) {
+    public void registrarCuidador(HashMap<String, String> params) {
         Cuidador cuidador;
         try {
             cuidador = crearCuidador(params);
@@ -91,7 +91,7 @@ public class ControladorUsuario {
             return;
         }
 
-        return vista.usuarioCreado(cuidador);
+        vista.usuarioCreado(cuidador);
     }
 
     public Responsable crearResponsable(HashMap<String, String> params)
