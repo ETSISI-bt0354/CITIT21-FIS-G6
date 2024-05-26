@@ -38,23 +38,23 @@ public class GlobalRepository {
         return instance;
     }
 
-    public static Repository<Responsable> getResponsables() {
+    public static IRepository<Responsable> getResponsables() {
         return getInstance().responsables;
     }
 
-    public static Repository<Cuidador> getCuidadores() {
+    public static IRepository<Cuidador> getCuidadores() {
         return getInstance().cuidadores;
     }
 
-    public static Repository<Mascota> getMascotas() {
+    public static IRepository<Mascota> getMascotas() {
         return getInstance().mascotas;
     }
 
-    public static Repository<Exotico> getExoticos() {
+    public static IRepository<Exotico> getExoticos() {
         return getInstance().exoticos;
     }
 
-    public static Repository<Cuidado> getCuidados() {
+    public static IRepository<Cuidado> getCuidados() {
         return getInstance().cuidados;
     }
 }
