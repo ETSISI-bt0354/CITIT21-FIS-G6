@@ -7,6 +7,7 @@ public class Mensaje {
     private LocalDateTime timestamp;
     private final int id;
     private Usuario usuarioReceptor;
+    private Usuario usuarioEmisor;
     private Cuidado cuidado;
 
     public Mensaje(String contenido, LocalDateTime timestamp, int id) {
@@ -34,8 +35,6 @@ public class Mensaje {
     public int getId() {
         return id;
     }
-
-    public Usuario usuarioEmisor;
 
     public Usuario getUsuarioEmisor() {
         return usuarioEmisor;
