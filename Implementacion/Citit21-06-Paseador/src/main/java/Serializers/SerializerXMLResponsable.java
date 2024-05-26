@@ -29,24 +29,19 @@ public class SerializerXMLResponsable implements Serializer<Responsable> {
 
     @Override
     public Responsable deserialize(String data) {
-        Document doc = XML.getDocument(data);
-        doc.getDocumentElement()
-                .normalize();
+        Document document = XML.getDocument(data);
+        Node responsable = document.getElementsByTagName("responsable")
+                .item(0);
 
-        NodeList nodeList = doc.getElementsByTagName("responsable");
-        Node node = nodeList.item(0);
-        Element elem = (Element) node;
-
-        int id = Integer.parseInt(elem.getElementsByTagName("id")
+        int id = Integer.parseInt(responsable.getAttributes()
                                           .item(0)
-                                          .getTextContent());
+                                          .getNodeValue());
 
-        TPlataforma plataforma = TPlataforma.parse(elem.getElementsByTagName("plataforma")
-                                                           .item(0)
+        NodeList nodeList = responsable.getChildNodes();
+
+        TPlataforma plataforma = TPlataforma.parse(nodeList.item(0)
                                                            .getTextContent());
-
-        String nombre = elem.getElementsByTagName("nombre")
-                .item(0)
+        String nombre = nodeList.item(1)
                 .getTextContent();
 
         return new Responsable(id, plataforma, nombre);
