@@ -170,7 +170,8 @@ public class ControladorMascota {
     }
 
     public void listarMascotas() {
-        vista.listarMascotas(repositorioMascota.obtenerTodos());
+        vista.listarMascotas(Stream.concat(repositorioMascota.obtenerTodos(),
+                repositorioMascotaExotica.obtenerTodos()));
     }
 
     protected Mascota obtenerMascota(int id) throws NotFound {
