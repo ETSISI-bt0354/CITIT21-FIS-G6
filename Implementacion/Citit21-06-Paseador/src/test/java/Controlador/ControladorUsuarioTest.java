@@ -57,6 +57,16 @@ public class ControladorUsuarioTest extends TestCase {
     }
 
     @org.junit.jupiter.api.Test
+    void registrarResponsableWithInexistantPlatform() {
+        ControladorUsuario controladorUsuario = ControladorUsuario.getInstance();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("codigoPlataforma", "1");
+        params.put("nombre", "nombre");
+        controladorUsuario.registrarResponsable(params);
+        assertEquals("El campo plataforma no ha sido introducido", outputStreamCaptor.toString().trim());
+    }
+
+    @org.junit.jupiter.api.Test
     void registrarCuidadorWithValidParams() {
         HashMap<String, String> params = new HashMap<>();
         ControladorUsuario con = ControladorUsuario.getInstance();
