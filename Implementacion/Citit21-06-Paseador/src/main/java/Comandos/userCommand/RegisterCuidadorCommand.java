@@ -13,7 +13,8 @@ public class RegisterCuidadorCommand extends UserCommand {
 
     @Override
     public String exec(List<String> args) {
-        return super.controller.registrarCuidador(CommandHelper.argsToMap(args));
+        // return super.controller.registrarCuidador(CommandHelper.argsToMap(args));
+        return "";
     }
 
     @Override
@@ -24,7 +25,7 @@ public class RegisterCuidadorCommand extends UserCommand {
     @Override
     public String help(List<String> args, String prefixCommand) {
         StringBuilder message = CommandHelper.prefixCommandBuilder(prefixCommand, " ");
-        message.append(super.controller.registerUserHelp());
+        //message.append(super.controller.registerUserHelp());
         return message.toString();
     }
 }
