@@ -174,6 +174,10 @@ public class ControladorMascota {
     }
 
     protected Mascota obtenerMascota(int id) throws NotFound {
-        return repositorioMascota.obtener(id);
+        try {
+            return repositorioMascota.obtener(id);
+        } catch (NotFound ignored) {}
+
+        return repositorioMascotaExotica.obtener(id);
     }
 }
